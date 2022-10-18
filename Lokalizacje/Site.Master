@@ -1,0 +1,130 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Aplikacja_1._0._2.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="pl">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - WEB Aplikacja</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+</head>
+<body onscroll="zmniejsz_menu(this)">
+    <div style="background-color: transparent;  background-image: url(image/tło.jpg); background-repeat: no-repeat; background-attachment: fixed;">
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+
+                 <div style="float:right; display:inline;"> 
+                    <img id="Image1" class="logo_bwi"  src="image/log1.png" style="border-style:None;height:80px;" />
+                   </div>
+
+                <a  runat="server" href="http://plkro-fil04/Krosno/" title="Strona główna">
+                    <img id="Image2" class="button_home" src="/image/home2.png" alt="Simply Easy Learning" width="70" height="70" style="margin-top:5px" >
+                </a>
+
+                 
+
+            </div>
+            
+        </div>
+        <div class="container body-content" >
+            <div style="min-height: 85vh">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+                </div>
+            <hr />
+            <footer>
+                <div class="row">
+                    <div class="col-md-9">
+                <p style="color: #C0C0C0">&copy; <%: DateTime.Now.Year %> BWI Group - Wszelkie prawa zastrzeżone.</p>
+                    </div>
+                    <div class="col-md-3" style="text-align:end">
+                        <p style="color: #C0C0C0"> ver. 1.0.0</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+    </form>
+
+        <script type="text/javascript" language="javascript">
+
+
+
+            function sesjaclear() {
+
+
+                return false;
+            }
+
+
+
+
+
+
+
+            function zmniejsz_menu(body) {
+                
+                var pozycja = body.scrollY;
+                if (document.title != "Lokalizacje - WEB Aplikacja" && document.title != "Lokalizacje")
+                if (pozycja < 20)
+                {
+                    document.getElementById("Image1").style.height = "80px";
+                    document.getElementById("Image2").style.height = "70px";
+                    document.getElementById("Image2").style.width = "70px";
+                }
+                else
+                {
+                    document.getElementById("Image1").style.height = "40px";
+                    document.getElementById("Image2").style.height = "35px";
+                    document.getElementById("Image2").style.width = "35px";
+                }
+
+
+
+                    return false;
+                }
+
+
+
+
+        </script>
+
+        </div>
+
+</body>
+
+
+
+</html>
+
+
