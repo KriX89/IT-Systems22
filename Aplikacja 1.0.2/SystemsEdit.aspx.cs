@@ -112,28 +112,28 @@ namespace Aplikacja_1._0._2
             // bool pierwszy = true;
 
             if (System != "")
-                warunek += " System LIKE '%" + System + "%'";
+                warunek += " A.System LIKE '%" + System + "%'";
             else
-                warunek += " System LIKE '%'";
+                warunek += " A.System LIKE '%'";
             if (AuthecticationGrName != "")
-                warunek += "AND  AuthecticationGrName LIKE '%" + AuthecticationGrName + "%'";
+                warunek += "AND  A.AuthecticationGrName LIKE '%" + AuthecticationGrName + "%'";
             else
-                warunek += "AND AuthecticationGrName LIKE '%'";
+                warunek += "AND A.AuthecticationGrName LIKE '%'";
 
             if (LocationType != "")
-                warunek += "AND  LocationType LIKE '%" + LocationType + "%'";
+                warunek += "AND  A.LocationType LIKE '%" + LocationType + "%'";
             else
-                warunek += "AND LocationType LIKE '%'";
+                warunek += "AND A.LocationType LIKE '%'";
 
             if (SystemType != "")
-                warunek += "AND SystemType LIKE '%" + SystemType + "%'";
+                warunek += "AND A.SystemType LIKE '%" + SystemType + "%'";
             else
-                warunek += "AND SystemType LIKE '%'";
+                warunek += "AND A.SystemType LIKE '%'";
 
             if (Plant != "")
-                warunek += "AND Plant LIKE '%" + Plant + "%'";
+                warunek += "AND A.Plant LIKE '%" + Plant + "%'";
             else
-                warunek += "AND Plant LIKE '%'";
+                warunek += "AND A.Plant LIKE '%'";
 
 
             return warunek;
@@ -286,6 +286,7 @@ namespace Aplikacja_1._0._2
             GridView2.DataSource = dt;
             GridView2.DataBind();
             hiddencolumns();
+          //  TextBox7.Text = "SELECT A.*, B.SupportEmail, B.SupportGroup FROM Systems_v1 as A join Systems as B on A.System_ID = B.System_ID  WHERE " + buduj_warunek(TextBox1.Text, DropDownList8.SelectedItem.Text, DropDownList1.SelectedItem.Text, DropDownList2.SelectedItem.Text, DropDownList3.SelectedItem.Text) + " order by A.System_ID desc";
         }
 
         protected void clearAll()
@@ -365,6 +366,28 @@ namespace Aplikacja_1._0._2
                 ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Something went wrong.');", true);
             }
 
+        }
+
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openFiltrModal();", true);
+        }
+
+        protected void Button7_Click(object sender, EventArgs e)
+        {
+            clearAll();
+            Button3.Visible = true;
+            Button4.Visible = false;
+            Label16.Text = "Add new system";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
+        }
+
+        protected void Button8_Click(object sender, EventArgs e)
+        {
+            Button3.Visible = false;
+            Button4.Visible = true;
+            Label16.Text = "Change selected ";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
         }
     }
 }
