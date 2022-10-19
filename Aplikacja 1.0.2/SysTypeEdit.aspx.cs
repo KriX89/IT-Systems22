@@ -137,5 +137,22 @@ namespace Aplikacja_1._0._2
                 ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Something went wrong.');", true);
             }
         }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            clearAll();
+            Button1.Visible = true;
+            Button2.Visible = false;
+            Label16.Text = "Add new type";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
+        }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            Button1.Visible = false;
+            Button2.Visible = true;
+            Label16.Text = "Change selected type";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
+        }
     }
 }

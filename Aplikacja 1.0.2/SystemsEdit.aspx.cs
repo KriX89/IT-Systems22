@@ -386,7 +386,7 @@ namespace Aplikacja_1._0._2
         {
             Button3.Visible = false;
             Button4.Visible = true;
-            Label16.Text = "Change selected ";
+            Label16.Text = "Change selected system";
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
         }
     }

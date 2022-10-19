@@ -51,7 +51,7 @@
 
   </div>
   </div>
-        </ContentTemplate>
+  </ContentTemplate>
   <Triggers>
   <asp:AsyncPostBackTrigger ControlID="Button5" EventName="Click" />
   </Triggers>
@@ -61,7 +61,7 @@
 
 
 
-      <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+  <asp:UpdatePanel ID="UpdatePanel3" runat="server">
   <ContentTemplate>    
   <div id="AddModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -143,14 +143,10 @@
     <div style="margin-left:auto; margin-right:auto; width:90%;">
         <div class="row">
 
-                <table style="width: 100%; text-align:center; color:white; background-color:#373636cd">
-                <tr style="padding: 20px 20px 20px 20px;">
                     <asp:Button ID="Button5" runat="server" Text="Filter" OnClick="Button5_Click" />
                     <asp:Button ID="Button7" runat="server" Text="Add new system" OnClick="Button7_Click" />
                     <asp:Button ID="Button8" runat="server" Text="Change selected system" OnClick="Button8_Click" />
-                </tr>
-                
-               </table>
+
                     <br>
 
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">

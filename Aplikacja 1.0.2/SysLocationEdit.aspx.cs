@@ -78,7 +78,7 @@ namespace Aplikacja_1._0._2
             {
                 SqlConnection conn = new SqlConnection(constr);
                 conn.Open();
-                SqlCommand command = new SqlCommand("INSERT INTO SystemTypes VALUES('" + TextBox1.Text + "', '" + CheckBox1.Checked + "')", conn);
+                SqlCommand command = new SqlCommand("INSERT INTO LocationTypes VALUES('" + TextBox1.Text + "', '" + CheckBox1.Checked + "')", conn);
                 command.ExecuteNonQuery();
                 conn.Close();
 
@@ -134,6 +134,23 @@ namespace Aplikacja_1._0._2
                 ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Something went wrong.');", true);
             }
 
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            clearAll();
+            Button1.Visible = true;
+            Button2.Visible = false;
+            Label16.Text = "Add new location";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
+        }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            Button1.Visible = false;
+            Button2.Visible = true;
+            Label16.Text = "Change selected location";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
         }
 
     }

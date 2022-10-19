@@ -12,6 +12,7 @@ using DocumentFormat.OpenXml.Bibliography;
 using DocumentFormat.OpenXml.Wordprocessing;
 using ListItem = System.Web.UI.WebControls.ListItem;
 using CheckBox = System.Web.UI.WebControls.CheckBox;
+using System.Reflection.Emit;
 
 namespace Aplikacja_1._0._2
 {
@@ -148,7 +149,7 @@ namespace Aplikacja_1._0._2
                 dt.Clear();
                 SqlConnection conn = new SqlConnection(constr);
                 conn.Open();
-                SqlCommand command = new SqlCommand("SELECT A.* FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE B.NetID = '" + Session["Login"] + "' AND Active = 'true' AND AccessLevel = 2 order by GroupID desc", conn);
+                SqlCommand command = new SqlCommand("SELECT A.* FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE B.NetID = '" + Session["Login"] + "' AND AccessLevel = 2 order by GroupID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
                 GridView2.DataSource = dt;
@@ -230,7 +231,7 @@ namespace Aplikacja_1._0._2
             dt.Clear();
             SqlConnection conn = new SqlConnection(constr);
             conn.Open();
-            SqlCommand command = new SqlCommand("SELECT A.* FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE WHERE " + buduj_warunek(DropDownList1.SelectedItem.Text, DropDownList2.SelectedItem.Text, TextBox1.Text, TextBox2.Text, TextBox3.Text, DropDownList3.SelectedItem.Text, Session["Login"].ToString()) + " order by GroupID desc", conn);
+            SqlCommand command = new SqlCommand("SELECT A.* FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE " + buduj_warunek(DropDownList1.SelectedItem.Text, DropDownList2.SelectedItem.Text, TextBox1.Text, TextBox2.Text, TextBox3.Text, DropDownList3.SelectedItem.Text, Session["Login"].ToString()) + " order by GroupID desc", conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
             GridView2.DataSource = dt;
@@ -254,7 +255,7 @@ namespace Aplikacja_1._0._2
                 DataTable dt = new DataTable();
                 dt.Clear();
                 conn.Open();
-                command = new SqlCommand("SELECT A.* FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE B.NetID = '" + Session["Login"] + "' AND Active = 'true' AND AccessLevel = 2 order by GroupID desc", conn);
+                command = new SqlCommand("SELECT A.* FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE B.NetID = '" + Session["Login"] + "' AND AccessLevel = 2 order by GroupID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
                 GridView2.DataSource = dt;
@@ -289,7 +290,7 @@ namespace Aplikacja_1._0._2
                 DataTable dt = new DataTable();
                 dt.Clear();
                 conn.Open();
-                command = new SqlCommand("SELECT A.* FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE B.NetID = '" + Session["Login"] + "' AND Active = 'true' AND AccessLevel = 2 order by GroupID desc", conn);
+                command = new SqlCommand("SELECT A.* FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE B.NetID = '" + Session["Login"] + "' AND AccessLevel = 2 order by GroupID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
                 GridView2.DataSource = dt;
@@ -305,6 +306,28 @@ namespace Aplikacja_1._0._2
                 clearAll();
                 ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Something went wrong.');", true);
             }
+        }
+
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openFiltrModal();", true);
+        }
+
+        protected void Button7_Click(object sender, EventArgs e)
+        {
+            clearAll();
+            Button3.Visible = true;
+            Button4.Visible = false;
+            Label17.Text = "Add new system access group";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
+        }
+
+        protected void Button8_Click(object sender, EventArgs e)
+        {
+            Button3.Visible = false;
+            Button4.Visible = true;
+            Label17.Text = "Change selected system access group";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
         }
 
 

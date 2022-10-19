@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Web.UI.WebControls;
 using ListItem = System.Web.UI.WebControls.ListItem;
+using System.Web.UI;
 
 namespace Aplikacja_1._0._2
 {
@@ -84,7 +85,6 @@ namespace Aplikacja_1._0._2
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (Session["Login"] == null)
             {
                 Response.Redirect("Logowanie.aspx");
@@ -166,6 +166,11 @@ namespace Aplikacja_1._0._2
             GridView2.DataSource = dt;
             GridView2.DataBind();
             hiddencolumns();
+        }
+
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openFiltrModal();", true);
         }
     }
 }
