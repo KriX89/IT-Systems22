@@ -52,21 +52,23 @@
     
 
 
-            <div style="margin-left:auto; margin-right:auto; width:80%;"> 
-            <asp:Button ID="Button5" runat="server" Text="Filter" OnClick="Button5_Click" />
-            <br>
-                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <div style="margin-left:auto; margin-right:auto; width:80%;">
+        <div class="row">
+        <asp:Button ID="Button5" runat="server" Text="Filter" OnClick="Button5_Click" />
+        <br>
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <asp:GridView runat="server" ID="GridView2" Width="100%" HeaderStyle-BackColor="#003399" HeaderStyle-BorderColor="#003300" HeaderStyle-ForeColor="White" CssClass="table table-condensed table-hover" AllowPaging="True" PageSize="20" OnPageIndexChanging="GridView2_OnPageIndexChanging" OnRowDataBound="GridView2_RowDataBound" >
             <PagerStyle CssClass="pagination-ys" BackColor="#003399" BorderColor="White" ForeColor="Black" />
             </asp:GridView>
-                    </ContentTemplate>
+        </ContentTemplate>
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="Button1" EventName ="click" />
             <asp:AsyncPostBackTrigger ControlID="GridView2" EventName="PageIndexChanged" />
         </Triggers>
-    </asp:UpdatePanel>
-            </div>
+   </asp:UpdatePanel>
+   </div>
+   </div>
 
 
 

@@ -132,8 +132,8 @@
         <div class="row">
 
                                 <asp:Button ID="Button5" runat="server" Text="Filter" OnClick="Button5_Click" />
-                    <asp:Button ID="Button8" runat="server" Text="Add new system" OnClick="Button7_Click" />
-                    <asp:Button ID="Button9" runat="server" Text="Change selected system" OnClick="Button8_Click" />
+                    <asp:Button ID="Button8" runat="server" Text="Add new access group" OnClick="Button7_Click" />
+                    <asp:Button ID="Button9" runat="server" Text="Change selected access group" OnClick="Button8_Click" />
 
                     <br>
 

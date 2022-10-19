@@ -200,5 +200,23 @@ namespace Aplikacja_1._0._2
         }
 
 
+        protected void Button7_Click(object sender, EventArgs e)
+        {
+            clearAll();
+            Button1.Visible = true;
+            Button2.Visible = false;
+            Label17.Text = "Add new authentication group";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
+        }
+
+        protected void Button8_Click(object sender, EventArgs e)
+        {
+            Button1.Visible = false;
+            Button2.Visible = true;
+            Label17.Text = "Change selected authentication group";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
+        }
+
+
     }
 }
