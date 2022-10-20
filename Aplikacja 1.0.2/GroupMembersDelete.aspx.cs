@@ -279,5 +279,15 @@ namespace Aplikacja_1._0._2
             }
         }
 
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openFiltrModal();", true);
         }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openDeleteModal();", true);
+        }
+
+    }
 }

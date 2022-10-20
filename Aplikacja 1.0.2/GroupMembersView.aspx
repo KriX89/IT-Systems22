@@ -2,40 +2,93 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <br>
     <br>
-    <div style="margin-left:auto; margin-right:auto; width:90%; color:white; background-color:#373636cd">
-        <table style="width: 100%; text-align:center">
-            <tr style="padding: 20px 20px 20px 20px;">
-                <td><asp:Label ID="Label1" runat="server" Text="System: "/></td>
-                <td><asp:Label ID="Label2" runat="server" Text="Group Name: " /></td>
-                <td><asp:Label ID="Label3" runat="server" Text="First Name: " /></td>
-                <td><asp:Label ID="Label4" runat="server" Text="Last Name: " /></td>
-                <td><asp:Label ID="Label5" runat="server" Text="Login: " /></td>
-                <td><asp:Label ID="Label6" runat="server" Text="Department: " /></td>
-                <td><asp:Label ID="Label7" runat="server" Text="Plant: " /></td>
-                <td><asp:Label ID="Label8" runat="server" Text="BWI Empl No: " /></td>
-                <td><asp:Label ID="Label9" runat="server" Text="Plant ID No: " /></td>
-                <td><asp:Label ID="Label10" runat="server" Text="TicketNo: " /></td>
-                <td><asp:Button ID="Button1" runat="server" Text="Search" ForeColor="Black" OnClick="Button1_Click" /></td>
-            </tr>
-            <tr>
-                <td><asp:DropDownList ID="DropDownList1" runat="server" ForeColor="Black" /></td>
-                <td><asp:DropDownList ID="DropDownList2" runat="server" ForeColor="Black" /></td>
-                <td><asp:TextBox ID="TextBox1" runat="server" ForeColor="Black" /></td>
-                <td><asp:TextBox ID="TextBox2" runat="server" ForeColor="Black" /></td>
-                <td><asp:TextBox ID="TextBox3" runat="server" ForeColor="Black" /></td>
-                <td><asp:DropDownList ID="DropDownList3" runat="server" ForeColor="Black" /></td>
-                <td><asp:DropDownList ID="DropDownList4" runat="server" ForeColor="Black" /></td>
-                <td><asp:TextBox ID="TextBox4" runat="server" ForeColor="Black" /></td>
-                <td><asp:TextBox ID="TextBox5" runat="server" ForeColor="Black" /></td>
-                <td><asp:TextBox ID="TextBox6" runat="server" ForeColor="Black" /></td>
 
-                <td>
-                <input id="Button2" type="button" value="Clear" style="color:black" onclick="btClear()" /></td>
-            </tr>
-        </table>
+
+    <asp:UpdatePanel ID="UpdatePanel5" runat="server">
+  <ContentTemplate>    
+  <div id="filtrModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header" style="text-align:center">
+            <asp:Label ID="Label19" runat="server" Text="Group members filter" />
+        </div>
+      <div class="modal-body">   
+
+        <div style="margin-left:auto; margin-right:auto; width:100%;">
+        <div class="row" style="height: 30px;">
+            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label1" runat="server" Text="System: "/></div>
+            <div class ="col-md-6" style="text-align:left"><asp:DropDownList ID="DropDownList1" runat="server" ForeColor="Black" /></div>
+        </div>
+        <div class="row" style="height: 30px;">
+            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label2" runat="server" Text="Group Name: " /></div>
+            <div class ="col-md-6" style="text-align:left"><asp:DropDownList ID="DropDownList2" runat="server" ForeColor="Black" /></div>
+        </div>
+        <div class="row" style="height: 30px;">
+            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label3" runat="server" Text="First Name: " /></div>
+            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox1" runat="server" ForeColor="Black" /></div>
+        </div>
+        <div class="row" style="height: 30px;">
+            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label4" runat="server" Text="Last Name: " /></div>
+            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox2" runat="server" ForeColor="Black" /></div>
+        </div>
+
+        <div class="row" style="height: 30px;">
+            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label5" runat="server" Text="Login: " /></div>
+            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox3" runat="server" ForeColor="Black" /></div>
+        </div> 
+            
+        <div class="row" style="height: 30px;">
+            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label6" runat="server" Text="Department: " /></div>
+            <div class ="col-md-6" style="text-align:left"><asp:DropDownList ID="DropDownList3" runat="server" ForeColor="Black" /></div>
+        </div>            
+        <div class="row" style="height: 30px;">
+            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label7" runat="server" Text="Plant: " /></div>
+            <div class ="col-md-6" style="text-align:left"><asp:DropDownList ID="DropDownList4" runat="server" ForeColor="Black" /></div>
+        </div>  
+
+        <div class="row" style="height: 30px;">
+            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label8" runat="server" Text="BWI Empl No: " /></div>
+            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox4" runat="server" ForeColor="Black" /></div>
+        </div>     
+        <div class="row" style="height: 30px;">
+            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label9" runat="server" Text="Plant ID No: " /></div>
+            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox5" runat="server" ForeColor="Black" /></div>
+        </div>  
+        <div class="row" style="height: 30px;">
+            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label10" runat="server" Text="TicketNo: " /></div>
+            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox6" runat="server" ForeColor="Black" /></div>
+        </div>  
+
+
+        </div>
     </div>
 
-    <br>
+      <div class="modal-footer" style="text-align:center">
+          <asp:Button ID="Button1" runat="server" Text="Search" ForeColor="Black" OnClientClick="closeFiltrModal()" OnClick="Button1_Click" />
+          <input id="Button2" type="button" value="Clear" style="color:black" onclick="btClear()" />
+          <input id="Button6" type="button" value="Cancel" style="color:black" onclick="closeFiltrModal()" />
+      </div>
+    </div>
+
+  </div>
+  </div>
+  </ContentTemplate>
+  <Triggers>
+  <asp:AsyncPostBackTrigger ControlID="Button5" EventName="Click" />
+  </Triggers>
+  </asp:UpdatePanel>
+
+
+
+    <div style="margin-left:auto; margin-right:auto; width:90%;">
+
+        <asp:Button ID="Button5" runat="server" Text="Filter" OnClick="Button5_Click" />
+
+    </div>
+
+   
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -52,7 +105,6 @@
     </asp:UpdatePanel>
 
 
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript">
         function btClear() {
             var System = document.getElementById('<%= DropDownList1.ClientID %>');
@@ -75,6 +127,16 @@
             BWIEmplNo.value = "";
             PlantIDNo.value = "";
             TicketNo.value = "";
-            }
+        }
+
+
+        function openFiltrModal() {
+            $('#filtrModal').modal('show');
+        }
+        function closeFiltrModal() {
+            $("#filtrModal").modal('hide');
+        }
+
+
     </script> 
 </asp:Content>

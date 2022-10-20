@@ -169,5 +169,24 @@ namespace Aplikacja_1._0._2
                 ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Something went wrong.');", true);
             }
         }
+
+        protected void Button7_Click(object sender, EventArgs e)
+        {
+            clearAll();
+            Button1.Visible = true;
+            Button2.Visible = false;
+            Label16.Text = "Add new access to system";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
+        }
+
+        protected void Button8_Click(object sender, EventArgs e)
+        {
+            Button1.Visible = false;
+            Button2.Visible = true;
+            Label16.Text = "Change selected access";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
+        }
+
+
     }
 }

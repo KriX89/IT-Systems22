@@ -3,6 +3,7 @@ using System.Web.UI.WebControls;
 using ListItem = System.Web.UI.WebControls.ListItem;
 using System.Data.SqlClient;
 using System;
+using System.Web.UI;
 
 namespace Aplikacja_1._0._2
 {
@@ -190,5 +191,12 @@ namespace Aplikacja_1._0._2
             GridView2.DataSource = dt;
             GridView2.DataBind();
         }
+
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openFiltrModal();", true);
+        }
+
+
     }
 }

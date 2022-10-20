@@ -315,7 +315,7 @@ namespace Aplikacja_1._0._2
         protected void OnSelectedIndexChanged(object sender, EventArgs e)
         {
 
-            DataTable dt2 = new DataTable();
+        /*    DataTable dt2 = new DataTable();
             dt2.Clear();
             SqlConnection conn = new SqlConnection(constr);
                 conn.Open();
@@ -327,8 +327,31 @@ namespace Aplikacja_1._0._2
                 DropDownList1.DataValueField = "DepartmentID";
                 DropDownList1.DataBind();
                 DropDownList1.Items.Insert(0, new ListItem(String.Empty, String.Empty));
-                dt2.Clear();
+                dt2.Clear(); */
 
+        }
+
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openFiltrModal();", true);
+        }
+
+
+        protected void Button7_Click(object sender, EventArgs e)
+        {
+            clearAll();
+            Button1.Visible = true;
+            Button2.Visible = false;
+            Label16.Text = "Add new employee";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
+        }
+
+        protected void Button8_Click(object sender, EventArgs e)
+        {
+            Button1.Visible = false;
+            Button2.Visible = true;
+            Label16.Text = "Change selected emploee";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
         }
 
 
