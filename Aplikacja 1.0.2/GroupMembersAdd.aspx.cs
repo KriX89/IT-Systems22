@@ -442,15 +442,15 @@ namespace Aplikacja_1._0._2
                     dtSystemUser.Load(command.ExecuteReader());
                     conn.Close();
 
-                    conn.Open();
+                  //  conn.Open();
 
                   //  if (CheckBox1.Checked)
-                     command = new SqlCommand("INSERT INTO Mail_To (Mail_From, Mail_To, Subject, body, Date1, Status) VALUES('ITSystemsBWI@bwigroup.com', '" + HiddenEmail.Value + "', 'Add new user on system: " + dtAccessGroups.Rows[0][0] + "' , ' body ' , getdate(), ' 0 ')", conn); 
+                 //    command = new SqlCommand("INSERT INTO Mail_To (Mail_From, Mail_To, Subject, body, Date1, Status) VALUES('ITSystemsBWI@bwigroup.com', '" + HiddenEmail.Value + "', 'Add new user on system: " + dtAccessGroups.Rows[0][0] + "' , ' body ' , getdate(), ' 0 ')", conn); 
                  //   else
                   //  { command = new SqlCommand("INSERT INTO GroupMembers (GroupID, UserID, TicketNo, ValidFrom, ValidTo, DT, Author) VALUES('" + HiddenTextBox.Value + "', '" + HiddenTextBox2.Value + "', '" + TextBox19.Text + "' , '" + txtDate.Text + "' , '" + TextBox18.Text + "' , getdate(), '" + Session["Login"] + "')", conn); }
 
-                    command.ExecuteNonQuery();
-                    conn.Close();
+                 //   command.ExecuteNonQuery();
+                 //   conn.Close();
 
            //     TextBox11.Text = "INSERT INTO Mail_To (Mail_From, Mail_To, Subject, body, Date1, Status) VALUES('ITSystemsBWI@bwigroup.com', '" + HiddenEmail.Value + "', 'Add new user on system: " + dtAccessGroups.Rows[0][0] + "' , '" + txtDate.Text + "' , getdate(), ' 0 ')";
 
