@@ -357,6 +357,15 @@ namespace Aplikacja_1._0._2
         protected global::System.Web.UI.WebControls.Button Button4;
 
         /// <summary>
+        /// Kontrolka Button9.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button9;
+
+        /// <summary>
         /// Kontrolka Button5.
         /// </summary>
         /// <remarks>

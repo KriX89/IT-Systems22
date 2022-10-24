@@ -142,10 +142,10 @@
 
     <div style="margin-left:auto; margin-right:auto; width:90%;">
         <div class="row">
-
-                    <asp:Button ID="Button5" runat="server" Text="Filter" OnClick="Button5_Click" />
-                    <asp:Button ID="Button7" runat="server" Text="Add new system" OnClick="Button7_Click" />
-                    <asp:Button ID="Button8" runat="server" Text="Change selected system" OnClick="Button8_Click" />
+                    <asp:Button ID="Button9" class="naglowektab" runat="server" Text="SYSTEMS" OnClientClick="return false;" Style="cursor:default"/>
+                    <asp:Button ID="Button5" Style="background-image: url(../image/lupa2.png); background-repeat: no-repeat " class="button_2" runat="server" Text="Filter" OnClick="Button5_Click" />
+                    <asp:Button ID="Button7" Style="background-image: url(../image/plus.png); background-repeat: no-repeat " class="button_2" runat="server" Text="Add new" OnClick="Button7_Click" />
+                    <asp:Button ID="Button8" Style="background-image: url(../image/edit.png); background-repeat: no-repeat " class="button_2" runat="server" Text="Change selected" OnClick="Button8_Click" />
 
                     <br>
 

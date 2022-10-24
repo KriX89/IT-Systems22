@@ -73,7 +73,8 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div style="margin-left:auto; margin-right:auto; width:80%;">
-             <asp:Button ID="Button3" runat="server" Text="Filter" OnClick="Button3_Click" />
+                <asp:Button ID="Button4" class="naglowektab" runat="server" Text="ACCESS GROUPS" OnClientClick="return false;" Style="cursor:default"/>
+             <asp:Button ID="Button3" Style="background-image: url(../image/lupa2.png); background-repeat: no-repeat " class="button_2" runat="server" Text="Filter" OnClick="Button3_Click" />
             <asp:GridView runat="server" ID="GridView2" Width="100%" HeaderStyle-BackColor="#003399" HeaderStyle-BorderColor="#003300" HeaderStyle-ForeColor="White" CssClass="table table-condensed" AllowPaging="True" PageSize="20" OnPageIndexChanging="GridView2_OnPageIndexChanging" >
             <PagerStyle CssClass="pagination-ys" BackColor="#003399" BorderColor="White" ForeColor="Black" />
             </asp:GridView>

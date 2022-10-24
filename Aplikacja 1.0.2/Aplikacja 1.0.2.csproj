@@ -191,7 +191,12 @@
     <Content Include="GroupMembersDelete.aspx" />
     <Content Include="GroupMembersView.aspx" />
     <Content Include="image\background.jpg" />
+    <Content Include="image\delete.png" />
+    <Content Include="image\edit.png" />
     <Content Include="image\log1.png" />
+    <Content Include="image\lupa.png" />
+    <Content Include="image\lupa2.png" />
+    <Content Include="image\plus.png" />
     <Content Include="image\tło.jpg" />
     <Content Include="instr\Instrukcja.pdf" />
     <Content Include="instr\Instrukcja-rozszerzona.pdf" />

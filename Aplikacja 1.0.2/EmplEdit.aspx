@@ -125,7 +125,7 @@
 
       <div class="modal-footer" style="text-align:center">
          
-                    <asp:Button ID="Button1" runat="server" Text="Add employee" ForeColor="Black" OnClientClick="closeAddModal()" OnClick="Button1_Click" />
+                    <asp:Button ID="Button1"  runat="server" Text="Add employee" ForeColor="Black" OnClientClick="closeAddModal()" OnClick="Button1_Click" />
                     <asp:Button ID="Button2" runat="server" Text="Save changes" ForeColor="Black" OnClientClick="closeAddModal()" OnClick="Button2_Click" />
                     <input id="Button10" type="button" value="Cancel" style="color:black" onclick="closeAddModal()" />
       </div>
@@ -149,9 +149,11 @@
 
     <div style="margin-left:auto; margin-right:auto; width:90%;">
         <div class="row">
-            <asp:Button ID="Button5" runat="server" Text="Filter" OnClick="Button5_Click" />
-            <asp:Button ID="Button7" runat="server" Text="Add new" OnClick="Button7_Click" />
-            <asp:Button ID="Button8" runat="server" Text="Change selected" OnClick="Button8_Click" />
+            <asp:Button ID="Button4" class="naglowektab" runat="server" Text="EMPLOYEES" OnClientClick="return false;" Style="cursor:default"/>
+            <asp:Button ID="Button5" Style="background-image: url(../image/lupa2.png); background-repeat: no-repeat "  class="button_2"  runat="server" Text="Filter" OnClick="Button5_Click" />
+            <asp:Button ID="Button7" Style="background-image: url(../image/plus.png); background-repeat: no-repeat " class="button_2" runat="server" Text="Add new" OnClick="Button7_Click" />
+            <asp:Button ID="Button8" Style="background-image: url(../image/edit.png); background-repeat: no-repeat " class="button_2" runat="server" Text="Change selected" OnClick="Button8_Click" />
+            
 
                 <div style="margin-left:auto; margin-right:auto; width:100%; color:white; background-color:#373636cd">
 

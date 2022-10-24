@@ -82,48 +82,50 @@ namespace Aplikacja_1._0._2
                 Response.Redirect("Logowanie.aspx");
             }
 
-            DataTable dt = new DataTable();
-            dt.Clear();
-            SqlConnection conn = new SqlConnection(constr);
-            conn.Open();
-            SqlCommand command = new SqlCommand("SELECT FirstName, LastName, Department, Plant, BWIEmplNo, PlantIDNo FROM Employees_v1 order by EmpID desc", conn);
-            dt.Load(command.ExecuteReader());
-            conn.Close();
-            GridView2.DataSource = dt;
-            GridView2.DataBind();
-            dt.Clear();
-
-            DataTable dt2 = new DataTable();
-            if (DropDownList1.Items.Count < 1)
+            if (!IsPostBack)
             {
+                DataTable dt = new DataTable();
+                dt.Clear();
+                SqlConnection conn = new SqlConnection(constr);
                 conn.Open();
-                command = new SqlCommand("SELECT DepartmentID, Department FROM Departments", conn);
-                dt2.Load(command.ExecuteReader());
+                SqlCommand command = new SqlCommand("SELECT FirstName, LastName, Department, Plant, BWIEmplNo, PlantIDNo FROM Employees_v1 order by EmpID desc", conn);
+                dt.Load(command.ExecuteReader());
                 conn.Close();
-                DropDownList1.DataSource = dt2;
-                DropDownList1.DataTextField = "Department";
-                DropDownList1.DataValueField = "DepartmentID";
-                DropDownList1.DataBind();
-                DropDownList1.Items.Insert(0, new ListItem(String.Empty, String.Empty));
-                dt2.Clear();
+                GridView2.DataSource = dt;
+                GridView2.DataBind();
+                dt.Clear();
+
+                DataTable dt2 = new DataTable();
+                if (DropDownList1.Items.Count < 1)
+                {
+                    conn.Open();
+                    command = new SqlCommand("SELECT DepartmentID, Department FROM Departments", conn);
+                    dt2.Load(command.ExecuteReader());
+                    conn.Close();
+                    DropDownList1.DataSource = dt2;
+                    DropDownList1.DataTextField = "Department";
+                    DropDownList1.DataValueField = "DepartmentID";
+                    DropDownList1.DataBind();
+                    DropDownList1.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                    dt2.Clear();
+                }
+
+
+                if (DropDownList2.Items.Count < 1)
+                {
+                    conn.Open();
+                    command = new SqlCommand("SELECT PlantID, Plant FROM Plants", conn);
+                    dt2.Load(command.ExecuteReader());
+                    conn.Close();
+                    DropDownList2.DataSource = dt2;
+                    DropDownList2.DataTextField = "Plant";
+                    DropDownList2.DataValueField = "PlantID";
+                    DropDownList2.DataBind();
+                    DropDownList2.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                    dt2.Clear();
+                }
+
             }
-
-
-            if (DropDownList2.Items.Count < 1)
-            {
-                conn.Open();
-                command = new SqlCommand("SELECT PlantID, Plant FROM Plants", conn);
-                dt2.Load(command.ExecuteReader());
-                conn.Close();
-                DropDownList2.DataSource = dt2;
-                DropDownList2.DataTextField = "Plant";
-                DropDownList2.DataValueField = "PlantID";
-                DropDownList2.DataBind();
-                DropDownList2.Items.Insert(0, new ListItem(String.Empty, String.Empty));
-                dt2.Clear();
-            }
-
-
 
 
         }

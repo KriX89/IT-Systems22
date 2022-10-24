@@ -70,20 +70,23 @@
 
     
 
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>
+
             <div style="margin-left:auto; margin-right:auto; width:80%;">
-            <asp:Button ID="Button5" runat="server" Text="Filter" OnClick="Button5_Click" />
+            <asp:Button ID="Button4" class="naglowektab" runat="server" Text="EMPLOYEES" OnClientClick="return false;" Style="cursor:default"/>
+            <asp:Button ID="Button5" Style="background-image: url(../image/lupa2.png); background-repeat: no-repeat " class="button_2" runat="server" Text="Filter" OnClick="Button5_Click" />
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
             <asp:GridView runat="server" ID="GridView2" Width="100%" HeaderStyle-BackColor="#003399" HeaderStyle-BorderColor="#003300" HeaderStyle-ForeColor="White" CssClass="table table-condensed" DataKeyNames="FirstName" AllowPaging="True" PageSize="20" OnPageIndexChanging="GridView2_OnPageIndexChanging" >
             <PagerStyle CssClass="pagination-ys" BackColor="#003399" BorderColor="White" ForeColor="Black" />
             </asp:GridView>
-            </div>
-        </ContentTemplate>
+                    </ContentTemplate>
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="Button1" EventName ="click" />
             <asp:AsyncPostBackTrigger ControlID="GridView2" EventName="PageIndexChanged" />
         </Triggers>
     </asp:UpdatePanel>
+            </div>
+
 
 
 

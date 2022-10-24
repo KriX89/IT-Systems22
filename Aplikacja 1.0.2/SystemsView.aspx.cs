@@ -90,13 +90,15 @@ namespace Aplikacja_1._0._2
                 Response.Redirect("Logowanie.aspx");
             }
 
-            DataTable dt = new DataTable();
+            if (!IsPostBack)
+            {
+                DataTable dt = new DataTable();
                 dt.Clear();
                 SqlConnection conn = new SqlConnection(constr);
                 conn.Open();
 
-            SqlCommand command = new SqlCommand("SELECT A.System, A.AuthecticationGrName , A.LocationType, A.SystemType, A.Vendor, A.PhysicalLocation, A.Plant, B.SupportEmail, B.SupportGroup FROM Systems_v1 as A join Systems as B on A.System_ID = B.System_ID order by A.System_ID desc", conn);
-          //  SqlCommand command = new SqlCommand("SELECT System, AuthecticationGrName , LocationType, SystemType, Vendor, PhysicalLocation, Plant FROM Systems_v1 order by System_ID desc", conn);
+                SqlCommand command = new SqlCommand("SELECT A.System, A.AuthecticationGrName , A.LocationType, A.SystemType, A.Vendor, A.PhysicalLocation, A.Plant, B.SupportEmail, B.SupportGroup FROM Systems_v1 as A join Systems as B on A.System_ID = B.System_ID order by A.System_ID desc", conn);
+                //  SqlCommand command = new SqlCommand("SELECT System, AuthecticationGrName , LocationType, SystemType, Vendor, PhysicalLocation, Plant FROM Systems_v1 order by System_ID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
                 GridView2.DataSource = dt;
@@ -148,6 +150,7 @@ namespace Aplikacja_1._0._2
                     DropDownList3.Items.Insert(0, new ListItem(String.Empty, String.Empty));
                     dt2.Clear();
                 }
+            }
 
 
 

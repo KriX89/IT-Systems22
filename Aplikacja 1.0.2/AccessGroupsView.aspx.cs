@@ -82,65 +82,64 @@ namespace Aplikacja_1._0._2
                 Response.Redirect("Logowanie.aspx");
             }
 
-            DataTable dt = new DataTable();
-            dt.Clear();
-            SqlConnection conn = new SqlConnection(constr);
-            conn.Open();
-            SqlCommand command = new SqlCommand("SELECT System, AuthecticationGrName , GroupName, Description, SystemGroupName, Plant FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE B.NetID = '" + Session["Login"] + "' AND Active = 'true' AND AccessLevel > 0 order by GroupID desc", conn);
-            dt.Load(command.ExecuteReader());
-            conn.Close();
-            GridView2.DataSource = dt;
-            GridView2.DataBind();
-            dt.Clear();
-
-            DataTable dt2 = new DataTable();
-            if (DropDownList1.Items.Count < 1)
+            if (!IsPostBack)
             {
+                DataTable dt = new DataTable();
+                dt.Clear();
+                SqlConnection conn = new SqlConnection(constr);
                 conn.Open();
-                command = new SqlCommand("SELECT System_ID, System FROM Systems", conn);
-                dt2.Load(command.ExecuteReader());
+                SqlCommand command = new SqlCommand("SELECT System, AuthecticationGrName , GroupName, Description, SystemGroupName, Plant FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE B.NetID = '" + Session["Login"] + "' AND Active = 'true' AND AccessLevel > 0 order by GroupID desc", conn);
+                dt.Load(command.ExecuteReader());
                 conn.Close();
-                DropDownList1.DataSource = dt2;
-                DropDownList1.DataTextField = "System";
-                DropDownList1.DataValueField = "System_ID";
-                DropDownList1.DataBind();
-                DropDownList1.Items.Insert(0, new ListItem(String.Empty, String.Empty));
-                dt2.Clear();
+                GridView2.DataSource = dt;
+                GridView2.DataBind();
+                dt.Clear();
+
+                DataTable dt2 = new DataTable();
+                if (DropDownList1.Items.Count < 1)
+                {
+                    conn.Open();
+                    command = new SqlCommand("SELECT System_ID, System FROM Systems", conn);
+                    dt2.Load(command.ExecuteReader());
+                    conn.Close();
+                    DropDownList1.DataSource = dt2;
+                    DropDownList1.DataTextField = "System";
+                    DropDownList1.DataValueField = "System_ID";
+                    DropDownList1.DataBind();
+                    DropDownList1.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                    dt2.Clear();
+                }
+
+
+                if (DropDownList2.Items.Count < 1)
+                {
+                    conn.Open();
+                    command = new SqlCommand("SELECT AGroupID, AuthecticationGrName FROM AuthecticationGroups", conn);
+                    dt2.Load(command.ExecuteReader());
+                    conn.Close();
+                    DropDownList2.DataSource = dt2;
+                    DropDownList2.DataTextField = "AuthecticationGrName";
+                    DropDownList2.DataValueField = "AGroupID";
+                    DropDownList2.DataBind();
+                    DropDownList2.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                    dt2.Clear();
+                }
+
+
+                if (DropDownList3.Items.Count < 1)
+                {
+                    conn.Open();
+                    command = new SqlCommand("SELECT PlantID, Plant FROM Plants", conn);
+                    dt2.Load(command.ExecuteReader());
+                    conn.Close();
+                    DropDownList3.DataSource = dt2;
+                    DropDownList3.DataTextField = "Plant";
+                    DropDownList3.DataValueField = "PlantID";
+                    DropDownList3.DataBind();
+                    DropDownList3.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                    dt2.Clear();
+                }
             }
-
-
-            if (DropDownList2.Items.Count < 1)
-            {
-                conn.Open();
-                command = new SqlCommand("SELECT AGroupID, AuthecticationGrName FROM AuthecticationGroups", conn);
-                dt2.Load(command.ExecuteReader());
-                conn.Close();
-                DropDownList2.DataSource = dt2;
-                DropDownList2.DataTextField = "AuthecticationGrName";
-                DropDownList2.DataValueField = "AGroupID";
-                DropDownList2.DataBind();
-                DropDownList2.Items.Insert(0, new ListItem(String.Empty, String.Empty));
-                dt2.Clear();
-            }
-
-
-            if (DropDownList3.Items.Count < 1)
-            {
-                conn.Open();
-                command = new SqlCommand("SELECT PlantID, Plant FROM Plants", conn);
-                dt2.Load(command.ExecuteReader());
-                conn.Close();
-                DropDownList3.DataSource = dt2;
-                DropDownList3.DataTextField = "Plant";
-                DropDownList3.DataValueField = "PlantID";
-                DropDownList3.DataBind();
-                DropDownList3.Items.Insert(0, new ListItem(String.Empty, String.Empty));
-                dt2.Clear();
-            }
-
-
-
-
         }
 
         protected void Button1_Click(object sender, EventArgs e)

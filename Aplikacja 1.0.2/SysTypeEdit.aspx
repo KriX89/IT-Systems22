@@ -54,8 +54,9 @@
 
         <div style="margin-left:auto; margin-right:auto; width:50%;">
         <div class="row">
-            <asp:Button ID="Button3" runat="server" Text="Add new type" OnClick="Button3_Click" />
-            <asp:Button ID="Button4" runat="server" Text="Change selected type" OnClick="Button4_Click" />
+            <asp:Button ID="Button5" class="naglowektab" runat="server" Text="TYPES OF SYSTEMS" OnClientClick="return false;" Style="cursor:default"/>
+            <asp:Button ID="Button3" Style="background-image: url(../image/plus.png); background-repeat: no-repeat " class="button_2" runat="server" Text="Add new" OnClick="Button3_Click" />
+            <asp:Button ID="Button4" Style="background-image: url(../image/edit.png); background-repeat: no-repeat " class="button_2" runat="server" Text="Change selected" OnClick="Button4_Click" />
                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
                     <asp:GridView runat="server" ID="GridView1" HeaderStyle-BackColor="#003399" HeaderStyle-BorderColor="#003300" HeaderStyle-ForeColor="White" CssClass="table table-condensed table-hover" OnRowDataBound="GridView1_RowDataBound" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" >
