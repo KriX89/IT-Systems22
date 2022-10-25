@@ -181,7 +181,7 @@ namespace Aplikacja_1._0._2
                 ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Row updated.');", true);
                 clearAll();
 
-           //     TextBox1.Text = "UPDATE SystemAccessLevels SET AccessLevelID = '" + DropDownList2.SelectedValue + "' WHERE NetID = '" + TextBox1.Text + "', AND SystemID = '" + DropDownList1.SelectedValue + "'";
+
             }
             catch
             {

@@ -320,7 +320,7 @@ namespace Aplikacja_1._0._2
 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openDeleteModal();", true);
         }
-
+        
         protected void Button9_Click(object sender, EventArgs e)
         {
             try
