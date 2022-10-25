@@ -19,7 +19,7 @@ namespace Aplikacja_1._0._2
             dt.Clear();
             SqlConnection conn = new SqlConnection(constr);
             conn.Open();
-            SqlCommand command = new SqlCommand("SELECT A.RecID, A.System, A.GroupName, A.FirstName, A.LastName, A.Login, A.Department, A.Plant, A.BWIEmplNo, A.PlantIDNo, A.TicketNo, C.SupportEmail, C.SupportGroup FROM GroupMembers_v1 as A  join SystemAccessLevels as B on A.System_ID = B.SystemID join Systems as C on A.System_ID = C.System_ID WHERE " + buduj_warunek(DropDownList1.SelectedItem.Text, TextBox1.Text, TextBox2.Text, TextBox3.Text, DropDownList4.SelectedItem.Text, TextBox4.Text, TextBox5.Text, TextBox6.Text, Session["Login"].ToString()) + " order by A.RecID desc", conn);
+            SqlCommand command = new SqlCommand("SELECT A.RecID, A.System, A.GroupName, A.FirstName, A.LastName, A.Login, A.Department, A.Plant, A.BWIEmplNo, A.PlantIDNo, A.TicketNo, C.SupportEmail, C.SupportGroup, A.Status FROM GroupMembers_v1 as A  join SystemAccessLevels as B on A.System_ID = B.SystemID join Systems as C on A.System_ID = C.System_ID WHERE " + buduj_warunek(DropDownList1.SelectedItem.Text, TextBox1.Text, TextBox2.Text, TextBox3.Text, DropDownList4.SelectedItem.Text, TextBox4.Text, TextBox5.Text, TextBox6.Text, Session["Login"].ToString(), DropDownList2.SelectedItem.Text) + " order by A.RecID desc", conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
             GridView2.DataSource = dt;
@@ -51,7 +51,7 @@ namespace Aplikacja_1._0._2
             LoadGridData();
         }
 
-        public static string buduj_warunek(string System, string FirstName, string LastName, string Login, string Plant, string BWIEmplNo, string PlantIDNo, string TicketNo, string NetID)
+        public static string buduj_warunek(string System, string FirstName, string LastName, string Login, string Plant, string BWIEmplNo, string PlantIDNo, string TicketNo, string NetID, string Status)
         {
             string warunek = "B.NetID = '" + NetID + "' AND B.AccessLevel = 2 ";
             // bool pierwszy = true;
@@ -96,6 +96,11 @@ namespace Aplikacja_1._0._2
             else
                 warunek += "AND A.TicketNo LIKE '%'";
 
+            if (Status != "")
+                warunek += "AND A.Status = '" + Status + "'";
+            else
+                warunek += "AND A.Status LIKE '%'";
+
 
             return warunek;
         }
@@ -131,8 +136,8 @@ namespace Aplikacja_1._0._2
                 TextBox14.Text = GridView2.Rows[i].Cells[8].Text.Replace("&#243;", "ó");
                 TextBox15.Text = GridView2.Rows[i].Cells[9].Text.Replace("&#243;", "ó");
                 TextBox16.Text = GridView2.Rows[i].Cells[10].Text.Replace("&nbsp;", "");
-
                 HiddenEmail.Value = GridView2.Rows[i].Cells[11].Text.Replace("&#243;", "ó");
+                TextBox17.Text = GridView2.Rows[i].Cells[13].Text;
 
             }
             else
@@ -149,6 +154,7 @@ namespace Aplikacja_1._0._2
                 TextBox14.Text = "";
                 TextBox15.Text = "";
                 TextBox16.Text = "";
+                TextBox17.Text = "";
             }
         }
 
@@ -166,7 +172,7 @@ namespace Aplikacja_1._0._2
                 dt.Clear();
                 SqlConnection conn = new SqlConnection(constr);
                 conn.Open();
-                SqlCommand command = new SqlCommand("SELECT A.RecID, A.System, A.GroupName, A.FirstName, A.LastName, A.Login, A.Department, A.Plant, A.BWIEmplNo, A.PlantIDNo, A.TicketNo, C.SupportEmail, C.SupportGroup FROM GroupMembers_v1 as A  join SystemAccessLevels as B on A.System_ID = B.SystemID join Systems as C on A.System_ID = C.System_ID WHERE B.NetID = '" + Session["Login"] + "' AND B.AccessLevel = 2 order by A.RecID desc", conn);
+                SqlCommand command = new SqlCommand("SELECT A.RecID, A.System, A.GroupName, A.FirstName, A.LastName, A.Login, A.Department, A.Plant, A.BWIEmplNo, A.PlantIDNo, A.TicketNo, C.SupportEmail, C.SupportGroup, A.Status FROM GroupMembers_v1 as A  join SystemAccessLevels as B on A.System_ID = B.SystemID join Systems as C on A.System_ID = C.System_ID WHERE B.NetID = '" + Session["Login"] + "' AND B.AccessLevel = 2 order by A.RecID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
                 GridView2.DataSource = dt;
@@ -205,6 +211,20 @@ namespace Aplikacja_1._0._2
                     DropDownList4.Items.Insert(0, new ListItem(String.Empty, String.Empty));
                     dt2.Clear();
                 }
+
+                if (DropDownList2.Items.Count < 1)
+                {
+                    conn.Open();
+                    command = new SqlCommand("SELECT Status_ID, Status FROM GroupMembersStatuses", conn);
+                    dt2.Load(command.ExecuteReader());
+                    conn.Close();
+                    DropDownList2.DataSource = dt2;
+                    DropDownList2.DataTextField = "Status";
+                    DropDownList2.DataValueField = "Status_ID";
+                    DropDownList2.DataBind();
+                    DropDownList2.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                    dt2.Clear();
+                }
             }
         }
         protected void Button1_Click(object sender, EventArgs e)
@@ -213,7 +233,7 @@ namespace Aplikacja_1._0._2
             dt.Clear();
             SqlConnection conn = new SqlConnection(constr);
             conn.Open();
-            SqlCommand command = new SqlCommand("SELECT A.RecID, A.System, A.GroupName, A.FirstName, A.LastName, A.Login, A.Department, A.Plant, A.BWIEmplNo, A.PlantIDNo, A.TicketNo, C.SupportEmail, C.SupportGroup FROM GroupMembers_v1 as A  join SystemAccessLevels as B on A.System_ID = B.SystemID join Systems as C on A.System_ID = C.System_ID WHERE " + buduj_warunek(DropDownList1.SelectedItem.Text, TextBox1.Text, TextBox2.Text, TextBox3.Text, DropDownList4.SelectedItem.Text, TextBox4.Text, TextBox5.Text, TextBox6.Text, Session["Login"].ToString()) + " order by A.RecID desc", conn);
+            SqlCommand command = new SqlCommand("SELECT A.RecID, A.System, A.GroupName, A.FirstName, A.LastName, A.Login, A.Department, A.Plant, A.BWIEmplNo, A.PlantIDNo, A.TicketNo, C.SupportEmail, C.SupportGroup, A.Status FROM GroupMembers_v1 as A  join SystemAccessLevels as B on A.System_ID = B.SystemID join Systems as C on A.System_ID = C.System_ID WHERE " + buduj_warunek(DropDownList1.SelectedItem.Text, TextBox1.Text, TextBox2.Text, TextBox3.Text, DropDownList4.SelectedItem.Text, TextBox4.Text, TextBox5.Text, TextBox6.Text, Session["Login"].ToString(), DropDownList2.SelectedItem.Text) + " order by A.RecID desc", conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
             GridView2.DataSource = dt;
@@ -227,7 +247,81 @@ namespace Aplikacja_1._0._2
             {
                 SqlConnection conn = new SqlConnection(constr);
                 conn.Open();
-                SqlCommand command = new SqlCommand("DELETE FROM GroupMembers WHERE RecID = " + HiddenTextBox.Value, conn);
+                SqlCommand command = new SqlCommand("UPDATE GroupMembers SET Status_ID = 3 WHERE RecID = " + HiddenTextBox.Value, conn);
+                command.ExecuteNonQuery();
+                conn.Close();
+
+                HiddenTextBox.Value = "";
+                TextBox7.Text = "";
+                TextBox8.Text = "";
+                TextBox9.Text = "";
+                TextBox10.Text = "";
+                TextBox11.Text = "";
+                TextBox12.Text = "";
+                TextBox13.Text = "";
+                TextBox14.Text = "";
+                TextBox15.Text = "";
+                TextBox16.Text = "";
+                TextBox17.Text = "";
+
+                DataTable dt = new DataTable();
+                dt.Clear();
+                conn.Open();
+                command = new SqlCommand("SELECT A.RecID, A.System, A.GroupName, A.FirstName, A.LastName, A.Login, A.Department, A.Plant, A.BWIEmplNo, A.PlantIDNo, A.TicketNo, C.SupportEmail, C.SupportGroup, A.Status FROM GroupMembers_v1 as A  join SystemAccessLevels as B on A.System_ID = B.SystemID join Systems as C on A.System_ID = C.System_ID WHERE B.NetID = '" + Session["Login"] + "' AND B.AccessLevel = 2 order by A.RecID desc", conn);
+                dt.Load(command.ExecuteReader());
+                conn.Close();
+                GridView2.DataSource = dt;
+                GridView2.DataBind();
+                hiddencolumns();
+                ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Status changed to - deleted');", true);
+            }
+            catch
+            {
+                HiddenTextBox.Value = "";
+                TextBox7.Text = "";
+                TextBox8.Text = "";
+                TextBox9.Text = "";
+                TextBox10.Text = "";
+                TextBox11.Text = "";
+                TextBox12.Text = "";
+                TextBox13.Text = "";
+                TextBox14.Text = "";
+                TextBox15.Text = "";
+                TextBox16.Text = "";
+                TextBox17.Text = "";
+                ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Something went wrong.');", true);
+            }
+        }
+
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openFiltrModal();", true);
+        }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            if (TextBox17.Text == "Active")
+            {
+                Button3.Visible = false;
+                Button9.Visible = true;
+            }
+
+            if (TextBox17.Text == "To be deleted")
+            {
+                Button3.Visible = true;
+                Button9.Visible = false;
+            }
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openDeleteModal();", true);
+        }
+
+        protected void Button9_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(constr);
+                conn.Open();
+                SqlCommand command = new SqlCommand("UPDATE GroupMembers SET Status_ID = 2 WHERE RecID = " + HiddenTextBox.Value, conn);
                 command.ExecuteNonQuery();
                 conn.Close();
 
@@ -250,17 +344,18 @@ namespace Aplikacja_1._0._2
                 TextBox14.Text = "";
                 TextBox15.Text = "";
                 TextBox16.Text = "";
+                TextBox17.Text = "";
 
                 DataTable dt = new DataTable();
                 dt.Clear();
                 conn.Open();
-                command = new SqlCommand("SELECT A.RecID, A.System, A.GroupName, A.FirstName, A.LastName, A.Login, A.Department, A.Plant, A.BWIEmplNo, A.PlantIDNo, A.TicketNo, C.SupportEmail, C.SupportGroup FROM GroupMembers_v1 as A  join SystemAccessLevels as B on A.System_ID = B.SystemID join Systems as C on A.System_ID = C.System_ID WHERE B.NetID = '" + Session["Login"] + "' AND B.AccessLevel = 2 order by A.RecID desc", conn);
+                command = new SqlCommand("SELECT A.RecID, A.System, A.GroupName, A.FirstName, A.LastName, A.Login, A.Department, A.Plant, A.BWIEmplNo, A.PlantIDNo, A.TicketNo, C.SupportEmail, C.SupportGroup, A.Status FROM GroupMembers_v1 as A  join SystemAccessLevels as B on A.System_ID = B.SystemID join Systems as C on A.System_ID = C.System_ID WHERE B.NetID = '" + Session["Login"] + "' AND B.AccessLevel = 2 order by A.RecID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
                 GridView2.DataSource = dt;
                 GridView2.DataBind();
                 hiddencolumns();
-                ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Row deleted.');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Status changed to - to be deleted and an e-mail was sent to the owner of the system');", true);
             }
             catch
             {
@@ -275,18 +370,9 @@ namespace Aplikacja_1._0._2
                 TextBox14.Text = "";
                 TextBox15.Text = "";
                 TextBox16.Text = "";
+                TextBox17.Text = "";
                 ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Something went wrong.');", true);
             }
-        }
-
-        protected void Button5_Click(object sender, EventArgs e)
-        {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openFiltrModal();", true);
-        }
-
-        protected void Button4_Click(object sender, EventArgs e)
-        {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openDeleteModal();", true);
         }
 
     }

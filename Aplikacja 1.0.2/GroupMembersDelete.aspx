@@ -50,6 +50,10 @@
             <div class="col-md-6" style="text-align:center"><asp:Label ID="Label10" runat="server" Text="TicketNo: " /></div>
             <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox6" runat="server" ForeColor="Black" /></div>
         </div>  
+        <div class="row" style="height: 30px;">
+            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label21" runat="server" Text="Status: " /></div>
+            <div class ="col-md-6" style="text-align:left"><asp:DropDownList ID="DropDownList2" runat="server" ForeColor="Black" /></div>
+        </div> 
 
 
         </div>
@@ -126,9 +130,13 @@
             <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox15" runat="server" ForeColor="Black" Enabled="false" /></div>
         </div>  
 
-                    <div class="row" style="height: 30px;">
+       <div class="row" style="height: 30px;">
             <div class="col-md-6" style="text-align:center"><asp:Label ID="Label18" runat="server" Text="Ticket No: " /></div>
             <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox16" runat="server" ForeColor="Black" Enabled="false" /></div>
+        </div> 
+        <div class="row" style="height: 30px;">
+            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label22" runat="server" Text="Status: " /></div>
+            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox17" runat="server" ForeColor="Black" Enabled="false" /></div>
         </div> 
 
 
@@ -137,6 +145,7 @@
 
       <div class="modal-footer" style="text-align:center">
           <asp:Button ID="Button3" runat="server" Text="Delete" ForeColor="Black" OnClientClick="closeDeleteModal()" OnClick="Button3_Click" />
+          <asp:Button ID="Button9" runat="server" Text="To be deleted" ForeColor="Black" OnClientClick="closeDeleteModal()" OnClick="Button9_Click" />
           <input id="Button7" type="button" value="Cancel" style="color:black" onclick="closeDeleteModal()" />
       </div>
     </div>
@@ -186,6 +195,7 @@
             var BWIEmplNo = document.getElementById('<%= TextBox4.ClientID %>');
             var PlantIDNo = document.getElementById('<%= TextBox5.ClientID %>');
             var TicketNo = document.getElementById('<%= TextBox6.ClientID %>');
+            var Status = document.getElementById('<%= DropDownList2.ClientID %>');
             System.value = "";
             FirstName.value = "";
             LastName.value = "";
@@ -194,6 +204,7 @@
             BWIEmplNo.value = "";
             PlantIDNo.value = "";
             TicketNo.value = "";
+            Status.value = "";
         }
 
 

@@ -2,26 +2,67 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <br>
     <br>
+
+
+
+      <asp:UpdatePanel ID="UpdatePanel5" runat="server">
+  <ContentTemplate>    
+  <div id="filtrModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header" style="text-align:center">
+            <asp:Label ID="Label19" runat="server" Text="Systems filter" />
+        </div>
+      <div class="modal-body">   
+
+        <div style="margin-left:auto; margin-right:auto; width:100%;">
+        <div class="row" style="height: 30px;">
+            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label1" runat="server" Text="System: "/></div>
+            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox1" runat="server" ForeColor="Black" /></div>
+        </div>
+        <div class="row" style="height: 30px;">
+            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label2" runat="server" Text="Location type: " /></div>
+            <div class ="col-md-6" style="text-align:left"><asp:DropDownList ID="DropDownList1" runat="server" ForeColor="Black" /></div>
+        </div>
+
+
+        <div class="row" style="height: 30px;">
+            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label3" runat="server" Text="System type: " /></div>
+            <div class ="col-md-6" style="text-align:left"><asp:DropDownList ID="DropDownList2" runat="server" ForeColor="Black" /></div>
+        </div>         
+        <div class="row" style="height: 30px;">
+            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label4" runat="server" Text="Plant: " /></div>
+            <div class ="col-md-6" style="text-align:left"><asp:DropDownList ID="DropDownList3" runat="server" ForeColor="Black" /></div>
+        </div>     
+
+
+        </div>
+    </div>
+
+      <div class="modal-footer" style="text-align:center">
+          <asp:Button ID="Button1" runat="server" Text="Search" ForeColor="Black" OnClientClick="closeFiltrModal()" OnClick="Button1_Click" />
+          <input id="Button2" type="button" value="Clear" style="color:black" onclick="btClear()" />
+          <input id="Button6" type="button" value="Cancel" style="color:black" onclick="closeFiltrModal()" />
+      </div>
+    </div>
+
+  </div>
+  </div>
+  </ContentTemplate>
+  <Triggers>
+  <asp:AsyncPostBackTrigger ControlID="Button5" EventName="Click" />
+  </Triggers>
+  </asp:UpdatePanel>
+
+
         <div style="margin-left:auto; margin-right:auto; width:95%; height:45%">
         <div class="row">
-            <div class="col-md-6" style="text-align:center">
-            <div style="margin-left:auto; margin-right:auto; width:100%;  background-color:#373636cd; text-align:center">
-            <table style="width: 100%; text-align:center; color:white">
-            <tr style="padding: 20px 20px 20px 20px;">
-                <td><asp:Label ID="Label1" runat="server" Text="System: " /></td>
-                <td><asp:Label ID="Label2" runat="server" Text="Location type: " /></td>
-                <td><asp:Label ID="Label3" runat="server" Text="System type: " /></td>
-                <td><asp:Label ID="Label4" runat="server" Text="Plant: " /></td>
-                <td><asp:Button ID="Button1" runat="server" Text="Search" ForeColor="Black" OnClick="Button1_Click" /></td>
-            </tr>
-            <tr>
-                <td><asp:TextBox ID="TextBox1" runat="server" ForeColor="Black" /></td>
-                <td><asp:DropDownList ID="DropDownList1" runat="server" ForeColor="Black" /></td>
-                <td><asp:DropDownList ID="DropDownList2" runat="server" ForeColor="Black" /></td>
-                <td><asp:DropDownList ID="DropDownList3" runat="server" ForeColor="Black" /></td>
-                <td><input id="Button2" type="button" value="Clear" style="color:black" onclick="btClear()" /></td>
-            </tr>
-            </table>
+            <div class="col-md-6">
+                        <asp:Button ID="Button4" class="naglowektab" runat="server" Text="SYSTEMS" OnClientClick="return false;" Style="cursor:default"/>
+            <asp:Button ID="Button5" Style="background-image: url(../image/lupa2.png); background-repeat: no-repeat " class="button_2" runat="server" Text="Filter" OnClick="Button5_Click" />
+
             
         
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -35,7 +76,7 @@
                     <asp:AsyncPostBackTrigger ControlID="GridView1" EventName="PageIndexChanged" />
                     </Triggers>
                     </asp:UpdatePanel>
-                </div>
+
                 </div>
                 <div class="col-md-6" style="text-align:center" > 
                     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
@@ -72,7 +113,6 @@
 
    </div>
 
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript">
         function btClear() {
             var System = document.getElementById('<%= TextBox1.ClientID %>');
@@ -90,6 +130,13 @@
 
         function showAlert(text) {
             alert(text);
+        }
+
+        function openFiltrModal() {
+            $('#filtrModal').modal('show');
+        }
+        function closeFiltrModal() {
+            $("#filtrModal").modal('hide');
         }
 
     </script> 

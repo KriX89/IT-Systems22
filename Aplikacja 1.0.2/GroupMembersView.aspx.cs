@@ -18,7 +18,7 @@ namespace Aplikacja_1._0._2
             dt.Clear();
             SqlConnection conn = new SqlConnection(constr);
             conn.Open();
-            SqlCommand command = new SqlCommand("SELECT System, GroupName, FirstName, LastName, Login, Department, Plant, BWIEmplNo, PlantIDNo, TicketNo FROM GroupMembers_v1 as A  join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE " + buduj_warunek(DropDownList1.SelectedItem.Text, DropDownList2.SelectedItem.Text, TextBox1.Text, TextBox2.Text, TextBox3.Text, DropDownList3.SelectedItem.Text, DropDownList4.SelectedItem.Text, TextBox4.Text, TextBox5.Text, TextBox6.Text, Session["Login"].ToString()) + " order by RecID desc", conn);
+            SqlCommand command = new SqlCommand("SELECT System, GroupName, FirstName, LastName, Login, Department, Plant, BWIEmplNo, PlantIDNo, TicketNo, Status FROM GroupMembers_v1 as A  join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE " + buduj_warunek(DropDownList1.SelectedItem.Text, DropDownList2.SelectedItem.Text, TextBox1.Text, TextBox2.Text, TextBox3.Text, DropDownList3.SelectedItem.Text, DropDownList4.SelectedItem.Text, TextBox4.Text, TextBox5.Text, TextBox6.Text, Session["Login"].ToString(), DropDownList5.SelectedItem.Text) + " order by RecID desc", conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
             GridView2.DataSource = dt;
@@ -34,7 +34,7 @@ namespace Aplikacja_1._0._2
             LoadGridData();
         }
 
-        public static string buduj_warunek(string System, string GroupName, string FirstName, string LastName, string Login, string Department, string Plant, string BWIEmplNo, string PlantIDNo, string TicketNo, string NetID)
+        public static string buduj_warunek(string System, string GroupName, string FirstName, string LastName, string Login, string Department, string Plant, string BWIEmplNo, string PlantIDNo, string TicketNo, string NetID, string Status)
         {
             string warunek = "NetID = '" + NetID + "' AND AccessLevel > 0 ";
 
@@ -91,7 +91,12 @@ namespace Aplikacja_1._0._2
             else
                 warunek += "AND TicketNo LIKE '%'";
 
-                
+            if (Status != "")
+                warunek += "AND Status = '" + Status + "'";
+            else
+                warunek += "AND TicketNo LIKE '%'";
+
+
 
 
             return warunek;
@@ -112,7 +117,7 @@ namespace Aplikacja_1._0._2
                 dt.Clear();
                 SqlConnection conn = new SqlConnection(constr);
                 conn.Open();
-                SqlCommand command = new SqlCommand("SELECT System, GroupName, FirstName, LastName, Login, Department, Plant, BWIEmplNo, PlantIDNo, TicketNo FROM GroupMembers_v1 as A  join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE B.NetID = '" + Session["Login"] + "' AND AccessLevel > 0 order by RecID desc", conn);
+                SqlCommand command = new SqlCommand("SELECT System, GroupName, FirstName, LastName, Login, Department, Plant, BWIEmplNo, PlantIDNo, TicketNo, Status FROM GroupMembers_v1 as A  join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE B.NetID = '" + Session["Login"] + "' AND AccessLevel > 0 order by RecID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
                 GridView2.DataSource = dt;
@@ -180,6 +185,22 @@ namespace Aplikacja_1._0._2
                     DropDownList4.Items.Insert(0, new ListItem(String.Empty, String.Empty));
                     dt2.Clear();
                 }
+
+                if (DropDownList5.Items.Count < 1)
+                {
+                    conn.Open();
+                    command = new SqlCommand("SELECT Status_ID, Status FROM GroupMembersStatuses", conn);
+                    dt2.Load(command.ExecuteReader());
+                    conn.Close();
+                    DropDownList5.DataSource = dt2;
+                    DropDownList5.DataTextField = "Status";
+                    DropDownList5.DataValueField = "Status_ID";
+                    DropDownList5.DataBind();
+                    DropDownList5.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                    dt2.Clear();
+                }
+
+
             }
         }
 
@@ -189,7 +210,7 @@ namespace Aplikacja_1._0._2
             dt.Clear();
             SqlConnection conn = new SqlConnection(constr);
             conn.Open();
-            SqlCommand command = new SqlCommand("SELECT System, GroupName, FirstName, LastName, Login, Department, Plant, BWIEmplNo, PlantIDNo, TicketNo FROM GroupMembers_v1 as A  join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE " + buduj_warunek(DropDownList1.SelectedItem.Text, DropDownList2.SelectedItem.Text, TextBox1.Text, TextBox2.Text, TextBox3.Text, DropDownList3.SelectedItem.Text, DropDownList4.SelectedItem.Text, TextBox4.Text, TextBox5.Text, TextBox6.Text, Session["Login"].ToString()) + " order by RecID desc", conn);
+            SqlCommand command = new SqlCommand("SELECT System, GroupName, FirstName, LastName, Login, Department, Plant, BWIEmplNo, PlantIDNo, TicketNo, Status FROM GroupMembers_v1 as A  join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE " + buduj_warunek(DropDownList1.SelectedItem.Text, DropDownList2.SelectedItem.Text, TextBox1.Text, TextBox2.Text, TextBox3.Text, DropDownList3.SelectedItem.Text, DropDownList4.SelectedItem.Text, TextBox4.Text, TextBox5.Text, TextBox6.Text, Session["Login"].ToString(), DropDownList5.SelectedItem.Text) + " order by RecID desc", conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
             GridView2.DataSource = dt;

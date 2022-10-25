@@ -60,6 +60,10 @@
             <div class="col-md-6" style="text-align:center"><asp:Label ID="Label10" runat="server" Text="TicketNo: " /></div>
             <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox6" runat="server" ForeColor="Black" /></div>
         </div>  
+        <div class="row" style="height: 30px;">
+            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label11" runat="server" Text="Status: " /></div>
+            <div class ="col-md-6" style="text-align:left"><asp:DropDownList ID="DropDownList5" runat="server" ForeColor="Black" /></div>
+        </div> 
 
 
         </div>
@@ -117,6 +121,7 @@
             var BWIEmplNo = document.getElementById('<%= TextBox4.ClientID %>');
             var PlantIDNo = document.getElementById('<%= TextBox5.ClientID %>');
             var TicketNo = document.getElementById('<%= TextBox6.ClientID %>');
+            var Status = document.getElementById('<%= DropDownList5.ClientID %>');
             System.value = "";
             GroupName.value = "";
             FirstName.value = "";
@@ -127,6 +132,7 @@
             BWIEmplNo.value = "";
             PlantIDNo.value = "";
             TicketNo.value = "";
+            Status.value = "";
         }
 
 

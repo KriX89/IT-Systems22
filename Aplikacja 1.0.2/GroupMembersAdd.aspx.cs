@@ -269,19 +269,7 @@ namespace Aplikacja_1._0._2
         }
 
 
-        private void LoadGridData3()
-        {
-            DataTable dt = new DataTable();
-            dt.Clear();
-            SqlConnection conn = new SqlConnection(constr);
-            conn.Open();
-            SqlCommand command = new SqlCommand("SELECT System, GroupName, FirstName, LastName, Login, Department, Plant, BWIEmplNo, PlantIDNo, TicketNo FROM GroupMembers_v1 order by RecID desc", conn);
-            dt.Load(command.ExecuteReader());
-            conn.Close();
-            GridView3.DataSource = dt;
-            GridView3.DataBind();
-            dt.Clear();
-        }
+
 
 
 
@@ -297,11 +285,7 @@ namespace Aplikacja_1._0._2
             LoadGridData2();
         }
 
-        protected void GridView3_OnPageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            GridView3.PageIndex = e.NewPageIndex;
-            LoadGridData3();
-        }
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -327,16 +311,7 @@ namespace Aplikacja_1._0._2
                 hiddencolumns();
                 dt.Clear();
 
-                DataTable dt3 = new DataTable();
-                dt3.Clear();
-                conn = new SqlConnection(constr);
-                conn.Open();
-                command = new SqlCommand("SELECT System, GroupName, FirstName, LastName, Login, Department, Plant, BWIEmplNo, PlantIDNo, TicketNo FROM GroupMembers_v1 order by RecID desc", conn);
-                dt3.Load(command.ExecuteReader());
-                conn.Close();
-                GridView3.DataSource = dt3;
-                GridView3.DataBind();
-                dt3.Clear();
+
 
                 DataTable dt2 = new DataTable();
                 if (DropDownList1.Items.Count < 1)
@@ -459,31 +434,31 @@ namespace Aplikacja_1._0._2
                 conn.Open();
 
                     if (CheckBox1.Checked)
-                    {  command = new SqlCommand("INSERT INTO GroupMembers (GroupID, UserID, TicketNo, ValidFrom, DT, Author) VALUES('" + HiddenTextBox.Value + "', '" + HiddenTextBox2.Value + "', '" + TextBox19.Text + "' , '" + txtDate.Text + "' , getdate(), '" + Session["Login"] + "')", conn); }
+                    {  command = new SqlCommand("INSERT INTO GroupMembers (GroupID, UserID, TicketNo, ValidFrom, DT, Author, Status_ID) VALUES('" + HiddenTextBox.Value + "', '" + HiddenTextBox2.Value + "', '" + TextBox19.Text + "' , '" + txtDate.Text + "' , getdate(), '" + Session["Login"] + "', 1)", conn); }
                     else
-                    { command = new SqlCommand("INSERT INTO GroupMembers (GroupID, UserID, TicketNo, ValidFrom, ValidTo, DT, Author) VALUES('" + HiddenTextBox.Value + "', '" + HiddenTextBox2.Value + "', '" + TextBox19.Text + "' , '" + txtDate.Text + "' , '" + TextBox18.Text + "' , getdate(), '" + Session["Login"] + "')", conn); }
+                    { command = new SqlCommand("INSERT INTO GroupMembers (GroupID, UserID, TicketNo, ValidFrom, ValidTo, DT, Author, Status_ID) VALUES('" + HiddenTextBox.Value + "', '" + HiddenTextBox2.Value + "', '" + TextBox19.Text + "' , '" + txtDate.Text + "' , '" + TextBox18.Text + "' , getdate(), '" + Session["Login"] + "', 1)", conn); }
                     
                     command.ExecuteNonQuery();
                     conn.Close();
+                ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('User added.');", true);
 
-                    DataTable dt3 = new DataTable();
-                    dt3.Clear();
-                    conn = new SqlConnection(constr);
-                    conn.Open();
-                    command = new SqlCommand("SELECT System, GroupName, FirstName, LastName, Login, Department, Plant, BWIEmplNo, PlantIDNo, TicketNo FROM GroupMembers_v1 order by RecID desc", conn);
-                    dt3.Load(command.ExecuteReader());
-                    conn.Close();
-                    GridView3.DataSource = dt3;
-                    GridView3.DataBind();
-                    dt3.Clear();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Row added.');", true);
-                    clearAll();
+
                 }
                 catch
                 {
                     clearAll();
                     ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Something went wrong.');", true);
                 } 
+        }
+
+        protected void Button9_Click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openFiltrModal();", true);
+        }
+
+        protected void Button10_Click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openFiltrModal2();", true);
         }
 
 

@@ -177,6 +177,24 @@ namespace Aplikacja_1._0._2
         protected global::System.Web.UI.WebControls.TextBox TextBox6;
 
         /// <summary>
+        /// Kontrolka Label21.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label21;
+
+        /// <summary>
+        /// Kontrolka DropDownList2.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
+
+        /// <summary>
         /// Kontrolka Button1.
         /// </summary>
         /// <remarks>
@@ -402,6 +420,24 @@ namespace Aplikacja_1._0._2
         protected global::System.Web.UI.WebControls.TextBox TextBox16;
 
         /// <summary>
+        /// Kontrolka Label22.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label22;
+
+        /// <summary>
+        /// Kontrolka TextBox17.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBox17;
+
+        /// <summary>
         /// Kontrolka Button3.
         /// </summary>
         /// <remarks>
@@ -409,6 +445,15 @@ namespace Aplikacja_1._0._2
         /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button3;
+
+        /// <summary>
+        /// Kontrolka Button9.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button9;
 
         /// <summary>
         /// Kontrolka UpdatePanel1.

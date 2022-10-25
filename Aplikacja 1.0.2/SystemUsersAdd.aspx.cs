@@ -133,19 +133,7 @@ namespace Aplikacja_1._0._2
             hiddencolumns2();
         }
 
-        private void LoadGridData3()
-        {
-            DataTable dt = new DataTable();
-            dt.Clear();
-            SqlConnection conn = new SqlConnection(constr);
-            conn.Open();
-            SqlCommand command = new SqlCommand("SELECT AuthecticationGrName, FirstName , LastName, Login, Department, Plant, BWIEmplNo, PlantIDNo FROM SystemUsers_v1 order by UserID desc", conn);
-            dt.Load(command.ExecuteReader());
-            conn.Close();
-            GridView3.DataSource = dt;
-            GridView3.DataBind();
-            dt.Clear();
-        }
+
 
 
         protected void GridView2_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -376,11 +364,7 @@ namespace Aplikacja_1._0._2
             LoadGridData2();
         }
 
-        protected void GridView3_OnPageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            GridView3.PageIndex = e.NewPageIndex;
-            LoadGridData3();
-        }
+
 
         protected void GridView4_OnPageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -458,7 +442,7 @@ namespace Aplikacja_1._0._2
                 }
 
 
-                DataTable dt3 = new DataTable();
+           /*     DataTable dt3 = new DataTable();
                 dt3.Clear();
                 conn = new SqlConnection(constr);
                 conn.Open();
@@ -467,7 +451,7 @@ namespace Aplikacja_1._0._2
                 conn.Close();
                 GridView3.DataSource = dt3;
                 GridView3.DataBind();
-                dt3.Clear();
+                dt3.Clear(); */
 
             }
 
@@ -531,7 +515,7 @@ namespace Aplikacja_1._0._2
                 conn.Close();
 
 
-                DataTable dt3 = new DataTable();
+          /*      DataTable dt3 = new DataTable();
                 dt3.Clear();
                 conn = new SqlConnection(constr);
                 conn.Open();
@@ -540,7 +524,7 @@ namespace Aplikacja_1._0._2
                 conn.Close();
                 GridView3.DataSource = dt3;
                 GridView3.DataBind();
-                dt3.Clear();
+                dt3.Clear(); */
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('User added.');", true);
                 clearAll();
@@ -558,6 +542,23 @@ namespace Aplikacja_1._0._2
         {
                TextBox12.Text = HiddenField1.Value;
 
+        }
+
+        protected void Button9_Click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openFiltrModal();", true);
+        }
+
+        protected void Button10_Click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openFiltrModal2();", true);
+        }
+
+
+        protected void Button11_Click(object sender, EventArgs e)
+        {
+           // clearAll();
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
         }
 
 

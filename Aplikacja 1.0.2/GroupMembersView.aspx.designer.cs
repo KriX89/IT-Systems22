@@ -213,6 +213,24 @@ namespace Aplikacja_1._0._2
         protected global::System.Web.UI.WebControls.TextBox TextBox6;
 
         /// <summary>
+        /// Kontrolka Label11.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label11;
+
+        /// <summary>
+        /// Kontrolka DropDownList5.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList5;
+
+        /// <summary>
         /// Kontrolka Button1.
         /// </summary>
         /// <remarks>

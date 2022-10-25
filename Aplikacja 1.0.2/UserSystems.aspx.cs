@@ -51,7 +51,7 @@ namespace Aplikacja_1._0._2
             dt.Clear();
             SqlConnection conn = new SqlConnection(constr);
             conn.Open();
-            SqlCommand command = new SqlCommand("SELECT GroupName, TicketNo, DT, Author FROM GroupMembers_v1 where UserID = " + HiddenTextBox2.Value, conn);
+            SqlCommand command = new SqlCommand("SELECT GroupName, TicketNo, DT, Author FROM GroupMembers_v1 where UserID = " + HiddenTextBox2.Value + " AND Status_ID = 1", conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
             GridView3.DataSource = dt;
@@ -162,7 +162,7 @@ namespace Aplikacja_1._0._2
                 dt.Clear();
                 SqlConnection conn = new SqlConnection(constr);
                 conn.Open();
-                SqlCommand command = new SqlCommand("SELECT GroupName, TicketNo, DT, Author FROM GroupMembers_v1 where UserID = " + HiddenTextBox2.Value + "AND System = '" + GridView2.Rows[i].Cells[1].Text + "'" , conn);
+                SqlCommand command = new SqlCommand("SELECT GroupName, TicketNo, DT, Author FROM GroupMembers_v1 where UserID = " + HiddenTextBox2.Value + "AND System = '" + GridView2.Rows[i].Cells[1].Text + "' AND Status_ID = 1", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
                 if(dt.Rows.Count == 0)
@@ -296,6 +296,11 @@ namespace Aplikacja_1._0._2
                 GridView2.DataBind();
                 GridView3.DataSource = null;
                 GridView3.DataBind();
+        }
+
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openFiltrModal();", true);
         }
 
     }
