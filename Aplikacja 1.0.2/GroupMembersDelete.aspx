@@ -163,7 +163,7 @@
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
-    <div style="margin-left:auto; margin-right:auto; width:90%;">
+    <div style="margin-left:auto; margin-right:auto; width:100%;">
     <asp:Button ID="Button8" class="naglowektab" runat="server" Text="GROUP MEMBERS" OnClientClick="return false;" Style="cursor:default"/>
     <asp:Button ID="Button5" Style="background-image: url(../image/lupa2.png); background-repeat: no-repeat "  class="button_2" runat="server" Text="Filter" OnClick="Button5_Click" />
     <asp:Button ID="Button4" Style="background-image: url(../image/delete.png); background-repeat: no-repeat "  class="button_2" runat="server" Text="Delete" OnClick="Button4_Click" />

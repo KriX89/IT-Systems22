@@ -17,6 +17,23 @@ namespace Aplikacja_1._0._2
     {
         string constr = "Data Source=PLKRO-SQL02;Initial Catalog=IT;User ID=webkrosno;Password=!kR0sno2022#";
 
+
+        public void hiddencolumns()
+        {
+            try
+            {
+                GridView2.HeaderRow.Cells[2].Attributes.Add("style", "display:none");
+                GridView2.HeaderRow.Cells[3].Attributes.Add("style", "display:none");
+
+                foreach (GridViewRow gvr in GridView2.Rows)
+                {
+                    gvr.Cells[2].Attributes.Add("style", "display:none");
+                    gvr.Cells[3].Attributes.Add("style", "display:none");
+                }
+            }
+            catch { }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Login"] == null)
@@ -30,11 +47,12 @@ namespace Aplikacja_1._0._2
                 dt.Clear();
                 SqlConnection conn = new SqlConnection(constr);
                 conn.Open();
-                SqlCommand command = new SqlCommand("SELECT NetID, System, AccessLevel, SystemID  FROM SystemAccessLevels as A join Systems as B on A.SystemID = B.System_ID", conn);
+                SqlCommand command = new SqlCommand("SELECT NetID, System, A.AccessLevelID, SystemID, AccessLevel FROM SystemAccessLevels as A join Systems as B on A.SystemID = B.System_ID join AccessLevels as C on A.AccessLevelID = C.AccessLevelID", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
                 GridView2.DataSource = dt;
                 GridView2.DataBind();
+                hiddencolumns();
                 dt.Clear();
 
 
@@ -55,8 +73,8 @@ namespace Aplikacja_1._0._2
                 }
 
                 DropDownList2.Items.Insert(0, new ListItem("None", "0"));
-                DropDownList2.Items.Insert(1, new ListItem("Read only", "1"));
-                DropDownList2.Items.Insert(2, new ListItem("Read/Write", "2"));
+                DropDownList2.Items.Insert(1, new ListItem("View only", "1"));
+                DropDownList2.Items.Insert(2, new ListItem("View/Edit", "2"));
             }
         }
 
@@ -117,12 +135,13 @@ namespace Aplikacja_1._0._2
                 dt.Clear();
                 conn = new SqlConnection(constr);
                 conn.Open();
-                command = new SqlCommand("SELECT NetID, System, AccessLevel, SystemID  FROM SystemAccessLevels as A join Systems as B on A.SystemID = B.System_ID", conn);
+                command = new SqlCommand("SELECT NetID, System, A.AccessLevelID, SystemID, AccessLevel FROM SystemAccessLevels as A join Systems as B on A.SystemID = B.System_ID join AccessLevels as C on A.AccessLevelID = C.AccessLevelID", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
                 GridView2.DataSource = dt;
                 GridView2.DataBind();
                 dt.Clear();
+                hiddencolumns();
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Row added.');", true);
                 clearAll();
@@ -141,7 +160,7 @@ namespace Aplikacja_1._0._2
             {
                 SqlConnection conn = new SqlConnection(constr);
                 conn.Open();
-                SqlCommand command = new SqlCommand("UPDATE SystemAccessLevels SET AccessLevel = '" + DropDownList2.SelectedValue + "' WHERE NetID = '" + TextBox1.Text + "' AND SystemID = '" + DropDownList1.SelectedValue + "'", conn);
+                SqlCommand command = new SqlCommand("UPDATE SystemAccessLevels SET AccessLevelID = '" + DropDownList2.SelectedValue + "' WHERE NetID = '" + TextBox1.Text + "' AND SystemID = '" + DropDownList1.SelectedValue + "'", conn);
                 command.ExecuteNonQuery();
                 conn.Close();
 
@@ -151,17 +170,18 @@ namespace Aplikacja_1._0._2
                 dt.Clear();
                 conn = new SqlConnection(constr);
                 conn.Open();
-                command = new SqlCommand("SELECT NetID, System, AccessLevel, SystemID  FROM SystemAccessLevels as A join Systems as B on A.SystemID = B.System_ID", conn);
+                command = new SqlCommand("SELECT NetID, System, A.AccessLevelID, SystemID, AccessLevel FROM SystemAccessLevels as A join Systems as B on A.SystemID = B.System_ID join AccessLevels as C on A.AccessLevelID = C.AccessLevelID", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
                 GridView2.DataSource = dt;
                 GridView2.DataBind();
                 dt.Clear();
+                hiddencolumns();
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Row updated.');", true);
                 clearAll();
 
-           //     TextBox1.Text = "UPDATE SystemAccessLevels SET AccessLevel = '" + DropDownList2.SelectedValue + "' WHERE NetID = '" + TextBox1.Text + "', AND SystemID = '" + DropDownList1.SelectedValue + "'";
+           //     TextBox1.Text = "UPDATE SystemAccessLevels SET AccessLevelID = '" + DropDownList2.SelectedValue + "' WHERE NetID = '" + TextBox1.Text + "', AND SystemID = '" + DropDownList1.SelectedValue + "'";
             }
             catch
             {

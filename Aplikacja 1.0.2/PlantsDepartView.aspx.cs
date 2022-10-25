@@ -132,5 +132,9 @@ namespace Aplikacja_1._0._2
             GridView1.DataBind();
             dt2.Clear();
         }
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openFiltrModal();", true);
+        }
     }
 }

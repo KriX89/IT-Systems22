@@ -36,7 +36,7 @@ namespace Aplikacja_1._0._2
 
         public static string buduj_warunek(string System, string AuthecticationGrName, string GroupName, string Description, string SystemGroupName, string Plant, string NetID)
         {
-            string warunek = "NetID = '" + NetID + "' AND AccessLevel > 0 ";
+            string warunek = "NetID = '" + NetID + "' AND AccessLevelID > 0 ";
             // bool pierwszy = true;
 
             if (System != "")
@@ -88,7 +88,7 @@ namespace Aplikacja_1._0._2
                 dt.Clear();
                 SqlConnection conn = new SqlConnection(constr);
                 conn.Open();
-                SqlCommand command = new SqlCommand("SELECT System, AuthecticationGrName , GroupName, Description, SystemGroupName, Plant FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE B.NetID = '" + Session["Login"] + "' AND Active = 'true' AND AccessLevel > 0 order by GroupID desc", conn);
+                SqlCommand command = new SqlCommand("SELECT System, AuthecticationGrName , GroupName, Description, SystemGroupName, Plant FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE B.NetID = '" + Session["Login"] + "' AND Active = 'true' AND AccessLevelID > 0 order by GroupID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
                 GridView2.DataSource = dt;

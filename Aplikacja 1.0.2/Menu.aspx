@@ -6,13 +6,11 @@
 
     <br>
     <br>
-    <div style="text-align:center">
-    <asp:Label ID="Label1" runat="server" ForeColor="White" Font-Size="Larger" Text="The 10 most recent permissions that will expire" />
-        </div>
-    <br>
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div style="margin-left:auto; margin-right:auto; width:90%;">
+            <asp:Button ID="Button8" class="naglowektab" runat="server" Text="TO BE DELETED" OnClientClick="return false;" Style="cursor:default"/>
             <asp:GridView runat="server" ID="GridView2" Width="100%" HeaderStyle-BackColor="#003399" HeaderStyle-BorderColor="#003300" HeaderStyle-ForeColor="White" CssClass="table table-condensed" AllowPaging="True" PageSize="20" OnPageIndexChanging="GridView2_OnPageIndexChanging" >
             <PagerStyle CssClass="pagination-ys" BackColor="#003399" BorderColor="White" ForeColor="Black" />
             </asp:GridView>

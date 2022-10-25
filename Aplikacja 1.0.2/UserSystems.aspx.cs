@@ -35,7 +35,7 @@ namespace Aplikacja_1._0._2
             dt.Clear();
             SqlConnection conn = new SqlConnection(constr);
             conn.Open();
-            SqlCommand command = new SqlCommand("Select sysuser.UserID, syst.System, syst.AuthecticationGrName, sysuser.Login from SystemUsers_v1 as sysuser INNER JOIN Systems_v1 as syst on sysuser.AutenticationGroup = syst.ATypeID join SystemAccessLevels as A on syst.System_ID = A.SystemID  WHERE sysuser.EmpID = " + HiddenEmpID.Value + " AND A.NetID = '" + Session["Login"] + "' AND A.AccessLevel > 0", conn);
+            SqlCommand command = new SqlCommand("Select sysuser.UserID, syst.System, syst.AuthecticationGrName, sysuser.Login from SystemUsers_v1 as sysuser INNER JOIN Systems_v1 as syst on sysuser.AutenticationGroup = syst.ATypeID join SystemAccessLevels as A on syst.System_ID = A.SystemID  WHERE sysuser.EmpID = " + HiddenEmpID.Value + " AND A.NetID = '" + Session["Login"] + "' AND A.AccessLevelID > 0", conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
             GridView2.DataSource = dt;
@@ -123,7 +123,7 @@ namespace Aplikacja_1._0._2
                     conn.Open();
 
 
-                    SqlCommand command = new SqlCommand("Select sysuser.UserID, syst.System, syst.AuthecticationGrName, sysuser.Login from SystemUsers_v1 as sysuser INNER JOIN Systems_v1 as syst on sysuser.AutenticationGroup = syst.ATypeID join SystemAccessLevels as A on syst.System_ID = A.SystemID  WHERE sysuser.EmpID = "+ HiddenEmpID.Value + " AND A.NetID = '" + Session["Login"] + "' AND A.AccessLevel > 0", conn);
+                    SqlCommand command = new SqlCommand("Select sysuser.UserID, syst.System, syst.AuthecticationGrName, sysuser.Login from SystemUsers_v1 as sysuser INNER JOIN Systems_v1 as syst on sysuser.AutenticationGroup = syst.ATypeID join SystemAccessLevels as A on syst.System_ID = A.SystemID  WHERE sysuser.EmpID = "+ HiddenEmpID.Value + " AND A.NetID = '" + Session["Login"] + "' AND A.AccessLevelID > 0", conn);
                     dt.Load(command.ExecuteReader());
                     conn.Close();
                     if (dt.Rows.Count == 0)

@@ -1,9 +1,8 @@
 ﻿using System.Data;
 using System.Web.UI.WebControls;
-using ListItem = System.Web.UI.WebControls.ListItem;
 using System.Data.SqlClient;
 using System;
-using System.Web.UI;
+
 
 
 namespace Aplikacja_1._0._2
@@ -21,7 +20,7 @@ namespace Aplikacja_1._0._2
             dt.Clear();
             SqlConnection conn = new SqlConnection(constr);
             conn.Open();
-            SqlCommand command = new SqlCommand("SELECT TOP 10 System, GroupName, FirstName, LastName, Login, A.TicketNo, C.ValidFrom, C.ValidTo FROM GroupMembers_v1 as A  join SystemAccessLevels as B on A.System_ID = B.SystemID join GroupMembers as C on A.RecID = C.RecID WHERE B.NetID = '" + Session["Login"] + "' AND AccessLevel > 0 AND ValidTo is not null order by C.ValidTo ", conn);
+            SqlCommand command = new SqlCommand("SELECT System, GroupName, FirstName, LastName, Login, A.TicketNo,  CONVERT(char(10), ValidFrom,126) as ValidFrom,  CONVERT(char(10), ValidTo,126) as ValidTo, A.Status FROM GroupMembers_v1 as A  join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE B.NetID = '" + Session["Login"] + "' AND AccessLevelID = 2 AND A.Status = 'To be deleted' ", conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
             GridView2.DataSource = dt;
@@ -52,7 +51,9 @@ namespace Aplikacja_1._0._2
                 dt.Clear();
                 SqlConnection conn = new SqlConnection(constr);
                 conn.Open();
-                SqlCommand command = new SqlCommand("SELECT TOP 10 System, GroupName, FirstName, LastName, Login, A.TicketNo, C.ValidFrom, C.ValidTo FROM GroupMembers_v1 as A  join SystemAccessLevels as B on A.System_ID = B.SystemID join GroupMembers as C on A.RecID = C.RecID WHERE B.NetID = '" + Session["Login"] + "' AND AccessLevel > 0 AND ValidTo is not null order by C.ValidTo ", conn);
+                SqlCommand command = new SqlCommand("SELECT System, GroupName, FirstName, LastName, Login, A.TicketNo, CONVERT(char(10), ValidFrom,126) as ValidFrom,  CONVERT(char(10), ValidTo,126) as ValidTo, A.Status FROM GroupMembers_v1 as A  join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE B.NetID = '" + Session["Login"] + "' AND AccessLevelID = 2 AND A.Status = 'To be deleted' ", conn);
+
+                //      SqlCommand command = new SqlCommand("SELECT TOP 10 System, GroupName, FirstName, LastName, Login, A.TicketNo, C.ValidFrom, C.ValidTo FROM GroupMembers_v1 as A  join SystemAccessLevels as B on A.System_ID = B.SystemID join GroupMembers as C on A.RecID = C.RecID WHERE B.NetID = '" + Session["Login"] + "' AND AccessLevelID > 0 AND C.ValidTo is not null order by C.ValidTo ", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
                 GridView2.DataSource = dt;

@@ -98,7 +98,7 @@ namespace Aplikacja_1._0._2
 
         public static string buduj_warunek(string System, string AuthecticationGrName, string GroupName, string Description, string SystemGroupName, string Plant, string NetID)
         {
-            string warunek = "NetID = '" + NetID + "' AND AccessLevel = 2 ";
+            string warunek = "NetID = '" + NetID + "' AND AccessLevelID = 2 ";
             // bool pierwszy = true;
 
             if (System != "")
@@ -149,7 +149,7 @@ namespace Aplikacja_1._0._2
                 dt.Clear();
                 SqlConnection conn = new SqlConnection(constr);
                 conn.Open();
-                SqlCommand command = new SqlCommand("SELECT A.* FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE B.NetID = '" + Session["Login"] + "' AND AccessLevel = 2 order by GroupID desc", conn);
+                SqlCommand command = new SqlCommand("SELECT A.* FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE B.NetID = '" + Session["Login"] + "' AND AccessLevelID = 2 order by GroupID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
                 GridView2.DataSource = dt;
@@ -161,7 +161,7 @@ namespace Aplikacja_1._0._2
                 if (DropDownList1.Items.Count < 1)
                 {
                     conn.Open();
-                    command = new SqlCommand("SELECT System_ID, System FROM Systems as A join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE B.NetID = '" + Session["Login"] +"' AND AccessLevel = 2", conn);
+                    command = new SqlCommand("SELECT System_ID, System FROM Systems as A join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE B.NetID = '" + Session["Login"] +"' AND AccessLevelID = 2", conn);
                     dt2.Load(command.ExecuteReader());
                     conn.Close();
                     DropDownList1.DataSource = dt2;
@@ -255,7 +255,7 @@ namespace Aplikacja_1._0._2
                 DataTable dt = new DataTable();
                 dt.Clear();
                 conn.Open();
-                command = new SqlCommand("SELECT A.* FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE B.NetID = '" + Session["Login"] + "' AND AccessLevel = 2 order by GroupID desc", conn);
+                command = new SqlCommand("SELECT A.* FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE B.NetID = '" + Session["Login"] + "' AND AccessLevelID = 2 order by GroupID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
                 GridView2.DataSource = dt;
@@ -290,7 +290,7 @@ namespace Aplikacja_1._0._2
                 DataTable dt = new DataTable();
                 dt.Clear();
                 conn.Open();
-                command = new SqlCommand("SELECT A.* FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE B.NetID = '" + Session["Login"] + "' AND AccessLevel = 2 order by GroupID desc", conn);
+                command = new SqlCommand("SELECT A.* FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE B.NetID = '" + Session["Login"] + "' AND AccessLevelID = 2 order by GroupID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
                 GridView2.DataSource = dt;

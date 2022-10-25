@@ -224,7 +224,7 @@ namespace Aplikacja_1._0._2
                 SqlConnection conn = new SqlConnection(constr);
                 conn.Open();
 
-                SqlCommand command = new SqlCommand("SELECT A.System_ID, A.System, A.AuthecticationGrName, A.LocationType, A.SystemType, A.Plant, C.SupportEmail, C.SupportGroup FROM Systems_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID join Systems as C on A.System_ID = C.System_ID WHERE B.NetID = '" + Session["Login"] +"' and B.AccessLevel>0 order by A.System_ID desc", conn);
+                SqlCommand command = new SqlCommand("SELECT A.System_ID, A.System, A.AuthecticationGrName, A.LocationType, A.SystemType, A.Plant, C.SupportEmail, C.SupportGroup FROM Systems_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID join Systems as C on A.System_ID = C.System_ID WHERE B.NetID = '" + Session["Login"] +"' and B.AccessLevelID>0 order by A.System_ID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
                 GridView1.DataSource = dt;
@@ -281,7 +281,7 @@ namespace Aplikacja_1._0._2
 
         public static string buduj_warunek(string System, string LocationType, string SystemType, string Plant, string NetID)
         {
-            string warunek = "B.NetID = '" + NetID + "' AND B.AccessLevel > 0 ";
+            string warunek = "B.NetID = '" + NetID + "' AND B.AccessLevelID > 0 ";
             // bool pierwszy = true;
 
             if (System != "")

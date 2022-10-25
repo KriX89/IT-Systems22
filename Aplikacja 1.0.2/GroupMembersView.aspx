@@ -4,7 +4,7 @@
     <br>
 
 
-    <asp:UpdatePanel ID="UpdatePanel5" runat="server">
+  <asp:UpdatePanel ID="UpdatePanel5" runat="server">
   <ContentTemplate>    
   <div id="filtrModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -86,7 +86,7 @@
 
 
 
-    <div style="margin-left:auto; margin-right:auto; width:90%;">
+    <div style="margin-left:auto; margin-right:auto; width:100%;">
         <asp:Button ID="Button4" class="naglowektab" runat="server" Text="GROUP MEMBERS" OnClientClick="return false;" Style="cursor:default"/>
         <asp:Button ID="Button5" Style="background-image: url(../image/lupa2.png); background-repeat: no-repeat " class="button_2" runat="server" Text="Filter" OnClick="Button5_Click" />
 
@@ -96,7 +96,7 @@
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <div style="margin-left:auto; margin-right:auto; width:90%;">
+            <div style="margin-left:auto; margin-right:auto; width:100%;">
             <asp:GridView runat="server" ID="GridView2" Width="100%" HeaderStyle-BackColor="#003399" HeaderStyle-BorderColor="#003300" HeaderStyle-ForeColor="White" CssClass="table table-condensed" AllowPaging="True" PageSize="20" OnPageIndexChanging="GridView2_OnPageIndexChanging" >
             <PagerStyle CssClass="pagination-ys" BackColor="#003399" BorderColor="White" ForeColor="Black" />
             </asp:GridView>

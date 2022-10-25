@@ -44,7 +44,7 @@ namespace Aplikacja_1._0._2
 
 
 
-                warunek += "AND  NetID = '" + NetID + "' AND AccessLevel = 2 ";
+                warunek += "AND  NetID = '" + NetID + "' AND AccessLevelID = 2 ";
 
 
             return warunek;
@@ -301,9 +301,9 @@ namespace Aplikacja_1._0._2
                 SqlConnection conn = new SqlConnection(constr);
                 conn.Open();
 
-                SqlCommand command = new SqlCommand("SELECT A.*, C.SupportEmail, C.SupportGroup FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID join Systems as C on A.System_ID = C.System_ID WHERE B.NetID = '"+ Session["Login"] + "' AND A.Active = 'true' AND AccessLevel = 2 order by GroupID desc", conn);
+                SqlCommand command = new SqlCommand("SELECT A.*, C.SupportEmail, C.SupportGroup FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID join Systems as C on A.System_ID = C.System_ID WHERE B.NetID = '"+ Session["Login"] + "' AND A.Active = 'true' AND AccessLevelID = 2 order by GroupID desc", conn);
 
-              //  SqlCommand command = new SqlCommand("SELECT A.* FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE B.NetID = '"+ Session["Login"] + "' AND Active = 'true' AND AccessLevel = 2 order by GroupID desc", conn);
+              //  SqlCommand command = new SqlCommand("SELECT A.* FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE B.NetID = '"+ Session["Login"] + "' AND Active = 'true' AND AccessLevelID = 2 order by GroupID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
                 GridView1.DataSource = dt;
@@ -348,7 +348,7 @@ namespace Aplikacja_1._0._2
             //      WHERE B.NetID = '"+ Session["Login"] + "' AND Active = 'true' order by GroupID desc
 
 
-       //     SqlCommand command = new SqlCommand("SELECT A.*, C.SupportEmail, C.SupportGroup FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID join Systems as C on A.System_ID = C.System_ID WHERE B.NetID = '" + Session["Login"] + "' AND A.Active = 'true' AND AccessLevel = 2 order by GroupID desc", conn);
+       //     SqlCommand command = new SqlCommand("SELECT A.*, C.SupportEmail, C.SupportGroup FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID join Systems as C on A.System_ID = C.System_ID WHERE B.NetID = '" + Session["Login"] + "' AND A.Active = 'true' AND AccessLevelID = 2 order by GroupID desc", conn);
 
 
             SqlCommand command = new SqlCommand("SELECT A.*, C.SupportEmail, C.SupportGroup FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID join Systems as C on A.System_ID = C.System_ID  WHERE " + buduj_warunek(TextBox1.Text, TextBox2.Text, TextBox3.Text, TextBox4.Text, DropDownList1.SelectedItem.Text, Session["Login"].ToString()) + " order by GroupID desc", conn);
