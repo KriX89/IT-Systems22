@@ -172,11 +172,11 @@ namespace Aplikacja_1._0._2
 
                 for (int i = 0; i < groups.Count; i++)
                 {
-                    if (groups[i].ToString() == "CN=KRO-APP-IT_MGMT-RW" || groups[i].ToString() == "CN=KRO-APP-IT_MGMT-RO")
+                    if (groups[i].ToString() == "CN=KRO-APP-IT_MGMT-ADMINS" || groups[i].ToString() == "CN=KRO-APP-IT_MGMT-USERS")
                     {
-                        if(groups[i].ToString() == "CN=KRO-APP-IT_MGMT-RW")
+                        if(groups[i].ToString() == "CN=KRO-APP-IT_MGMT-ADMINS")
                             grupaRW = true;
-                        if (groups[i].ToString() == "CN=KRO-APP-IT_MGMT-RO")
+                        if (groups[i].ToString() == "CN=KRO-APP-IT_MGMT-USERS")
                             grupaRO = true;
                         grupa = true;
                     }

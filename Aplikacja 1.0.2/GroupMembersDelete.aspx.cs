@@ -155,6 +155,7 @@ namespace Aplikacja_1._0._2
                 TextBox15.Text = "";
                 TextBox16.Text = "";
                 TextBox17.Text = "";
+                TextBox18.Text = "";
             }
         }
 
@@ -247,7 +248,7 @@ namespace Aplikacja_1._0._2
             {
                 SqlConnection conn = new SqlConnection(constr);
                 conn.Open();
-                SqlCommand command = new SqlCommand("UPDATE GroupMembers SET Status_ID = 3 WHERE RecID = " + HiddenTextBox.Value, conn);
+                SqlCommand command = new SqlCommand("UPDATE GroupMembers SET Status_ID = 3, TicketNo = '"+TextBox18.Text+"'  WHERE RecID = " + HiddenTextBox.Value, conn);
                 command.ExecuteNonQuery();
                 conn.Close();
 
@@ -263,6 +264,7 @@ namespace Aplikacja_1._0._2
                 TextBox15.Text = "";
                 TextBox16.Text = "";
                 TextBox17.Text = "";
+                TextBox18.Text = "";
 
                 DataTable dt = new DataTable();
                 dt.Clear();
@@ -289,6 +291,7 @@ namespace Aplikacja_1._0._2
                 TextBox15.Text = "";
                 TextBox16.Text = "";
                 TextBox17.Text = "";
+                TextBox18.Text = "";
                 ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Something went wrong.');", true);
             }
         }
@@ -304,18 +307,25 @@ namespace Aplikacja_1._0._2
             {
                 Button3.Visible = false;
                 Button9.Visible = true;
+                Label23.Visible = false;
+                TextBox18.Visible = false;
             }
 
             if (TextBox17.Text == "To be deleted")
             {
+                TextBox18.Text = "";
                 Button3.Visible = true;
                 Button9.Visible = false;
+                Label23.Visible = true;
+                TextBox18.Visible = true;
             }
 
             if (TextBox17.Text == "Deleted")
             {
                 Button3.Visible = false;
                 Button9.Visible = false;
+                Label23.Visible = false;
+                TextBox18.Visible = false;
             }
 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openDeleteModal();", true);
@@ -351,6 +361,7 @@ namespace Aplikacja_1._0._2
                 TextBox15.Text = "";
                 TextBox16.Text = "";
                 TextBox17.Text = "";
+                TextBox18.Text = "";
 
                 DataTable dt = new DataTable();
                 dt.Clear();
@@ -377,6 +388,7 @@ namespace Aplikacja_1._0._2
                 TextBox15.Text = "";
                 TextBox16.Text = "";
                 TextBox17.Text = "";
+                TextBox18.Text = "";
                 ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Something went wrong.');", true);
             }
         }

@@ -438,6 +438,24 @@ namespace Aplikacja_1._0._2
         protected global::System.Web.UI.WebControls.TextBox TextBox17;
 
         /// <summary>
+        /// Kontrolka Label23.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label23;
+
+        /// <summary>
+        /// Kontrolka TextBox18.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBox18;
+
+        /// <summary>
         /// Kontrolka Button3.
         /// </summary>
         /// <remarks>

@@ -47,6 +47,10 @@
             <div class="col-md-6" style="text-align:center"><asp:Label ID="Label22" runat="server" Text="Status: " /></div>
             <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox13" runat="server" ForeColor="Black" Enabled="false" /></div>
         </div> 
+        <div class="row" style="height: 30px;">
+            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label1" runat="server" Text="Ticket No: " /></div>
+            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox1" runat="server" ForeColor="Black" /></div>
+        </div> 
 
 
         </div>

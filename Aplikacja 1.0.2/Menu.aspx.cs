@@ -68,6 +68,7 @@ namespace Aplikacja_1._0._2
                 TextBox12.Text = GridView2.Rows[i].Cells[5].Text.Replace("&#243;", "ó").Replace("&nbsp;", "");
                 TextBox13.Text = GridView2.Rows[i].Cells[8].Text.Replace("&#243;", "ó");
                 HiddenTextBox.Value = GridView2.Rows[i].Cells[9].Text.Replace("&#243;", "ó");
+                TextBox1.Text = "";
 
 
 
@@ -82,6 +83,7 @@ namespace Aplikacja_1._0._2
                 TextBox11.Text = "";
                 TextBox12.Text = "";
                 TextBox13.Text = "";
+                TextBox1.Text = "";
 
                 HiddenTextBox.Value = "";
 
@@ -122,7 +124,7 @@ namespace Aplikacja_1._0._2
             {
                 SqlConnection conn = new SqlConnection(constr);
                 conn.Open();
-                SqlCommand command = new SqlCommand("UPDATE GroupMembers SET Status_ID = 3 WHERE RecID = " + HiddenTextBox.Value, conn);
+                SqlCommand command = new SqlCommand("UPDATE GroupMembers SET Status_ID = 3, TicketNo = '"+TextBox1.Text+"' WHERE RecID = " + HiddenTextBox.Value, conn);
                 command.ExecuteNonQuery();
                 conn.Close();
 
