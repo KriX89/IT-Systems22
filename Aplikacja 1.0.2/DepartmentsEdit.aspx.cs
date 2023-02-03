@@ -9,7 +9,7 @@ namespace Aplikacja_1._0._2
     public partial class DepartmentsEdit : System.Web.UI.Page
     {
 
-        string constr = "Data Source=PLKRO-SQL02;Initial Catalog=IT;User ID=webkrosno;Password=!kR0sno2022#";
+        string constr = "Data Source=PLKRA-SQL01;Initial Catalog=IAM;User ID=IAM_RW;Password=#iTiAM2022!";
 
 
         public void hiddencolumns()
@@ -32,10 +32,15 @@ namespace Aplikacja_1._0._2
             SqlCommand command = new SqlCommand("SELECT * FROM Departments_v1", conn);
             dt2.Load(command.ExecuteReader());
             conn.Close();
-            GridView1.DataSource = dt2;
-            GridView1.DataBind();
+
+                GridView1.DataSource = dt2;
+                GridView1.DataBind();
+                
+            if (dt2.Rows.Count != 0)
+            {
+                hiddencolumns();
+            }
             dt2.Clear();
-            hiddencolumns();
         }
 
 
@@ -46,6 +51,7 @@ namespace Aplikacja_1._0._2
             {
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridView1, "Select$" + e.Row.RowIndex);
                    e.Row.ToolTip = "Click to select this row.";
+                e.Row.Attributes["style"] = "cursor:pointer";
             }
         }
 
@@ -97,10 +103,15 @@ namespace Aplikacja_1._0._2
                 SqlCommand command = new SqlCommand("SELECT * FROM Departments_v1", conn);
                 dt2.Load(command.ExecuteReader());
                 conn.Close();
-                GridView1.DataSource = dt2;
-                GridView1.DataBind();
+
+                    GridView1.DataSource = dt2;
+                    GridView1.DataBind();
+                    
+                if (dt2.Rows.Count != 0)
+                {
+                    hiddencolumns();
+                }
                 dt2.Clear();
-                hiddencolumns();
 
 
                 if (DropDownList1.Items.Count < 1)
@@ -143,10 +154,14 @@ namespace Aplikacja_1._0._2
                 command = new SqlCommand("SELECT * FROM Departments_v1", conn);
                 dt2.Load(command.ExecuteReader());
                 conn.Close();
-                GridView1.DataSource = dt2;
-                GridView1.DataBind();
-                dt2.Clear();
-                hiddencolumns();
+
+                    GridView1.DataSource = dt2;
+                    GridView1.DataBind();
+                    dt2.Clear();
+                if (dt2.Rows.Count != 0)
+                {
+                    hiddencolumns();
+                }
                 clearAll();
                 ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Row added.');", true);
             }
@@ -173,10 +188,15 @@ namespace Aplikacja_1._0._2
                 command = new SqlCommand("SELECT * FROM Departments_v1", conn);
                 dt2.Load(command.ExecuteReader());
                 conn.Close();
-                GridView1.DataSource = dt2;
-                GridView1.DataBind();
+
+                    GridView1.DataSource = dt2;
+                    GridView1.DataBind();
+                    
+                if (dt2.Rows.Count != 0)
+                {
+                    hiddencolumns();
+                }
                 dt2.Clear();
-                hiddencolumns();
                 clearAll();
                 ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Row updated.');", true);
             }
@@ -199,10 +219,21 @@ namespace Aplikacja_1._0._2
 
         protected void Button8_Click(object sender, EventArgs e)
         {
-            Button1.Visible = false;
-            Button2.Visible = true;
-            Label17.Text = "Change selected department";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
+            if (HiddenTextBox.Value == "")
+            {
+                Label29.Text = "First you need to select row.";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openKomunikatModal();", true);
+            }
+            else
+            {
+                Button1.Visible = false;
+                Button2.Visible = true;
+                Label17.Text = "Change selected department";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
+
+                
+
+            }
         }
 
 

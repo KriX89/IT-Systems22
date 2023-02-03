@@ -1,13 +1,42 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SystemUsersAdd.aspx.cs" Inherits="Aplikacja_1._0._2.SystemUsersAdd" EnableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
+    <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+  <ContentTemplate>    
+  <div id="KomunikatModal" class="modal fade bd-example-modal-sm" role="dialog">
+  <<div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+
+          <div class="row" style="height: 80px">
+            <div class="col-md-4" style="text-align:center"><asp:Image ID="Image1" runat="server" Height="60px" Width="60px" BackColor="#ebebeb" ImageAlign="AbsMiddle" ImageUrl="../image/info_icon.png" /> </div>
+            <div class="col-md-8" style="text-align:left"><asp:Label ID="Label29" runat="server" Font-Size="Larger" Text="Komunikat" /></div>
+        </div>
+
+         <center> <input id="Button27" type="button" value="OK" style="width:80px" onclick="closeKomunikatModal()" /></center>
+    </div>
+
+
+    </div>
+
+  </div>
+  </div>
+  </ContentTemplate>
+  <Triggers>
+      <asp:AsyncPostBackTrigger ControlID="Button8" EventName="Click" />
+  </Triggers>
+  </asp:UpdatePanel>
+
+
     <br>
     <br>
 
 <asp:UpdatePanel ID="UpdatePanel5" runat="server">
   <ContentTemplate>   
-  <div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+  <div id="myModal" class="modal fade bd-example-modal-lg" role="dialog">
+  <div class="modal-dialog modal-lg">
 
     <!-- Modal content-->
     <div class="modal-content">
@@ -38,8 +67,8 @@
 
   <asp:UpdatePanel ID="UpdatePanel6" runat="server">
   <ContentTemplate>  
-  <div id="filtrModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+  <div id="filtrModal" class="modal fade bd-example-modal-lg" role="dialog">
+  <div class="modal-dialog modal-lg">
 
     <!-- Modal content-->
     <div class="modal-content">
@@ -79,8 +108,8 @@
 
    <asp:UpdatePanel ID="UpdatePanel7" runat="server">
   <ContentTemplate>  
-  <div id="filtrModal2" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+  <div id="filtrModal2" class="modal fade bd-example-modal-lg" role="dialog">
+  <div class="modal-dialog modal-lg">
 
     <!-- Modal content-->
     <div class="modal-content">
@@ -136,8 +165,8 @@
 
   <asp:UpdatePanel ID="UpdatePanel8" runat="server">
   <ContentTemplate>    
-  <div id="AddModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+  <div id="AddModal" class="modal fade bd-example-modal-lg" role="dialog">
+  <div class="modal-dialog modal-lg">
 
     <!-- Modal content-->
     <div class="modal-content">
@@ -201,7 +230,7 @@
   </asp:UpdatePanel>
 
 
-    <div style="margin-left:auto; margin-right:auto; width:100%; height:100%">
+    <div style="margin-left:auto; margin-right:auto; width:90%; height:100%">
         <div class="row">
             <div class="col-md-4">
             <asp:Button ID="Button8" class="naglowektab" runat="server" Width="300px" Text="AUTHENTICATION GROUPS" OnClientClick="return false;" Style="cursor:default"/>
@@ -223,25 +252,29 @@
 
 
             <div class="col-md-8" > 
+            
+           <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+            <ContentTemplate>   
+            <div runat="server" id="tabela2" style="display:none">
             <asp:Button ID="Button4" class="naglowektab" runat="server" Width="300px" Text="EMPLOYEES" OnClientClick="return false;" Style="cursor:default"/>
             <asp:Button ID="Button10" Style="background-image: url(../image/lupa2.png); background-repeat: no-repeat " class="button_2" runat="server" Text="Filter" OnClick="Button10_Click" />
             <asp:Button ID="Button11" Style="background-image: url(../image/plus.png); background-repeat: no-repeat " class="button_2" runat="server" Text="Add new" OnClick="Button11_Click" />
-                    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                    <ContentTemplate>
-                    <asp:GridView runat="server" ID="GridView1" HeaderStyle-BackColor="#003399" HeaderStyle-BorderColor="#003300" HeaderStyle-ForeColor="White" CssClass="table table-condensed table-hover" AllowPaging="True" PageSize="20" OnPageIndexChanging="GridView1_OnPageIndexChanging" OnRowDataBound="GridView1_RowDataBound" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
-                    <PagerStyle CssClass="pagination-ys" BackColor="#003399" BorderColor="White" ForeColor="Black" />
-                    </asp:GridView>
-                    </ContentTemplate>
-                    <Triggers>
-                     <asp:AsyncPostBackTrigger ControlID="Button3" EventName="Click" />
-                    <asp:AsyncPostBackTrigger ControlID="GridView2" EventName="RowDataBound" />
-                    <asp:AsyncPostBackTrigger ControlID="GridView2" EventName="SelectedIndexChanged" />
-                    <asp:AsyncPostBackTrigger ControlID="GridView1" EventName="RowDataBound" />
-                    <asp:AsyncPostBackTrigger ControlID="GridView1" EventName="SelectedIndexChanged" />
-                    </Triggers>
-                    </asp:UpdatePanel>
+            <asp:GridView runat="server" ID="GridView1" HeaderStyle-BackColor="#003399" HeaderStyle-BorderColor="#003300" HeaderStyle-ForeColor="White" CssClass="table table-condensed table-hover" AllowPaging="True" PageSize="20" OnPageIndexChanging="GridView1_OnPageIndexChanging" OnRowDataBound="GridView1_RowDataBound" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
+            <PagerStyle CssClass="pagination-ys" BackColor="#003399" BorderColor="White" ForeColor="Black" />
+            </asp:GridView>
                 </div>
-        </div>
+            </ContentTemplate>
+            <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="Button1" EventName="Click" />
+                <asp:AsyncPostBackTrigger ControlID="Button11" EventName="Click" />
+            <asp:AsyncPostBackTrigger ControlID="GridView2" EventName="PageIndexChanged" />
+            <asp:AsyncPostBackTrigger ControlID="GridView2" EventName="RowDataBound" />
+            <asp:AsyncPostBackTrigger ControlID="GridView2" EventName="SelectedIndexChanged" />
+             </Triggers>
+             </asp:UpdatePanel>
+
+            </div>
+            </div>
    </div>
 
 
@@ -301,6 +334,13 @@
         }
         function closeAddModal() {
             $("#AddModal").modal('hide');
+        }
+
+        function openKomunikatModal() {
+            $('#KomunikatModal').modal('show');
+        }
+        function closeKomunikatModal() {
+            $("#KomunikatModal").modal('hide');
         }
 
         function SelectRow(row) {

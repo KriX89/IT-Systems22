@@ -1,13 +1,13 @@
 ﻿<%@ Page Title="Menu" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Menu.aspx.cs" Inherits="Aplikacja_1._0._2.Menu" EnableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+    
         
 
 
     <asp:UpdatePanel ID="UpdatePanel3" runat="server">
   <ContentTemplate>    
-  <div id="deleteModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+  <div id="deleteModal" class="modal fade bd-example-modal-lg" role="dialog">
+  <div class="modal-dialog modal-lg">
 
     <!-- Modal content-->
     <div class="modal-content">
@@ -18,38 +18,38 @@
           <asp:HiddenField ID="HiddenTextBox" runat="server" />
         <div style="margin-left:auto; margin-right:auto; width:100%;">
         <div class="row" style="height: 30px;">
-            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label2" runat="server" Text="System: " /></div>
-            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox7" runat="server" ForeColor="Black" Enabled="false" /></div>
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label2" runat="server" Text="System: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox7" runat="server" Width="100%" ForeColor="Black" Enabled="false" /></div>
         </div>
         <div class="row" style="height: 30px;">
-            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label6" runat="server" Text="Group Name: " /></div>
-            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox8" runat="server" ForeColor="Black" Enabled="false" /></div>
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label6" runat="server" Text="Group Name: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox8" runat="server" Width="100%" ForeColor="Black" Enabled="false" /></div>
         </div>
         <div class="row" style="height: 30px;">
-            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label11" runat="server" Text="First Name: " /></div>
-            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox9" runat="server" ForeColor="Black" Enabled="false" /></div>
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label11" runat="server" Text="First Name: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox9" runat="server" Width="100%" ForeColor="Black" Enabled="false" /></div>
         </div>
 
         <div class="row" style="height: 30px;">
-            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label12" runat="server" Text="Last Name: " /></div>
-            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox10" runat="server" ForeColor="Black" Enabled="false" /></div>
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label12" runat="server" Text="Last Name: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox10" runat="server" Width="100%" ForeColor="Black" Enabled="false" /></div>
         </div>         
         <div class="row" style="height: 30px;">
-            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label13" runat="server" Text="Login: " /></div>
-            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox11" runat="server" ForeColor="Black" Enabled="false" /></div>
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label13" runat="server" Text="Login: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox11" runat="server" Width="100%" ForeColor="Black" Enabled="false" /></div>
         </div>  
 
        <div class="row" style="height: 30px;">
-            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label18" runat="server" Text="Ticket No: " /></div>
-            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox12" runat="server" ForeColor="Black" Enabled="false" /></div>
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label18" runat="server" Text="Ticket No: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox12" runat="server" Width="100%" ForeColor="Black" Enabled="false" /></div>
         </div> 
         <div class="row" style="height: 30px;">
-            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label22" runat="server" Text="Status: " /></div>
-            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox13" runat="server" ForeColor="Black" Enabled="false" /></div>
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label22" runat="server" Text="Status: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox13" runat="server" Width="100%" ForeColor="Black" Enabled="false" /></div>
         </div> 
         <div class="row" style="height: 30px;">
-            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label1" runat="server" Text="Ticket No: " /></div>
-            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox1" runat="server" ForeColor="Black" /></div>
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label1" runat="server" Text="New Ticket No: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox1" runat="server" Width="100%" ForeColor="Black" /></div>
         </div> 
 
 
@@ -95,15 +95,7 @@
 
     <script type="text/javascript">
     
-                  $(".navbar-toggler").click(function () {
-              $(".menu").toggle();
-          });
 
-
-          $(document).ready(function () {
-              $('#dtBasicExample').DataTable();
-              $('.dataTables_length').addClass('bs-select');
-          });
 
 
 

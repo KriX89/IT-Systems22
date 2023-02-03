@@ -12,7 +12,7 @@ namespace Aplikacja_1._0._2
     public partial class EmplEdit : System.Web.UI.Page
     {
 
-        string constr = "Data Source=PLKRO-SQL02;Initial Catalog=IT;User ID=webkrosno;Password=!kR0sno2022#";
+        string constr = "Data Source=PLKRA-SQL01;Initial Catalog=IAM;User ID=IAM_RW;Password=#iTiAM2022!";
 
 
         public static string buduj_warunek(string FirstName, string LastName, string Department, string Plant, string BWIEmplNo, string PlantIDNo)
@@ -72,13 +72,18 @@ namespace Aplikacja_1._0._2
             dt.Clear();
             SqlConnection conn = new SqlConnection(constr);
             conn.Open();
-            SqlCommand command = new SqlCommand("SELECT * FROM Employees_v1 WHERE "+ buduj_warunek(TextBox5.Text, TextBox6.Text, DropDownList3.SelectedItem.Text, DropDownList4.SelectedItem.Text, TextBox7.Text, TextBox8.Text) + " order by EmpID desc", conn);
+            SqlCommand command = new SqlCommand("SELECT EmpID, FirstName, LastName, Department, Plant, BWIEmplNo, PlantIDNo, Active, DepartmentID, Plant_ID, Training, CONVERT(char(10), TrainingDate,126) as [Training Date] , Trainer FROM Employees_v1 WHERE " + buduj_warunek(TextBox5.Text, TextBox6.Text, DropDownList3.SelectedItem.Text, DropDownList4.SelectedItem.Text, TextBox7.Text, TextBox8.Text) + " order by EmpID desc", conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
-            GridView2.DataSource = dt;
-            GridView2.DataBind();
+
+                GridView2.DataSource = dt;
+                GridView2.DataBind();
+                
+            if (dt.Rows.Count != 0)
+            {
+                hiddencolumns();
+            }
             dt.Clear();
-            hiddencolumns();
         }
 
 
@@ -87,7 +92,8 @@ namespace Aplikacja_1._0._2
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridView2, "Select$" + e.Row.RowIndex);
-             //   e.Row.ToolTip = "Click to select this row.";
+                e.Row.ToolTip = "Click to select this row.";
+                e.Row.Attributes["style"] = "cursor:pointer";
             }
         }
 
@@ -127,6 +133,7 @@ namespace Aplikacja_1._0._2
                 TextBox4.Text = GridView2.Rows[i].Cells[6].Text.Replace("&#243;", "ó");
                 CheckBox chk = GridView2.Rows[i].Cells[7].Controls[0] as CheckBox;
                 CheckBox1.Checked = chk.Checked;
+                HiddenTreining.Value = (GridView2.Rows[i].Cells[10].Controls[0] as CheckBox).Checked.ToString();
             }
             else
             {
@@ -163,13 +170,18 @@ namespace Aplikacja_1._0._2
                 dt.Clear();
                 SqlConnection conn = new SqlConnection(constr);
                 conn.Open();
-                SqlCommand command = new SqlCommand("SELECT * FROM Employees_v1 order by EmpID desc", conn);
+                SqlCommand command = new SqlCommand("SELECT EmpID, FirstName, LastName, Department, Plant, BWIEmplNo, PlantIDNo, Active, DepartmentID, Plant_ID, Training, CONVERT(char(10), TrainingDate,126) as [Training Date] , Trainer FROM Employees_v1 order by EmpID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
-                GridView2.DataSource = dt;
-                GridView2.DataBind();
+
+                    GridView2.DataSource = dt;
+                    GridView2.DataBind();
+                    
+                if (dt.Rows.Count != 0)
+                {
+                    hiddencolumns();
+                }
                 dt.Clear();
-                hiddencolumns();
 
 
 
@@ -246,13 +258,17 @@ namespace Aplikacja_1._0._2
                 DataTable dt = new DataTable();
                 dt.Clear();
                 conn.Open();
-                command = new SqlCommand("SELECT * FROM Employees_v1 order by EmpID desc", conn);
+                command = new SqlCommand("SELECT  EmpID, FirstName, LastName, Department, Plant, BWIEmplNo, PlantIDNo, Active, DepartmentID, Plant_ID, Training, CONVERT(char(10), TrainingDate,126) as [Training Date] , Trainer  FROM Employees_v1 order by EmpID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
-                GridView2.DataSource = dt;
-                GridView2.DataBind();
-                dt.Clear();
-                hiddencolumns();
+
+                    GridView2.DataSource = dt;
+                    GridView2.DataBind();
+                    dt.Clear();
+                if (dt.Rows.Count != 0)
+                {
+                    hiddencolumns();
+                }
                 ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Row added.');", true);
                 clearAll();
             }
@@ -276,14 +292,19 @@ namespace Aplikacja_1._0._2
                  DataTable dt = new DataTable();
                  dt.Clear();
                  conn.Open();
-                 command = new SqlCommand("SELECT * FROM Employees_v1 order by EmpID desc", conn);
-                 dt.Load(command.ExecuteReader());
+                 command = new SqlCommand("SELECT  EmpID, FirstName, LastName, Department, Plant, BWIEmplNo, PlantIDNo, Active, DepartmentID, Plant_ID, Training, CONVERT(char(10), TrainingDate,126) as [Training Date] , Trainer  FROM Employees_v1 order by EmpID desc", conn);
+                dt.Load(command.ExecuteReader());
                  conn.Close();
-                 GridView2.DataSource = dt;
-                 GridView2.DataBind();
-                 dt.Clear();
-                 hiddencolumns();
-                 ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Row updated.');", true);
+
+                    GridView2.DataSource = dt;
+                    GridView2.DataBind();
+                    
+                if (dt.Rows.Count != 0)
+                {
+                    hiddencolumns();
+                }
+                dt.Clear();
+                ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Row updated.');", true);
                  clearAll();
             }
             catch
@@ -301,12 +322,21 @@ namespace Aplikacja_1._0._2
             dt.Clear();
             SqlConnection conn = new SqlConnection(constr);
             conn.Open();
-            SqlCommand command = new SqlCommand("SELECT * FROM Employees_v1  WHERE " + buduj_warunek(TextBox5.Text, TextBox6.Text, DropDownList3.SelectedItem.Text, DropDownList4.SelectedItem.Text, TextBox7.Text, TextBox8.Text) + " order by EmpID desc", conn);
+            SqlCommand command = new SqlCommand("SELECT EmpID, FirstName, LastName, Department, Plant, BWIEmplNo, PlantIDNo, Active, DepartmentID, Plant_ID, Training, CONVERT(char(10), TrainingDate,126) as [Training Date] , Trainer FROM Employees_v1  WHERE " + buduj_warunek(TextBox5.Text, TextBox6.Text, DropDownList3.SelectedItem.Text, DropDownList4.SelectedItem.Text, TextBox7.Text, TextBox8.Text) + " order by EmpID desc", conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
-            GridView2.DataSource = dt;
-            GridView2.DataBind();
-            hiddencolumns();
+
+                GridView2.DataSource = dt;
+                GridView2.DataBind();
+            if (dt.Rows.Count != 0)
+            {
+                hiddencolumns();
+            }
+            else
+            {
+                Label29.Text = "Nothing found.";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openKomunikatModal();", true);
+            }
 
         }
 
@@ -314,7 +344,6 @@ namespace Aplikacja_1._0._2
 
         protected void OnSelectedIndexChanged(object sender, EventArgs e)
         {
-
         /*    DataTable dt2 = new DataTable();
             dt2.Clear();
             SqlConnection conn = new SqlConnection(constr);
@@ -328,7 +357,6 @@ namespace Aplikacja_1._0._2
                 DropDownList1.DataBind();
                 DropDownList1.Items.Insert(0, new ListItem(String.Empty, String.Empty));
                 dt2.Clear(); */
-
         }
 
         protected void Button5_Click(object sender, EventArgs e)
@@ -348,10 +376,60 @@ namespace Aplikacja_1._0._2
 
         protected void Button8_Click(object sender, EventArgs e)
         {
-            Button1.Visible = false;
-            Button2.Visible = true;
-            Label16.Text = "Change selected emploee";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
+            if (HiddenEmpID.Value == "")
+            {
+                Label29.Text = "First you need to select row.";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openKomunikatModal();", true);
+            }
+            else
+            {
+                Button1.Visible = false;
+                Button2.Visible = true;
+                Label16.Text = "Change selected emploee";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
+            }
+        }
+
+        protected void Button9_Click(object sender, EventArgs e)
+        {
+            if (HiddenEmpID.Value == "")
+            {
+                Label29.Text = "First you need to select row.";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openKomunikatModal();", true);
+            }
+            else
+            {
+                SqlConnection conn = new SqlConnection(constr);
+                conn.Open();
+                SqlCommand command;
+                if (HiddenTreining.Value == "False")
+                {
+                    command = new SqlCommand("UPDATE Employees SET Training = '1', TrainingDate =  getdate(), Trainer = '" + Session["Zalogowany"] + "' WHERE EmpID = " + HiddenEmpID.Value, conn);
+                }
+                else
+                {
+                    command = new SqlCommand("UPDATE Employees SET Training = '0', TrainingDate =  getdate(), Trainer = '" + Session["Zalogowany"] + "' WHERE EmpID = " + HiddenEmpID.Value, conn);
+                }
+                command.ExecuteNonQuery();
+                conn.Close();
+                DataTable dt = new DataTable();
+                dt.Clear();
+                conn.Open();
+                command = new SqlCommand("SELECT EmpID, FirstName, LastName, Department, Plant, BWIEmplNo, PlantIDNo, Active, DepartmentID, Plant_ID, Training, CONVERT(char(10), TrainingDate,126) as [Training Date] , Trainer FROM Employees_v1 order by EmpID desc", conn);
+                dt.Load(command.ExecuteReader());
+                conn.Close();
+
+                GridView2.DataSource = dt;
+                GridView2.DataBind();
+
+                if (dt.Rows.Count != 0)
+                {
+                    hiddencolumns();
+                }
+                dt.Clear();
+                ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Row updated.');", true);
+                clearAll();
+            }
         }
 
 

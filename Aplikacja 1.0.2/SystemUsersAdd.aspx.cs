@@ -12,7 +12,7 @@ namespace Aplikacja_1._0._2
 {
     public partial class SystemUsersAdd : System.Web.UI.Page
     {
-        string constr = "Data Source=PLKRO-SQL02;Initial Catalog=IT;User ID=webkrosno;Password=!kR0sno2022#";
+        string constr = "Data Source=PLKRA-SQL01;Initial Catalog=IAM;User ID=IAM_RW;Password=#iTiAM2022!";
 
 
         public static string buduj_warunek(string AuthecticationGrName, string ModeName)
@@ -112,25 +112,51 @@ namespace Aplikacja_1._0._2
             SqlCommand command = new SqlCommand("SELECT * FROM AuthenticationGroups_v1 WHERE Active = 'true' order by AGroupID desc", conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
-            GridView2.DataSource = dt;
-            GridView2.DataBind();
-            dt.Clear();
-            hiddencolumns();
+            if (dt.Rows.Count != 0)
+            {
+                GridView2.DataSource = dt;
+                GridView2.DataBind();
+                dt.Clear();
+                hiddencolumns();
+            }
         }
 
         private void LoadGridData2()
         {
-            DataTable dt = new DataTable();
-            dt.Clear();
-            SqlConnection conn = new SqlConnection(constr);
-            conn.Open();
-            SqlCommand command = new SqlCommand("SELECT * FROM Employees_v1  WHERE " + buduj_warunek2(TextBox2.Text, TextBox3.Text, DropDownList2.SelectedItem.Text, DropDownList3.SelectedItem.Text, TextBox4.Text, TextBox5.Text) + " order by EmpID desc", conn);
-            dt.Load(command.ExecuteReader());
-            conn.Close();
-            GridView1.DataSource = dt;
-            GridView1.DataBind();
-            dt.Clear();
-            hiddencolumns2();
+            if (Button4.Text == "EMPLOYEES")
+            {
+                DataTable dt = new DataTable();
+                dt.Clear();
+                SqlConnection conn = new SqlConnection(constr);
+                conn.Open();
+                SqlCommand command = new SqlCommand("SELECT * FROM Employees_v1  WHERE " + buduj_warunek2(TextBox2.Text, TextBox3.Text, DropDownList2.SelectedItem.Text, DropDownList3.SelectedItem.Text, TextBox4.Text, TextBox5.Text) + " order by EmpID desc", conn);
+                dt.Load(command.ExecuteReader());
+                conn.Close();
+
+                GridView1.DataSource = dt;
+                GridView1.DataBind();
+                if (dt.Rows.Count != 0)
+                {
+                    hiddencolumns2();
+                }
+                dt.Clear();
+
+            }
+            else
+            {
+                DataTable dt = new DataTable();
+                dt.Clear();
+                SqlConnection conn = new SqlConnection(constr);
+                conn.Open();
+                SqlCommand command = new SqlCommand("SELECT FirstName, LastName, Login FROM SystemUsers_v1 WHERE AutenticationGroup = " + HiddenTextBox.Value + " and Active = 'true' order by EmpID desc", conn);
+                dt.Load(command.ExecuteReader());
+                conn.Close();
+
+                GridView1.DataSource = dt;
+                GridView1.DataBind();
+                dt.Clear();
+            }
+
         }
 
 
@@ -141,6 +167,8 @@ namespace Aplikacja_1._0._2
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridView2, "Select$" + e.Row.RowIndex);
+                e.Row.ToolTip = "Click to select this row.";
+                e.Row.Attributes["style"] = "cursor:pointer";
             }
         }
 
@@ -162,7 +190,8 @@ namespace Aplikacja_1._0._2
 
             if (HiddenTextBox.Value != GridView2.Rows[i].Cells[0].Text)
             {
-
+                tabela2.Attributes.Add("style", "display:block");
+                Button4.Text = "SYSTEM USERS";
                 GridView2.Rows[i].BackColor = System.Drawing.Color.White;
                 HiddenTextBox.Value = GridView2.Rows[i].Cells[0].Text;
                 TextBox6.Text = GridView2.Rows[i].Cells[1].Text.Replace("&#243;", "ó");
@@ -171,17 +200,19 @@ namespace Aplikacja_1._0._2
                 dt.Clear();
                 SqlConnection conn = new SqlConnection(constr);
                 conn.Open();
-                SqlCommand command = new SqlCommand("SELECT * FROM Employees_v1 WHERE Active = 'true' order by EmpID desc", conn);
+                SqlCommand command = new SqlCommand("SELECT FirstName, LastName, Login FROM SystemUsers_v1 WHERE AutenticationGroup = "+ HiddenTextBox.Value + " and Active = 'true' order by EmpID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
-                GridView1.DataSource = dt;
-                GridView1.DataBind();
-                dt.Clear();
-                hiddencolumns2();
+
+                    GridView1.DataSource = dt;
+                    GridView1.DataBind();
+                    dt.Clear();
+
 
             }
             else
             {
+                tabela2.Attributes.Add("style", "display:none");
                 HiddenTextBox.Value = "";
                 TextBox6.Text = "";
             }
@@ -207,7 +238,9 @@ namespace Aplikacja_1._0._2
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes.Add("onClick", "javascript:void SelectRow(this);");
-             //   e.Row.Attributes.Add("onmousehover", "JavaScript:this.style.cursor='hand';");
+                e.Row.ToolTip = "Click to select this row.";
+                e.Row.Attributes["style"] = "cursor:pointer";
+                //   e.Row.Attributes.Add("onmousehover", "JavaScript:this.style.cursor='hand';");
                 //   e.Row.Attributes.Add("onclick", "javascript:__doPostBack('" + ((GridView)sender).ID + "','Select$" + (RowCount - 1).ToString() + "')");
                 //   e.Row.Attributes.Add("onmouseover", "JavaScript:this.style.cursor='hand';");
 
@@ -254,9 +287,11 @@ namespace Aplikacja_1._0._2
 
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            if (e.Row.RowType == DataControlRowType.DataRow)
+            if (e.Row.RowType == DataControlRowType.DataRow && Button4.Text == "EMPLOYEES")
             {
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridView1, "Select$" + e.Row.RowIndex);
+                e.Row.ToolTip = "Click to select this row.";
+                e.Row.Attributes["style"] = "cursor:pointer";
             }
         }
 
@@ -285,8 +320,8 @@ namespace Aplikacja_1._0._2
                     DirectorySearcher searcher = new DirectorySearcher(directoryEntry)
                     {
                         PageSize = int.MaxValue,
-                        Filter = "(&(objectCategory=person)(objectClass=user)(cn=" + TextBox7.Text.Replace(" ","") + " " + TextBox8.Text.Replace(" ","") + "))"
-                      //  Filter = "(&(objectCategory=person)(objectClass=user)(cn=Witold Czekański))"
+                        Filter = "(&(objectCategory=person)(objectClass=user)(cn=" + TextBox7.Text.Replace(" ", "") + " " + TextBox8.Text.Replace(" ", "") + "))"
+                        //  Filter = "(&(objectCategory=person)(objectClass=user)(cn=Witold Czekański))"
                     };
 
 
@@ -296,20 +331,22 @@ namespace Aplikacja_1._0._2
 
                     if (result == null)
                     {
-                      //  TextBox12.Text = "(&(objectCategory=person)(objectClass=user)(cn=" + TextBox7.Text + " " + TextBox8.Text + "))";
+                        Label29.Text = "Account not found in Active Directory";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openKomunikatModal();", true);
+                        //  TextBox12.Text = "(&(objectCategory=person)(objectClass=user)(cn=" + TextBox7.Text + " " + TextBox8.Text + "))";
                         //   MessageBox.Show("Brak uzytkownika w domenie");
                         return; // Or whatever you need to do in this case
                     }
 
                     string netID;
 
-                  //  string surname;
+                    //  string surname;
 
 
                     if (result.Properties.Contains("sAMAccountName"))
                     {
 
-                        
+
 
 
                         DataTable dt = new DataTable();
@@ -326,13 +363,13 @@ namespace Aplikacja_1._0._2
                             workRow[1] = TextBox8.Text;
                             workRow[2] = result.Properties["sAMAccountName"][j].ToString();
                             dt.Rows.Add(workRow);
-                       }
+                        }
 
                         GridView4.DataSource = dt;
                         GridView4.DataBind();
 
-                           //   netID = result.Properties["sAMAccountName"][0].ToString();
-                            //  TextBox12.Text = netID;
+                        //   netID = result.Properties["sAMAccountName"][0].ToString();
+                        //  TextBox12.Text = netID;
 
 
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
@@ -340,6 +377,13 @@ namespace Aplikacja_1._0._2
 
                     }
 
+
+
+
+                }
+                else
+                {
+                         ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
                 }
 
 
@@ -389,10 +433,13 @@ namespace Aplikacja_1._0._2
                 SqlCommand command = new SqlCommand("SELECT * FROM AuthenticationGroups_v1 WHERE Active = 'true' order by AGroupID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
-                GridView2.DataSource = dt;
-                GridView2.DataBind();
-                dt.Clear();
-                hiddencolumns();
+                if (dt.Rows.Count != 0)
+                {
+                    GridView2.DataSource = dt;
+                    GridView2.DataBind();
+                    dt.Clear();
+                    hiddencolumns();
+                }
 
 
                 DataTable dt2 = new DataTable();
@@ -471,9 +518,13 @@ namespace Aplikacja_1._0._2
             SqlCommand command = new SqlCommand("SELECT * FROM AuthenticationGroups_v1  WHERE " + buduj_warunek(TextBox1.Text, DropDownList1.SelectedItem.Text) + " order by AGroupID desc", conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
-            GridView2.DataSource = dt;
-            GridView2.DataBind();
-            hiddencolumns();
+
+                GridView2.DataSource = dt;
+                GridView2.DataBind();
+            if (dt.Rows.Count != 0)
+            {
+                hiddencolumns();
+            }
 
         }
 
@@ -488,9 +539,13 @@ namespace Aplikacja_1._0._2
             SqlCommand command = new SqlCommand("SELECT * FROM Employees_v1  WHERE " + buduj_warunek2(TextBox2.Text, TextBox3.Text, DropDownList2.SelectedItem.Text, DropDownList3.SelectedItem.Text, TextBox4.Text, TextBox5.Text) + " order by EmpID desc", conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
-            GridView1.DataSource = dt;
-            GridView1.DataBind();
-            hiddencolumns2();
+
+                GridView1.DataSource = dt;
+                GridView1.DataBind();
+            if (dt.Rows.Count != 0)
+            {
+                hiddencolumns2();
+            }
         }
 
         protected void clearAll()
@@ -535,12 +590,31 @@ namespace Aplikacja_1._0._2
                 ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Something went wrong.');", true);
             }
 
+                Button4.Text = "SYSTEM USERS";
+
+
+                DataTable dt2 = new DataTable();
+                dt2.Clear();
+                SqlConnection conn2 = new SqlConnection(constr);
+                conn2.Open();
+                SqlCommand command2 = new SqlCommand("SELECT FirstName, LastName, Login FROM SystemUsers_v1 WHERE AutenticationGroup = " + HiddenTextBox.Value + " and Active = 'true' order by EmpID desc", conn2);
+                dt2.Load(command2.ExecuteReader());
+                conn2.Close();
+
+                GridView1.DataSource = dt2;
+                GridView1.DataBind();
+                dt2.Clear();
+
+
+
+
         }
 
 
         protected void Button2_Click(object sender, EventArgs e)
         {
                TextBox12.Text = HiddenField1.Value;
+               ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
 
         }
 
@@ -557,8 +631,36 @@ namespace Aplikacja_1._0._2
 
         protected void Button11_Click(object sender, EventArgs e)
         {
-           // clearAll();
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
+
+
+                Button4.Text = "EMPLOYEES";
+                
+
+                DataTable dt = new DataTable();
+                dt.Clear();
+                SqlConnection conn = new SqlConnection(constr);
+                conn.Open();
+                SqlCommand command = new SqlCommand("SELECT * FROM Employees_v1 WHERE Active = 'true' order by EmpID desc", conn);
+                dt.Load(command.ExecuteReader());
+                conn.Close();
+
+
+                GridView1.DataSource = dt;
+                GridView1.DataBind();
+                if (dt.Rows.Count != 0)
+                {
+                hiddencolumns2();
+                }
+                dt.Clear();
+                
+           
+
+
+
+
+
+            // clearAll();
+            //     ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
         }
 
 

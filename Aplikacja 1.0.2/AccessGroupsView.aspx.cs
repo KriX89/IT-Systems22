@@ -9,7 +9,7 @@ namespace Aplikacja_1._0._2
 {
     public partial class AccessGroupsView : System.Web.UI.Page
     {
-        string constr = "Data Source=PLKRO-SQL02;Initial Catalog=IT;User ID=webkrosno;Password=!kR0sno2022#";
+        string constr = "Data Source=PLKRA-SQL01;Initial Catalog=IAM;User ID=IAM_RW;Password=#iTiAM2022!";
 
 
         private void LoadGridData()
@@ -26,7 +26,7 @@ namespace Aplikacja_1._0._2
             dt.Clear();
         }
 
-
+        
 
         protected void GridView2_OnPageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -126,6 +126,7 @@ namespace Aplikacja_1._0._2
                 }
 
 
+
                 if (DropDownList3.Items.Count < 1)
                 {
                     conn.Open();
@@ -158,6 +159,7 @@ namespace Aplikacja_1._0._2
         protected void Button3_Click(object sender, EventArgs e)
         {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openFiltrModal();", true);
+            
         }
     }
 }

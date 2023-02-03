@@ -193,6 +193,7 @@
     <Content Include="image\background.jpg" />
     <Content Include="image\delete.png" />
     <Content Include="image\edit.png" />
+    <Content Include="image\info_icon.png" />
     <Content Include="image\log1.png" />
     <Content Include="image\lupa.png" />
     <Content Include="image\lupa2.png" />

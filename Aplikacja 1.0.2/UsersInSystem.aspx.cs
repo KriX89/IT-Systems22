@@ -9,7 +9,7 @@ namespace Aplikacja_1._0._2
 {
     public partial class UsersInSystem : System.Web.UI.Page
     {
-        string constr = "Data Source=PLKRO-SQL02;Initial Catalog=IT;User ID=webkrosno;Password=!kR0sno2022#";
+        string constr = "Data Source=PLKRA-SQL01;Initial Catalog=IAM;User ID=IAM_RW;Password=#iTiAM2022!";
 
         private void LoadGridData()
         {
@@ -17,13 +17,21 @@ namespace Aplikacja_1._0._2
             dt.Clear();
             SqlConnection conn = new SqlConnection(constr);
             conn.Open();
-            SqlCommand command = new SqlCommand("SELECT System_ID, System, AuthecticationGrName, LocationType, SystemType, Plant FROM Systems_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE " + buduj_warunek(TextBox1.Text, DropDownList1.SelectedItem.Text, DropDownList2.SelectedItem.Text, DropDownList3.SelectedItem.Text, Session["Login"].ToString()) + " order by System_ID desc", conn);
+
+        //    SqlCommand command = new SqlCommand("SELECT A.System_ID, A.System, A.AuthecticationGrName, A.LocationType, A.SystemType, A.Plant, C.SupportEmail, C.SupportGroup FROM Systems_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID join Systems as C on A.System_ID = C.System_ID WHERE B.NetID = '" + Session["Login"] + "' and B.AccessLevelID>0 order by A.System_ID desc", conn);
+
+            SqlCommand command = new SqlCommand("SELECT A.System_ID, A.System, A.AuthecticationGrName, A.LocationType, A.SystemType, A.Plant, C.SupportEmail, C.SupportGroup FROM Systems_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID join Systems as C on A.System_ID = C.System_ID WHERE " + buduj_warunek(TextBox1.Text, DropDownList1.SelectedItem.Text, DropDownList2.SelectedItem.Text, DropDownList3.SelectedItem.Text, Session["Login"].ToString()) + " order by A.System_ID desc", conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
-            GridView1.DataSource = dt;
-            GridView1.DataBind();
-            hiddencolumns();
-            dt.Clear(); 
+
+                GridView1.DataSource = dt;
+                GridView1.DataBind();
+            if (dt.Rows.Count != 0)
+            {
+                hiddencolumns();
+            }
+                dt.Clear();
+            
         }
 
 
@@ -36,10 +44,15 @@ namespace Aplikacja_1._0._2
             SqlCommand command = new SqlCommand("Select GroupID, GroupName, Description, SystemGroupName FROM SystemAccessGroups_v1 WHERE System_ID = " + HiddenEmpID.Value, conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
-            GridView2.DataSource = dt;
-            GridView2.DataBind();
-            hiddencolumns2();
-            dt.Clear();
+
+                GridView2.DataSource = dt;
+                GridView2.DataBind();
+            if (dt.Rows.Count != 0)
+            {
+                hiddencolumns2();
+            }
+                dt.Clear();
+            
         }
 
 
@@ -49,7 +62,7 @@ namespace Aplikacja_1._0._2
             dt.Clear();
             SqlConnection conn = new SqlConnection(constr);
             conn.Open();
-            SqlCommand command = new SqlCommand("SELECT FirstName, LastName, Login, BWIEmplNo, PlantIDNo, TicketNo, DT, Author FROM GroupMembers_v1 where GroupID = " + HiddenTextBox2.Value + " AND Status_ID = 1", conn);
+            SqlCommand command = new SqlCommand("SELECT RecID, FirstName, LastName, Login, BWIEmplNo, PlantIDNo, TicketNo, DT, Author FROM GroupMembers_v1 where GroupID = " + HiddenTextBox2.Value + " AND Status_ID = 1", conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
             GridView3.DataSource = dt;
@@ -87,6 +100,7 @@ namespace Aplikacja_1._0._2
 
                 e.Row.ToolTip = "Support email: "+(e.Row.DataItem as DataRowView)[6].ToString();
                 e.Row.ToolTip += "\nSupport group: " + (e.Row.DataItem as DataRowView)[7].ToString();
+                e.Row.Attributes["style"] = "cursor:pointer";
 
                 //   e.Row.ToolTip = "Click to select this row.";
             }
@@ -98,11 +112,23 @@ namespace Aplikacja_1._0._2
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridView2, "Select$" + e.Row.RowIndex);
+                e.Row.Attributes["style"] = "cursor:pointer";
 
-                
             }
             //   e.Row.ToolTip = "Click to select this row.";
         
+        }
+
+        protected void GridView3_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridView3, "Select$" + e.Row.RowIndex);
+                e.Row.Attributes["style"] = "cursor:pointer";
+
+            }
+            //   e.Row.ToolTip = "Click to select this row.";
+
         }
 
 
@@ -127,9 +153,13 @@ namespace Aplikacja_1._0._2
                     SqlCommand command = new SqlCommand("Select GroupID, GroupName, Description, SystemGroupName FROM SystemAccessGroups_v1 WHERE System_ID = " + HiddenEmpID.Value, conn);
                     dt.Load(command.ExecuteReader());
                     conn.Close();
-                    GridView2.DataSource = dt;
-                    GridView2.DataBind();
-                    hiddencolumns2();
+
+                        GridView2.DataSource = dt;
+                        GridView2.DataBind();
+                    if (dt.Rows.Count != 0)
+                    {
+                        hiddencolumns2();
+                    }
                     if (dt.Rows.Count == 0)
                         ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Nothing found.');", true);
                     dt.Clear();
@@ -165,7 +195,7 @@ namespace Aplikacja_1._0._2
                     dt.Clear();
                     SqlConnection conn = new SqlConnection(constr);
                     conn.Open();
-                    SqlCommand command = new SqlCommand("SELECT FirstName, LastName, Login, BWIEmplNo, PlantIDNo, TicketNo, DT, Author FROM GroupMembers_v1 where GroupID = " + HiddenTextBox2.Value + " AND Status_ID = 1", conn);
+                    SqlCommand command = new SqlCommand("SELECT RecID, FirstName, LastName, Login, BWIEmplNo, PlantIDNo, TicketNo, DT, Author FROM GroupMembers_v1 where GroupID = " + HiddenTextBox2.Value + " AND Status_ID = 1", conn);
                     dt.Load(command.ExecuteReader());
                     conn.Close();
                     GridView3.DataSource = dt;
@@ -184,7 +214,89 @@ namespace Aplikacja_1._0._2
         }
 
 
-        public void hiddencolumns()
+
+        protected void GridView3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int i = GridView3.SelectedIndex;
+
+            DataTable dt = new DataTable();
+            dt.Clear();
+            SqlConnection conn = new SqlConnection(constr);
+            conn.Open();
+            SqlCommand command = new SqlCommand("SELECT RecID, System, GroupName, FirstName, LastName, Login, Department, Plant, BWIEmplNo, PlantIDNo, TicketNo, Status FROM GroupMembers_v1 where RecID = '" + GridView3.Rows[i].Cells[0].Text + "'", conn);
+            dt.Load(command.ExecuteReader());
+            conn.Close();
+
+            HiddenTextBox.Value = dt.Rows[0][0].ToString();
+            TextBox7.Text = dt.Rows[0][1].ToString();
+            TextBox8.Text = dt.Rows[0][2].ToString();
+            TextBox9.Text = dt.Rows[0][3].ToString();
+            TextBox10.Text = dt.Rows[0][4].ToString();
+            TextBox11.Text = dt.Rows[0][5].ToString();
+            TextBox12.Text = dt.Rows[0][6].ToString();
+            TextBox13.Text = dt.Rows[0][7].ToString();
+            TextBox14.Text = dt.Rows[0][8].ToString();
+            TextBox15.Text = dt.Rows[0][9].ToString();
+            TextBox16.Text = dt.Rows[0][10].ToString();
+            TextBox17.Text = dt.Rows[0][11].ToString();
+
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openDeleteModal();", true);
+        }
+
+        protected void Button9_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                SqlConnection conn = new SqlConnection(constr);
+                conn.Open();
+                SqlCommand command = new SqlCommand("UPDATE GroupMembers SET Status_ID = 2 WHERE RecID = " + HiddenTextBox.Value, conn);
+                command.ExecuteNonQuery();
+                conn.Close();
+
+                conn.Open();
+
+
+                command = new SqlCommand("INSERT INTO Mail_To (Mail_From, Mail_To, Subject, body, Date1, Status) VALUES('ITSystemsBWI@bwigroup.com', 'jacek.maj@bwigroup.com ; krzysztof.czekanski@bwigroup.com', 'Delete user on system: " + TextBox7.Text + "' , ' This is a test email generated by IAM' , getdate(), ' 0 ')", conn);
+                //      command = new SqlCommand("INSERT INTO Mail_To (Mail_From, Mail_To, Subject, body, Date1, Status) VALUES('ITSystemsBWI@bwigroup.com', '" + HiddenEmail.Value + "', 'Delete user on system: " + TextBox7.Text + "' , ' This is a test email generated by IAM' , getdate(), ' 0 ')", conn);
+
+
+                command.ExecuteNonQuery();
+                conn.Close();
+
+
+
+                DataTable dt = new DataTable();
+                dt.Clear();
+                conn = new SqlConnection(constr);
+                conn.Open();
+                command = new SqlCommand("SELECT RecID, FirstName, LastName, Login, BWIEmplNo, PlantIDNo, TicketNo, DT, Author FROM GroupMembers_v1 where GroupID = " + HiddenTextBox2.Value + " AND Status_ID = 1", conn);
+                dt.Load(command.ExecuteReader());
+                conn.Close();
+                if (dt.Rows.Count == 0)
+                    ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Nothing found.');", true);
+                GridView3.DataSource = dt;
+                GridView3.DataBind();
+                dt.Clear();
+
+
+
+
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Status changed to - to be deleted and an e-mail was sent to the owner of the system');", true);
+            }
+            catch
+            {
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Something went wrong.');", true);
+            }
+
+        }
+
+
+
+            public void hiddencolumns()
         {
             GridView1.HeaderRow.Cells[0].Attributes.Add("style", "display:none");
             GridView1.HeaderRow.Cells[6].Attributes.Add("style", "display:none");
@@ -227,10 +339,14 @@ namespace Aplikacja_1._0._2
                 SqlCommand command = new SqlCommand("SELECT A.System_ID, A.System, A.AuthecticationGrName, A.LocationType, A.SystemType, A.Plant, C.SupportEmail, C.SupportGroup FROM Systems_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID join Systems as C on A.System_ID = C.System_ID WHERE B.NetID = '" + Session["Login"] +"' and B.AccessLevelID>0 order by A.System_ID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
-                GridView1.DataSource = dt;
-                GridView1.DataBind();
-                hiddencolumns();
-                dt.Clear();
+
+                    GridView1.DataSource = dt;
+                    GridView1.DataBind();
+                if (dt.Rows.Count != 0)
+                {
+                    hiddencolumns();
+                }
+                    dt.Clear();
 
                 DataTable dt2 = new DataTable();
                 if (DropDownList1.Items.Count < 1)
@@ -317,9 +433,13 @@ namespace Aplikacja_1._0._2
             SqlCommand command = new SqlCommand("SELECT A.System_ID, A.System, A.AuthecticationGrName, A.LocationType, A.SystemType, A.Plant, C.SupportEmail, C.SupportGroup  FROM Systems_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID join Systems as C on A.System_ID = C.System_ID  WHERE " + buduj_warunek(TextBox1.Text, DropDownList1.SelectedItem.Text, DropDownList2.SelectedItem.Text, DropDownList3.SelectedItem.Text, Session["Login"].ToString()) + " order by A.System_ID desc", conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
-            GridView1.DataSource = dt;
-            GridView1.DataBind();
-            hiddencolumns();
+
+                GridView1.DataSource = dt;
+                GridView1.DataBind();
+            if (dt.Rows.Count != 0)
+            {
+                hiddencolumns();
+            }
 
             GridView2.DataSource = null;
             GridView2.DataBind();

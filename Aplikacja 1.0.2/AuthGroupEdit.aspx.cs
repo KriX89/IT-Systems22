@@ -11,7 +11,7 @@ namespace Aplikacja_1._0._2
 {
     public partial class AuthGroupEdit : System.Web.UI.Page
     {
-        string constr = "Data Source=PLKRO-SQL02;Initial Catalog=IT;User ID=webkrosno;Password=!kR0sno2022#";
+        string constr = "Data Source=PLKRA-SQL01;Initial Catalog=IAM;User ID=IAM_RW;Password=#iTiAM2022!";
 
         public void hiddencolumns()
         {
@@ -34,10 +34,15 @@ namespace Aplikacja_1._0._2
             SqlCommand command = new SqlCommand("SELECT * FROM AuthenticationGroups_v1 order by AGroupID desc", conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
-            GridView2.DataSource = dt;
-            GridView2.DataBind();
+
+                GridView2.DataSource = dt;
+                GridView2.DataBind();
+                
+            if (dt.Rows.Count != 0)
+            {
+                hiddencolumns();
+            }
             dt.Clear();
-            hiddencolumns();
         }
 
 
@@ -46,7 +51,8 @@ namespace Aplikacja_1._0._2
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridView2, "Select$" + e.Row.RowIndex);
-                //   e.Row.ToolTip = "Click to select this row.";
+                e.Row.ToolTip = "Click to select this row.";
+                e.Row.Attributes["style"] = "cursor:pointer";
             }
         }
 
@@ -100,10 +106,15 @@ namespace Aplikacja_1._0._2
                 SqlCommand command = new SqlCommand("SELECT * FROM AuthenticationGroups_v1 order by AGroupID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
-                GridView2.DataSource = dt;
-                GridView2.DataBind();
+
+                    GridView2.DataSource = dt;
+                    GridView2.DataBind();
+                    
+                if (dt.Rows.Count != 0)
+                {
+                    hiddencolumns();
+                }
                 dt.Clear();
-                hiddencolumns();
 
 
                 DataTable dt2 = new DataTable();
@@ -151,10 +162,15 @@ namespace Aplikacja_1._0._2
                 command = new SqlCommand("SELECT * FROM AuthenticationGroups_v1 order by AGroupID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
-                GridView2.DataSource = dt;
-                GridView2.DataBind();
+
+                    GridView2.DataSource = dt;
+                    GridView2.DataBind();
+                    
+                if (dt.Rows.Count != 0)
+                {
+                    hiddencolumns();
+                }
                 dt.Clear();
-                hiddencolumns();
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Row added.');", true);
                 clearAll();
@@ -183,10 +199,15 @@ namespace Aplikacja_1._0._2
                 command = new SqlCommand("SELECT * FROM AuthenticationGroups_v1 order by AGroupID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
-                GridView2.DataSource = dt;
-                GridView2.DataBind();
+
+                    GridView2.DataSource = dt;
+                    GridView2.DataBind();
+                    
+                if (dt.Rows.Count != 0)
+                {
+                    hiddencolumns();
+                }
                 dt.Clear();
-                hiddencolumns();
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Row updated.');", true);
                 clearAll();
@@ -211,10 +232,24 @@ namespace Aplikacja_1._0._2
 
         protected void Button8_Click(object sender, EventArgs e)
         {
-            Button1.Visible = false;
-            Button2.Visible = true;
-            Label17.Text = "Change selected authentication group";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
+            if (HiddenEmpID.Value == "")
+            {
+                Label29.Text = "First you need to select row.";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openKomunikatModal();", true);
+            }
+            else
+            {
+                Button1.Visible = false;
+                Button2.Visible = true;
+                Label17.Text = "Change selected authentication group";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
+            }
+        }
+
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+
         }
 
 

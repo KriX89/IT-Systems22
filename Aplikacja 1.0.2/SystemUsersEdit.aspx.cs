@@ -10,7 +10,7 @@ namespace Aplikacja_1._0._2
 {
     public partial class SystemUsersEdit : System.Web.UI.Page
     {
-        string constr = "Data Source=PLKRO-SQL02;Initial Catalog=IT;User ID=webkrosno;Password=!kR0sno2022#";
+        string constr = "Data Source=PLKRA-SQL01;Initial Catalog=IAM;User ID=IAM_RW;Password=#iTiAM2022!";
 
 
         public void hiddencolumns()
@@ -32,10 +32,15 @@ namespace Aplikacja_1._0._2
             SqlCommand command = new SqlCommand("SELECT UserID, AuthecticationGrName, FirstName , LastName, Login, Department, Plant, BWIEmplNo, PlantIDNo, Active FROM SystemUsers_v1 WHERE " + buduj_warunek(DropDownList1.SelectedItem.Text, TextBox1.Text, TextBox2.Text, TextBox3.Text, DropDownList2.SelectedItem.Text, DropDownList3.SelectedItem.Text, TextBox4.Text, TextBox5.Text) + " order by UserID desc", conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
-            GridView2.DataSource = dt;
-            GridView2.DataBind();
-            hiddencolumns();
-            dt.Clear();
+
+                GridView2.DataSource = dt;
+                GridView2.DataBind();
+            if (dt.Rows.Count != 0)
+            {
+                hiddencolumns();
+            }
+                dt.Clear();
+            
         }
 
 
@@ -114,9 +119,13 @@ namespace Aplikacja_1._0._2
                 SqlCommand command = new SqlCommand("SELECT UserID, AuthecticationGrName, FirstName , LastName, Login, Department, Plant, BWIEmplNo, PlantIDNo, Active FROM SystemUsers_v1 order by UserID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
-                GridView2.DataSource = dt;
-                GridView2.DataBind();
-                hiddencolumns();
+
+                    GridView2.DataSource = dt;
+                    GridView2.DataBind();
+                if (dt.Rows.Count != 0)
+                {
+                    hiddencolumns();
+                }
                 dt.Clear();
 
                 DataTable dt2 = new DataTable();
@@ -172,7 +181,8 @@ namespace Aplikacja_1._0._2
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridView2, "Select$" + e.Row.RowIndex);
-                //   e.Row.ToolTip = "Click to select this row.";
+                e.Row.ToolTip = "Click to select this row.";
+                e.Row.Attributes["style"] = "cursor:pointer";
             }
         }
 
@@ -214,9 +224,18 @@ namespace Aplikacja_1._0._2
             SqlCommand command = new SqlCommand("SELECT UserID, AuthecticationGrName, FirstName , LastName, Login, Department, Plant, BWIEmplNo, PlantIDNo, Active FROM SystemUsers_v1 WHERE " + buduj_warunek(DropDownList1.SelectedItem.Text, TextBox1.Text, TextBox2.Text, TextBox3.Text, DropDownList2.SelectedItem.Text, DropDownList3.SelectedItem.Text, TextBox4.Text, TextBox5.Text) + " order by UserID desc", conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
-            GridView2.DataSource = dt;
-            GridView2.DataBind();
-            hiddencolumns();
+
+                GridView2.DataSource = dt;
+                GridView2.DataBind();
+            if (dt.Rows.Count != 0)
+            {
+                hiddencolumns();
+            }
+            else
+            {
+                Label29.Text = "Nothing found.";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openKomunikatModal();", true);
+            }
         }
 
         protected void clearAll()
@@ -246,9 +265,13 @@ namespace Aplikacja_1._0._2
                 command = new SqlCommand("SELECT UserID, AuthecticationGrName, FirstName , LastName, Login, Department, Plant, BWIEmplNo, PlantIDNo, Active FROM SystemUsers_v1 order by UserID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
-                GridView2.DataSource = dt;
-                GridView2.DataBind();
-                hiddencolumns();
+
+                    GridView2.DataSource = dt;
+                    GridView2.DataBind();
+                if (dt.Rows.Count != 0)
+                {
+                    hiddencolumns();
+                }
                 dt.Clear();
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('User updated.');", true);
@@ -269,7 +292,15 @@ namespace Aplikacja_1._0._2
 
         protected void Button8_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
+            if (HiddenEmpID.Value == "")
+            {
+                Label29.Text = "First you need to select row.";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openKomunikatModal();", true);
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
+            }
         }
 
 

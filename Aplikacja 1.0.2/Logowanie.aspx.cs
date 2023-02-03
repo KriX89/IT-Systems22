@@ -106,6 +106,7 @@ namespace Aplikacja_1._0._2
         bool grupa = false;
         bool grupaRW = false;
         bool grupaRO = false;
+        bool grupaHR = false;
         protected void Button1_Click1(object sender, EventArgs e)
         {
             bool IsAuthenticated(string srvr, string usr, string pwd)
@@ -150,6 +151,14 @@ namespace Aplikacja_1._0._2
 
                 var result = searcher.FindOne();
 
+                if (result.Properties.Contains("cn"))
+                {
+
+                    Session["Zalogowany"] = result.Properties["cn"][0].ToString();
+
+                    //  MessageBox.Show(surname);
+                }
+
 
                 StringCollection groups = new StringCollection();
 
@@ -178,10 +187,11 @@ namespace Aplikacja_1._0._2
                             grupaRW = true;
                         if (groups[i].ToString() == "CN=KRO-APP-IT_MGMT-USERS")
                             grupaRO = true;
+                        if (groups[i].ToString() == "CN=KRO-APP-IAM_HR")
+                            grupaHR = true;
                         grupa = true;
                     }
                 }
-
 
 
 
@@ -190,12 +200,12 @@ namespace Aplikacja_1._0._2
                     if (grupa)
                     {
                         Session["Login"] = uname1.Value;
-                        
-                        if (grupaRW)
-                        {
-                            Session["Uprawnienia"] = "RW";
-                        }
 
+                        if (grupaHR)
+                        {
+                            Session["Uprawnienia"] = "HR";
+
+                        }
 
                         if (grupaRO)
                         {
@@ -203,7 +213,12 @@ namespace Aplikacja_1._0._2
 
                         }
 
-                        
+                        if (grupaRW)
+                        {
+                            Session["Uprawnienia"] = "RW";
+                        }
+
+
 
 
                         Response.Redirect("Menu.aspx"); 
@@ -240,8 +255,6 @@ namespace Aplikacja_1._0._2
                 }
                 else
                     Label3.Text = "User name or password is invalid.";
-
-
 
             }
         }

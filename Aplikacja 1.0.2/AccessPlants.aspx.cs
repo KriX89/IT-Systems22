@@ -16,7 +16,7 @@ namespace Aplikacja_1._0._2
 {
     public partial class AccessPlants : System.Web.UI.Page
     {
-        string constr = "Data Source=PLKRO-SQL02;Initial Catalog=IT;User ID=webkrosno;Password=!kR0sno2022#";
+        string constr = "Data Source=PLKRA-SQL01;Initial Catalog=IAM;User ID=IAM_RW;Password=#iTiAM2022!";
 
 
         public void hiddencolumns()
@@ -51,10 +51,13 @@ namespace Aplikacja_1._0._2
                 SqlCommand command = new SqlCommand("SELECT NetID, Plant, A.PlantAccessLevelID, A.PlantID, AccessLevel FROM PlantAccessLevels as A join Plants as B on A.PlantID = B.PlantID join AccessLevels as C on A.PlantAccessLevelID = C.AccessLevelID", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
-                GridView2.DataSource = dt;
-                GridView2.DataBind();
-                hiddencolumns();
-                dt.Clear();
+                if (dt.Rows.Count != 0)
+                {
+                    GridView2.DataSource = dt;
+                    GridView2.DataBind();
+                    hiddencolumns();
+                    dt.Clear();
+                }
 
 
                 DataTable dt2 = new DataTable();
@@ -85,7 +88,8 @@ namespace Aplikacja_1._0._2
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridView2, "Select$" + e.Row.RowIndex);
-                //    e.Row.ToolTip = "Click to select this row.";
+                e.Row.ToolTip = "Click to select this row.";
+                e.Row.Attributes["style"] = "cursor:pointer";
             }
         }
 
@@ -99,7 +103,7 @@ namespace Aplikacja_1._0._2
               if (HiddenTextBox.Value != GridView2.Rows[i].Cells[0].Text)
               {
                   GridView2.Rows[i].BackColor = System.Drawing.Color.White;
-                  //    HiddenTextBox.Value = GridView2.Rows[i].Cells[0].Text;
+                  HiddenTextBox.Value = GridView2.Rows[i].Cells[0].Text;
                   TextBox1.Text = GridView2.Rows[i].Cells[0].Text.Replace("&#243;", "ó");
                   DropDownList1.SelectedValue = GridView2.Rows[i].Cells[3].Text.Replace("&#243;", "ó");
                   DropDownList2.SelectedValue = GridView2.Rows[i].Cells[2].Text.Replace("&#243;", "ó");
@@ -139,10 +143,13 @@ namespace Aplikacja_1._0._2
                 command = new SqlCommand("SELECT NetID, Plant, A.PlantAccessLevelID, A.PlantID, AccessLevel FROM PlantAccessLevels as A join Plants as B on A.PlantID = B.PlantID join AccessLevels as C on A.PlantAccessLevelID = C.AccessLevelID", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
-                GridView2.DataSource = dt;
-                GridView2.DataBind();
-                dt.Clear();
-                hiddencolumns();
+                if (dt.Rows.Count != 0)
+                {
+                    GridView2.DataSource = dt;
+                    GridView2.DataBind();
+                    dt.Clear();
+                    hiddencolumns();
+                }
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Row added.');", true);
                 clearAll();
@@ -174,10 +181,13 @@ namespace Aplikacja_1._0._2
                 command = new SqlCommand("SELECT NetID, Plant, A.PlantAccessLevelID, A.PlantID, AccessLevel FROM PlantAccessLevels as A join Plants as B on A.PlantID = B.PlantID join AccessLevels as C on A.PlantAccessLevelID = C.AccessLevelID", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
-                GridView2.DataSource = dt;
-                GridView2.DataBind();
-                dt.Clear();
-                hiddencolumns();
+                if (dt.Rows.Count != 0)
+                {
+                    GridView2.DataSource = dt;
+                    GridView2.DataBind();
+                    dt.Clear();
+                    hiddencolumns();
+                }
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Row updated.');", true);
                 clearAll();
@@ -202,10 +212,18 @@ namespace Aplikacja_1._0._2
 
         protected void Button8_Click(object sender, EventArgs e)
         {
-            Button1.Visible = false;
-            Button2.Visible = true;
-            Label16.Text = "Change selected access";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
+            if (HiddenTextBox.Value == "")
+            {
+                Label29.Text = "First you need to select row.";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openKomunikatModal();", true);
+            }
+            else
+            {
+                Button1.Visible = false;
+                Button2.Visible = true;
+                Label16.Text = "Change selected access";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
+            }
         }
     }
 }

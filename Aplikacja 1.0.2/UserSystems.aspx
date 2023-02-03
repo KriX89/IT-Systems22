@@ -61,6 +61,98 @@
   </asp:UpdatePanel>
 
 
+
+    <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+  <ContentTemplate>    
+  <div id="deleteModal" class="modal fade bd-example-modal-lg" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header" style="text-align:center">
+            <asp:Label ID="Label20" runat="server" Text="Delete group member" />
+        </div>
+      <div class="modal-body">   
+          <asp:HiddenField ID="HiddenEmail" runat="server" />
+          <asp:HiddenField ID="HiddenTextBox" runat="server" />
+        <div style="margin-left:auto; margin-right:auto; width:100%;">
+        <div class="row" style="height: 30px;">
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label6" runat="server" Text="System: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox7" runat="server" Width="100%" ForeColor="Black" Enabled="false" /></div>
+        </div>
+        <div class="row" style="height: 30px;">
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label7" runat="server" Text="Group Name: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox8" runat="server" Width="100%" ForeColor="Black" Enabled="false" /></div>
+        </div>
+        <div class="row" style="height: 30px;">
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label11" runat="server" Text="First Name: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox9" runat="server" Width="100%" ForeColor="Black" Enabled="false" /></div>
+        </div>
+
+        <div class="row" style="height: 30px;">
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label12" runat="server" Text="Last Name: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox10" runat="server" Width="100%" ForeColor="Black" Enabled="false" /></div>
+        </div>         
+        <div class="row" style="height: 30px;">
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label13" runat="server" Text="Login: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox11" runat="server" Width="100%" ForeColor="Black" Enabled="false" /></div>
+        </div>  
+
+        <div class="row" style="height: 30px;">
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label14" runat="server" Text="Department: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox12" runat="server" Width="100%" ForeColor="Black" Enabled="false" /></div>
+        </div>     
+        <div class="row" style="height: 30px;">
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label15" runat="server" Text="Plant: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox13" runat="server" Width="100%" ForeColor="Black" Enabled="false" /></div>
+        </div>  
+        <div class="row" style="height: 30px;">
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label16" runat="server" Text="BWI Empl No: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox14" runat="server" Width="100%" ForeColor="Black" Enabled="false" /></div>
+        </div>  
+        <div class="row" style="height: 30px;">
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label17" runat="server" Text="Plant ID No: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox15" runat="server" Width="100%" ForeColor="Black" Enabled="false" /></div>
+        </div>  
+
+       <div class="row" style="height: 30px;">
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label18" runat="server" Text="Ticket No: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox16" runat="server" Width="100%" ForeColor="Black" Enabled="false" /></div>
+        </div> 
+        <div class="row" style="height: 30px;">
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label22" runat="server" Text="Status: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox17" runat="server" Width="100%" ForeColor="Black" Enabled="false" /></div>
+        </div> 
+        <div class="row" style="height: 30px;">
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label24" runat="server" Text="Execution date: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox19" runat="server" type="Date" Width="100%" ForeColor="Black" /></div>
+        </div> 
+        <div class="row" style="height: 30px;">
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label25" runat="server" Text="Info: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox20" runat="server" Width="100%" ForeColor="Black" /></div>
+        </div>
+        </div>
+    </div>
+
+      <div class="modal-footer" style="text-align:center">
+
+          <asp:Button ID="Button9" runat="server" Text="To be deleted" ForeColor="Black" OnClientClick="closeDeleteModal()" OnClick="Button9_Click" />
+          <input id="Button10" type="button" value="Cancel" style="color:black" onclick="closeDeleteModal()" />
+      </div>
+    </div>
+
+  </div>
+  </div>
+  </ContentTemplate>
+  <Triggers>
+  <asp:AsyncPostBackTrigger ControlID="Button3" EventName ="click" />
+  <asp:AsyncPostBackTrigger ControlID="GridView2" EventName="RowDataBound" />
+  <asp:AsyncPostBackTrigger ControlID="GridView2" EventName="SelectedIndexChanged" />
+  <asp:AsyncPostBackTrigger ControlID="Button4" EventName="Click" />
+  </Triggers>
+  </asp:UpdatePanel>
+
+
         <div style="margin-left:auto; margin-right:auto; width:95%; height:45%">
         <div class="row">
             <div class="col-md-6">            
@@ -79,11 +171,13 @@
                     </asp:UpdatePanel>
 
                 </div>
-                <div class="col-md-6" style="text-align:center" > 
+                <div class="col-md-6" > 
+                    <asp:Button ID="Button3" class="naglowektab" runat="server" Text="SYSTEMS" OnClientClick="return false;" Style="cursor:default"/>
                     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                     <ContentTemplate>   
                         <asp:HiddenField ID="HiddenEmpID" runat="server" />
                         <asp:HiddenField ID="HiddenTextBox2" runat="server" />
+                        <asp:HiddenField ID="HiddenTextBox3" runat="server" />
                                 <asp:GridView runat="server" ID="GridView2" HeaderStyle-BackColor="#003399" HeaderStyle-BorderColor="#003300" HeaderStyle-ForeColor="White" CssClass="table table-condensed table-hover" AllowPaging="True" PageSize="9" OnPageIndexChanging="GridView2_OnPageIndexChanging" OnRowDataBound="GridView2_RowDataBound" OnSelectedIndexChanged="GridView2_SelectedIndexChanged">
                                 <PagerStyle CssClass="pagination-ys" BackColor="#003399" BorderColor="White" ForeColor="Black" />
                                 </asp:GridView>
@@ -101,7 +195,8 @@
             <asp:UpdatePanel ID="UpdatePanel4" runat="server">
              <ContentTemplate>
                  <div style="margin-left:auto; margin-right:auto; width:100%;">
-                 <asp:GridView runat="server" ID="GridView3" Width="100%" HeaderStyle-BackColor="#003399" HeaderStyle-BorderColor="#003300" HeaderStyle-ForeColor="White" CssClass="table table-condensed" AllowPaging="True" PageSize="10" OnPageIndexChanging="GridView3_OnPageIndexChanging" >
+                     <asp:Button ID="Button7" class="naglowektab" runat="server" Text="MEMBERS" OnClientClick="return false;" Style="cursor:default"/>
+                 <asp:GridView runat="server" ID="GridView3" Width="100%" HeaderStyle-BackColor="#003399" HeaderStyle-BorderColor="#003300" HeaderStyle-ForeColor="White" CssClass="table table-condensed table-hover" AllowPaging="True" PageSize="10" OnPageIndexChanging="GridView3_OnPageIndexChanging" OnRowDataBound="GridView3_RowDataBound" OnSelectedIndexChanged="GridView3_SelectedIndexChanged">
                  <PagerStyle CssClass="pagination-ys" BackColor="#003399" BorderColor="White" ForeColor="Black" />
                  </asp:GridView>
                  </div>
@@ -141,6 +236,13 @@
         }
         function closeFiltrModal() {
             $("#filtrModal").modal('hide');
+        }
+
+        function openDeleteModal() {
+            $('#deleteModal').modal('show');
+        }
+        function closeDeleteModal() {
+            $("#deleteModal").modal('hide');
         }
 
     </script> 

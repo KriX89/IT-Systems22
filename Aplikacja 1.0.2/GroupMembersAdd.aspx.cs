@@ -4,13 +4,14 @@ using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ListItem = System.Web.UI.WebControls.ListItem;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace Aplikacja_1._0._2
 {
     public partial class GroupMembersAdd : System.Web.UI.Page
     {
 
-        string constr = "Data Source=PLKRO-SQL02;Initial Catalog=IT;User ID=webkrosno;Password=!kR0sno2022#";
+        string constr = "Data Source=PLKRA-SQL01;Initial Catalog=IAM;User ID=IAM_RW;Password=#iTiAM2022!";
 
         public static string buduj_warunek(string System, string AuthecticationGrName, string GroupName, string SystemGroupName, string Plant, string NetID)
         {
@@ -187,10 +188,14 @@ namespace Aplikacja_1._0._2
                 SqlCommand command = new SqlCommand("SELECT * FROM SystemUsers_v1 WHERE Active = 'true' AND AuthecticationGrName = '" + HiddenTextBox3.Value + "'  order by EmpID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
-                GridView2.DataSource = dt;
-                GridView2.DataBind();
+
+                    GridView2.DataSource = dt;
+                    GridView2.DataBind();
+                if (dt.Rows.Count != 0)
+                {
+                    hiddencolumns2();
+                }
                 dt.Clear();
-                hiddencolumns2();
 
             }
             else
@@ -244,12 +249,17 @@ namespace Aplikacja_1._0._2
             dt.Clear();
             SqlConnection conn = new SqlConnection(constr);
             conn.Open();
-            SqlCommand command = new SqlCommand("SELECT A.*, C.SupportEmail, C.SupportGroup FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID join Systems as C on A.System_ID = C.System_ID  WHERE " + buduj_warunek(TextBox1.Text, TextBox2.Text, TextBox3.Text, TextBox4.Text, DropDownList1.SelectedItem.Text, Session["Login"].ToString()) + " order by GroupID desc", conn);
+            SqlCommand command = new SqlCommand("SELECT A.*, C.SupportEmail, C.SupportGroup FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID join Systems as C on A.System_ID = C.System_ID  WHERE " + buduj_warunek(DropDownList3.SelectedItem.Text, TextBox2.Text, TextBox3.Text, TextBox4.Text, DropDownList1.SelectedItem.Text, Session["Login"].ToString()) + " order by GroupID desc", conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
-            GridView1.DataSource = dt;
-            GridView1.DataBind();
-            hiddencolumns();
+
+                GridView1.DataSource = dt;
+                GridView1.DataBind();
+            if (dt.Rows.Count != 0)
+            {
+                hiddencolumns();
+                
+            }
             dt.Clear();
         }
 
@@ -262,9 +272,14 @@ namespace Aplikacja_1._0._2
             SqlCommand command = new SqlCommand("SELECT * FROM SystemUsers_v1 WHERE Active = 'true' AND AuthecticationGrName = '" + HiddenTextBox3.Value + "'  order by EmpID desc", conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
-            GridView2.DataSource = dt;
-            GridView2.DataBind();
-            hiddencolumns2();
+
+                GridView2.DataSource = dt;
+                GridView2.DataBind();
+            if (dt.Rows.Count != 0)
+            {
+                hiddencolumns2();
+                
+            }
             dt.Clear();
         }
 
@@ -306,10 +321,13 @@ namespace Aplikacja_1._0._2
               //  SqlCommand command = new SqlCommand("SELECT A.* FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE B.NetID = '"+ Session["Login"] + "' AND Active = 'true' AND AccessLevelID = 2 order by GroupID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
-                GridView1.DataSource = dt;
-                GridView1.DataBind();
-                hiddencolumns();
-                dt.Clear();
+                    GridView1.DataSource = dt;
+                    GridView1.DataBind();
+                    if (dt.Rows.Count != 0)
+                    {
+                        hiddencolumns();
+                    }
+                    dt.Clear();
 
 
 
@@ -335,6 +353,21 @@ namespace Aplikacja_1._0._2
                     dt2.Clear();
                 }
 
+
+                if (DropDownList3.Items.Count < 1)
+                {
+                    conn.Open();
+                    command = new SqlCommand("SELECT System_ID, System FROM Systems as A join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE B.NetID = '" + Session["Login"] + "' AND AccessLevelID = 2", conn);
+                    dt2.Load(command.ExecuteReader());
+                    conn.Close();
+                    DropDownList3.DataSource = dt2;
+                    DropDownList3.DataTextField = "System";
+                    DropDownList3.DataValueField = "System_ID";
+                    DropDownList3.DataBind();
+                    DropDownList3.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                    dt2.Clear();
+                }
+
             }
         }
 
@@ -346,20 +379,25 @@ namespace Aplikacja_1._0._2
             conn.Open();
 
             //      WHERE B.NetID = '"+ Session["Login"] + "' AND Active = 'true' order by GroupID desc
+            
 
 
        //     SqlCommand command = new SqlCommand("SELECT A.*, C.SupportEmail, C.SupportGroup FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID join Systems as C on A.System_ID = C.System_ID WHERE B.NetID = '" + Session["Login"] + "' AND A.Active = 'true' AND AccessLevelID = 2 order by GroupID desc", conn);
 
 
-            SqlCommand command = new SqlCommand("SELECT A.*, C.SupportEmail, C.SupportGroup FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID join Systems as C on A.System_ID = C.System_ID  WHERE " + buduj_warunek(TextBox1.Text, TextBox2.Text, TextBox3.Text, TextBox4.Text, DropDownList1.SelectedItem.Text, Session["Login"].ToString()) + " order by GroupID desc", conn);
+            SqlCommand command = new SqlCommand("SELECT A.*, C.SupportEmail, C.SupportGroup FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID join Systems as C on A.System_ID = C.System_ID  WHERE " + buduj_warunek(DropDownList3.SelectedItem.Text, TextBox2.Text, TextBox3.Text, TextBox4.Text, DropDownList1.SelectedItem.Text, Session["Login"].ToString()) + " order by GroupID desc", conn);
         //    SqlCommand command = new SqlCommand("SELECT * FROM SystemAccessGroups_v1  WHERE " + buduj_warunek(TextBox1.Text, TextBox2.Text, TextBox3.Text, TextBox4.Text, DropDownList1.SelectedItem.Text) + " order by GroupID desc", conn);
 
         //    SqlCommand command = new SqlCommand("SELECT * FROM SystemAccessGroups_v1  WHERE " + buduj_warunek(TextBox1.Text, TextBox2.Text, TextBox3.Text, TextBox4.Text, DropDownList1.SelectedItem.Text) + " order by GroupID desc", conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
-            GridView1.DataSource = dt;
-            GridView1.DataBind();
-            hiddencolumns();
+
+                GridView1.DataSource = dt;
+                GridView1.DataBind();
+            if (dt.Rows.Count != 0)
+            {
+                hiddencolumns();
+            }
         }
 
         protected void Button3_Click(object sender, EventArgs e)
@@ -371,9 +409,13 @@ namespace Aplikacja_1._0._2
             SqlCommand command = new SqlCommand("SELECT * FROM SystemUsers_v1  WHERE AuthecticationGrName='"+ HiddenTextBox3.Value + "' " + buduj_warunek2(TextBox5.Text, TextBox6.Text, DropDownList2.SelectedItem.Text, TextBox7.Text, TextBox8.Text) + " order by UserID desc", conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
-            GridView2.DataSource = dt;
-            GridView2.DataBind();
-            hiddencolumns2(); 
+
+                GridView2.DataSource = dt;
+                GridView2.DataBind();
+            if (dt.Rows.Count != 0)
+            {
+                hiddencolumns2();
+            }
         }
 
         protected void clearAll()
@@ -382,10 +424,10 @@ namespace Aplikacja_1._0._2
             HiddenTextBox2.Value = "";
             HiddenEmail.Value = "";
          //   TextBox17.Text = "";
+         
         }
         protected void Button5_Click(object sender, EventArgs e)
         {
-
 
 
             txtDate.Text = DateTime.Now.ToString("yyyy-MM-dd");

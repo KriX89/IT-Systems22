@@ -5,8 +5,10 @@
 
   <asp:UpdatePanel ID="UpdatePanel5" runat="server">
   <ContentTemplate>   
-  <div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+
+
+  <div id="myModal" class="modal fade bd-example-modal-lg" role="dialog">
+  <div class="modal-dialog modal-lg">
 
     <!-- Modal content-->
     <div class="modal-content">
@@ -17,36 +19,36 @@
         <asp:HiddenField ID="HiddenEmail" runat="server" />
         <div style="margin-left:auto; margin-right:auto; width:100%;">
         <div class="row" style="height: 30px;">
-            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label11" runat="server" Text="System: " /></div>
-            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox9" runat="server" ForeColor="Black" Enabled="false"/></div>
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label11" runat="server" Text="System: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox9" runat="server" Width="100%" ForeColor="Black" Enabled="false"/></div>
         </div>
         <div class="row" style="height: 30px;">
-            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label12" runat="server" Text="Group Name: " /></div>
-            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox10" runat="server" ForeColor="Black" Enabled="false"/></div>
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label12" runat="server" Text="Group Name: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox10" runat="server" Width="100%" ForeColor="Black" Enabled="false"/></div>
         </div>
         <div class="row" style="height: 30px;">
-            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label13" runat="server" Text="System Group Name: " /></div>
-            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox11" runat="server" ForeColor="Black" Enabled="false"/></div>
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label13" runat="server" Text="System Group Name: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox11" runat="server" Width="100%" ForeColor="Black" Enabled="false"/></div>
         </div>
         <div class="row" style="height: 30px;">
-            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label14" runat="server" Text="First Name: " /></div>
-            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox12" runat="server" ForeColor="Black" Enabled="false"/></div>
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label14" runat="server" Text="First Name: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox12" runat="server" Width="100%" ForeColor="Black" Enabled="false"/></div>
         </div>
         <div class="row" style="height: 30px;">
-            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label15" runat="server" Text="Last Name: " /></div>
-            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox13" runat="server" ForeColor="Black" Enabled="false"/></div>
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label15" runat="server" Text="Last Name: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox13" runat="server" Width="100%" ForeColor="Black" Enabled="false"/></div>
         </div>
         <div class="row" style="height: 30px;">
-            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label16" runat="server" Text="Plant: " /></div>
-            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox14" runat="server" ForeColor="Black" Enabled="false"/></div>
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label16" runat="server" Text="Plant: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox14" runat="server" Width="100%" ForeColor="Black" Enabled="false"/></div>
         </div>
         <div class="row" style="height: 30px;">
-            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label17" runat="server" Text="BWI Empl. No: " /></div>
-            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox15" runat="server" ForeColor="Black" Enabled="false"/></div>
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label17" runat="server" Text="BWI Empl. No: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox15" runat="server" Width="100%" ForeColor="Black" Enabled="false"/></div>
         </div>
         <div class="row" style="height: 30px;">
-            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label18" runat="server" Text="Plant ID No: " /></div>
-            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox16" runat="server" ForeColor="Black" Enabled="false"/></div>
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label18" runat="server" Text="Plant ID No: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox16" runat="server" Width="100%" ForeColor="Black" Enabled="false"/></div>
         </div>
             
             
@@ -54,20 +56,20 @@
             
             
         <div class="row" style="height: 30px;">
-            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label21" runat="server" Text="Valid From: " /></div>
-            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="txtDate" runat="server" TextMode="Date" ClientIDMode="Static" /></div>
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label21" runat="server" Text="Valid From: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="txtDate" runat="server" Width="100%" TextMode="Date" ClientIDMode="Static" /></div>
         </div>
         <div class="row" style="height: 30px;">
-            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label22" runat="server" Text="Valid To: " /></div>
-            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox18" runat="server" TextMode="Date" ClientIDMode="Static" /></div>
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label22" runat="server" Text="Valid To: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox18" runat="server" Width="100%" TextMode="Date" ClientIDMode="Static" /></div>
         </div>
         <div class="row" style="height: 30px;">
-            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label23" runat="server" Text="Indefinitely: " /></div>
-            <div class ="col-md-6" style="text-align:left"><asp:CheckBox ID="CheckBox1" runat="server" /></div>
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label23" runat="server" Text="Indefinitely: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:CheckBox ID="CheckBox1" runat="server" /></div>
         </div>
         <div class="row" style="height: 30px;">
-            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label20" runat="server" Text="TicketNo: " /></div>
-            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox19" runat="server" /></div>
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label20" runat="server" Text="TicketNo: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox19" Width="100%" runat="server" /></div>
         </div>
 
 
@@ -92,8 +94,8 @@
 
   <asp:UpdatePanel ID="UpdatePanel6" runat="server">
   <ContentTemplate>  
-  <div id="filtrModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+  <div id="filtrModal" class="modal fade bd-example-modal-lg" role="dialog">
+  <div class="modal-dialog modal-lg">
 
     <!-- Modal content-->
     <div class="modal-content">
@@ -104,24 +106,24 @@
 
         <div style="margin-left:auto; margin-right:auto; width:100%;">
         <div class="row" style="height: 30px;">
-            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label1" runat="server" Text="System: " /></div>
-            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox1" runat="server" ForeColor="Black" /></div>
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label1" runat="server" Text="System: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:DropDownList ID="DropDownList3" runat="server" Width="100%" ForeColor="Black" /></div>
         </div>
         <div class="row" style="height: 30px;">
-            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label2" runat="server" Text="Authentication Group: " /></div>
-            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox2" runat="server" ForeColor="Black" /></div>
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label2" runat="server" Text="Authentication Group: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox2" runat="server" Width="100%" ForeColor="Black" /></div>
         </div>
         <div class="row" style="height: 30px;">
-            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label3" runat="server" Text="Group Name: " /></div>
-            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox3" runat="server" ForeColor="Black" /></div>
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label3" runat="server" Text="Group Name: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox3" runat="server" Width="100%" ForeColor="Black" /></div>
         </div>
         <div class="row" style="height: 30px;">
-            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label4" runat="server" Text="System Group Name: " /></div>
-            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox4" runat="server" ForeColor="Black" /></div>
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label4" runat="server" Text="System Group Name: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox4" runat="server" Width="100%" ForeColor="Black" /></div>
         </div>
         <div class="row" style="height: 30px;">
-            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label5" runat="server" Text="Plant: " /></div>
-            <div class ="col-md-6" style="text-align:left"><asp:DropDownList ID="DropDownList1" runat="server" ForeColor="Black" /></div>
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label5" runat="server" Text="Plant: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:DropDownList ID="DropDownList1" runat="server" Width="100%" ForeColor="Black" /></div>
         </div>
        
         </div>
@@ -144,8 +146,8 @@
 
   <asp:UpdatePanel ID="UpdatePanel7" runat="server">
   <ContentTemplate>  
-  <div id="filtrModal2" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+  <div id="filtrModal2" class="modal fade bd-example-modal-lg" role="dialog">
+  <div class="modal-dialog modal-lg">
 
     <!-- Modal content-->
     <div class="modal-content">
@@ -156,24 +158,24 @@
 
         <div style="margin-left:auto; margin-right:auto; width:100%;">
         <div class="row" style="height: 30px;">
-            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label6" runat="server" Text="First Name: " /></div>
-            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox5" runat="server" ForeColor="Black" /></div>
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label6" runat="server" Text="First Name: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox5" runat="server" Width="100%" ForeColor="Black" /></div>
         </div>
         <div class="row" style="height: 30px;">
-            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label7" runat="server" Text="Last Name: " /></div>
-            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox6" runat="server" ForeColor="Black" /></div>
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label7" runat="server" Text="Last Name: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox6" runat="server" Width="100%" ForeColor="Black" /></div>
         </div>
         <div class="row" style="height: 30px;">
-            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label8" runat="server" Text="Plant: " /></div>
-            <div class ="col-md-6" style="text-align:left"><asp:DropDownList ID="DropDownList2" runat="server" ForeColor="Black" /></div>
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label8" runat="server" Text="Plant: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:DropDownList ID="DropDownList2" runat="server" Width="100%" ForeColor="Black" /></div>
         </div>
         <div class="row" style="height: 30px;">
-            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label9" runat="server" Text="BWI Empl No: " /></div>
-            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox7" runat="server" ForeColor="Black" /></div>
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label9" runat="server" Text="BWI Empl No: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox7" runat="server" Width="100%" ForeColor="Black" /></div>
         </div>
         <div class="row" style="height: 30px;">
-            <div class="col-md-6" style="text-align:center"><asp:Label ID="Label10" runat="server" Text="Plant ID No: " /></div>
-            <div class ="col-md-6" style="text-align:left"><asp:TextBox ID="TextBox8" runat="server" ForeColor="Black" /></div>
+            <div class="col-md-5" style="text-align:center"><asp:Label ID="Label10" runat="server" Text="Plant ID No: " /></div>
+            <div class ="col-md-7" style="text-align:left"><asp:TextBox ID="TextBox8" runat="server" Width="100%" ForeColor="Black" /></div>
         </div>
        
         </div>
@@ -195,14 +197,14 @@
 
 
 
-    <div style="margin-left:auto; margin-right:auto; width:100%; height:45%">
+    <div style="margin-left:auto; margin-right:auto; width:90%; height:45%">
         <div class="row">
             <div class="col-md-6" >
             <asp:Button ID="Button8" class="naglowektab" runat="server" Width="300px" Text="SYSTEMS" OnClientClick="return false;" Style="cursor:default"/>
             <asp:Button ID="Button9" Style="background-image: url(../image/lupa2.png); background-repeat: no-repeat " class="button_2" runat="server" Text="Filter" OnClick="Button9_Click" />
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
-                    <asp:GridView runat="server" ID="GridView1" Width="100%" HeaderStyle-BackColor="#003399" HeaderStyle-BorderColor="#003300" HeaderStyle-ForeColor="White" CssClass="table table-condensed table-hover" AllowPaging="True" PageSize="20" OnPageIndexChanging="GridView1_OnPageIndexChanging" OnRowDataBound="GridView1_RowDataBound" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
+                    <asp:GridView runat="server" ID="GridView1" Width="100%" HeaderStyle-BackColor="#003399" HeaderStyle-BorderColor="#003300" HeaderStyle-ForeColor="White" CssClass="table table-condensed table-hover" AllowPaging="True" PageSize="15" OnPageIndexChanging="GridView1_OnPageIndexChanging" OnRowDataBound="GridView1_RowDataBound" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
                     <PagerStyle CssClass="pagination-ys" BackColor="#003399" BorderColor="White" ForeColor="Black" />
                     </asp:GridView>
                     </ContentTemplate>
@@ -240,7 +242,7 @@
 
     <script type="text/javascript">
         function btClear() {
-            var System = document.getElementById('<%= TextBox1.ClientID %>');
+            var System = document.getElementById('<%= DropDownList3.ClientID %>');
             var AuthecticationGrName = document.getElementById('<%= TextBox2.ClientID %>');
             var GroupName = document.getElementById('<%= TextBox3.ClientID %>');
             var SystemGroupName = document.getElementById('<%= TextBox4.ClientID %>');

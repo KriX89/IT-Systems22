@@ -11,7 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - WEB Aplikacja</title>
+    <title><%: Page.Title %> - IAM</title>
 
     <!-- skrypt blokujacy cofanie na stronie -->
     <script type="text/javascript" language="javascript">
@@ -34,7 +34,8 @@
 
 </head>
 <body>
-    <div style="background-color: transparent;  background-image: url(image/background.jpg); background-repeat: no-repeat; background-attachment: fixed;">
+    
+
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
@@ -55,236 +56,129 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
-
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <img id="Image1" class="logo_bwi"  src="image/log1.png" style="border-style:None;height:60px; float:right" />
-                <div  id="Menu1" style="position:relative; top:3px;">
-                <nav>
-                <div class="container">    
-                <div class="navbar-toggler">
-                <asp:HiddenField ID="HiddenField1" runat="server" />
-                <div class="bar1"></div>
-                <div class="bar2"></div>
-                <div class="bar3"></div>
-                </div>
-                <ul class="menu">
-                <li>
-                <a id="btGroupMembers" runat="server" href="#" onserverclick="groupmembersview">Group Members</a>
-                <ul>
-                <li>
-                <a id="btGroupMembersView" runat="server" href="#" onserverclick="groupmembersview">View</a>
-                </li>
-                <li id="btGroupMembersAdd2">
-                <a id="btGroupMembersAdd" runat="server" href="#" onserverclick="groupmembersadd">Add</a>
-                </li>
-                <li id="btGroupMembersDelete2">
-                <a id="btGroupMembersDelete" runat="server" href="#" onserverclick="groupmembersdelete">Change status</a>
-                </li>
-                </ul>
-                </li>
-                <li>
-                <a id="btSystems" runat="server" href="#" onserverclick="systemsview">Systems</a>
-                <ul>
-                <li>
-                <a id="btSysView" runat="server" href="#" onserverclick="systemsview">Systems View</a>
-                </li>
-                <li id="btSystemEdit2">
-                <a id="btSystemEdit" runat="server" href="#" onserverclick="systemedit">Systems Edit</a>
-                </li>
-                <li id="btSysTypeEdit2">
-                <a id="btSysTypeEdit" runat="server" href="#" onserverclick="systypeedit">Types of Systems Edit</a>
-                </li>
-                <li id="btSysLocationEdit2">
-                <a id="btSysLocationEdit" runat="server" href="#" onserverclick="syslocationedit">System Location Edit</a>
-                </li>
-                </ul>
-                </li>
-
-                <li>
-                <a id="btAccessGroups" runat="server" href="#" onserverclick="accessgroupview">Groups</a>
-                <ul>
-                <li>
-                <a id="btAccessGroupsView" runat="server" href="#" onserverclick="accessgroupview">System Access Groups View</a>
-                </li>
-                <li id="btAccessGroupsEdit2">
-                <a id="btAccessGroupsEdit" runat="server" href="#" onserverclick="accessgroupedit">System Access Groups Edit</a>
-                </li>
-                <li id="btAuthGroupsEdit2">
-                <a id="btAuthGroupsEdit" runat="server" href="#" onserverclick="authgroupsedit">Authentication Groups Edit</a>
-                </li>
-                </ul>
-                </li>
-
-
-                <li>
-                <a id="btPlantsDepart" runat="server" href="#" onserverclick="plantsdepartview" style="font-size:x-small">Plants & <br> Departments</a>
-                <ul>
-                <li>
-                <a id="btPlantsDepartView" runat="server" href="#" onserverclick="plantsdepartview">View</a>
-                </li>
-                <li id="btPlantsEdit2">
-                <a id="btPlantsEdit" runat="server" href="#" onserverclick="plantsedit">Edit Plants</a>
-                </li>
-                <li id="btDepartmentsEdit2">
-                <a id="btDepartmentsEdit" runat="server" href="#" onserverclick="departmentsedit">Edit Departments</a>
-                </li>
-                </ul>
-                </li>
-
-                <li>
-                <a id="btSystemUsers" runat="server" href="#" onserverclick="systemusersview">System Users</a>
-                <ul>
-                <li>
-                <a id="btSystemUsersView" runat="server" href="#" onserverclick="systemusersview">View</a>
-                </li>
-                <li id="btSystemUsersAdd2">
-                <a id="btSystemUsersAdd" runat="server" href="#" onserverclick="systemusersadd">Add</a>
-                </li>
-                <li id="btSystemUsersEdit2">
-                <a id="btSystemUsersEdit" runat="server" href="#" onserverclick="systemusersedit">Edit</a>
-                </li>
-                </ul>
-                </li>
-
-
-                <li>
-                <a id="btEmpl" runat="server" href="#" onserverclick="emplview">Employees</a>
-                <ul>
-                <li>
-                <a id="btEmplView" runat="server" href="#" onserverclick="emplview">View</a>
-                </li>
-                <li id="btEmplEdit2">
-                <a id="btEmplEdit" runat="server" href="#" onserverclick="empledit">Edit</a>
-                </li>
-                </ul>
-                </li>
-
-                <li>
-                <a id="btRaport" runat="server" href="#">Raport</a>
-                <ul>
-                <li>
-                <a id="btUserSystems" runat="server" href="#" onserverclick="usersystems">User Systems</a>
-                </li>
-                <li>
-                <a id="btUsersInSystem" runat="server" href="#" onserverclick="usersinsystem">Users in the system</a>
-                </li>
-                </ul>
-                </li>
-
-
-                <li>
-                <a id="btAccess" runat="server" href="#">Access Levels</a>
-                <ul>
-                <li>
-                <a id="btAccessSystems" runat="server" href="#" onserverclick="accesssystems">Access Systems</a>
-                </li>
-                <li>
-                <a id="btAccessPlants" runat="server" href="#" onserverclick="accessplants">Access Plants</a>
-                </li>
-                </ul>
-                </li>
-
-
-
-                <li style="float:right">
-                <a id="btlogout" runat="server" href="#" onserverclick="logout" >Logout</a>     
-                </li>
-                </ul>
-                </nav>                 
-                </div>  
-
-            </div>
-            
-            
-
-
+        <asp:HiddenField ID="HiddenField1" runat="server" />
+    <nav class="site-nav">
+        <button type="button" class="side-menu-trigger" id="MENU" style="display:none">
+        <div class="container2">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
         </div>
-  
-        <div class="container body-content" >
-            <div style="min-height: 85vh">
+        </button>
+        <img id="Image1" class="logo_bwi"  src="image/log1.png" style="border-style:None;height:40px; position:absolute; right: 10px; " />
+    <aside class="side-menu">
+      <ul>
+        <li>  
+          <a id="bttasks" runat="server" href="#" onserverclick="tasks"  >Tasks</a>
+        </li>
+          <li>
+          <a href="#">
+            Access Managment
+          </a>
+        <ol>
+        <li2><a id="btemployees" runat="server" href="#" onserverclick="empledit" >employees</a></li2>
+        <li2><a href="#" >system users</a> 
+                <ol>
+                <li3><a id="btSystemUsersAdd" runat="server" href="#" onserverclick="systemusersadd" >add</a> </li3>
+                <li3><a id="btSystemUsersEdit" runat="server" href="#" onserverclick="systemusersedit" >edit</a></li3>
+                </ol>
+        </li2>
+        <li2><a href="#">group members</a>
+                <ol>
+                <li3><a id="btGroupMembersAdd" runat="server" href="#" onserverclick="groupmembersadd" >add</a> </li3>
+                <li3><a id="btGroupMembersDelete" runat="server" href="#" onserverclick="groupmembersdelete" >delete</a></li3>
+                </ol>
+        </li2>
+        </ol>
+
+        </li>
+        <li>
+        <a href="#">
+            Raports
+        </a>
+        <ol>
+        <li2><a id="btUserSystems" runat="server" href="#" onserverclick="usersystems" >by users</a></li2>
+        <li2><a id="btUsersInSystem" runat="server" href="#" onserverclick="usersinsystem" >by systems</a></li2>
+        </ol>
+        </li>
+        <li>
+          <a href="#">
+            IT Systems
+          </a>
+            <ol>
+            <li2><a id="btAuthGroupsEdit" runat="server" href="#" onserverclick="authgroupsedit" >authentication groups</a></li2>
+            <li2><a id="btSystemEdit" runat="server" href="#" onserverclick="systemedit" >systems</a></li2>
+            <li2><a id="btAccessGroupsEdit" runat="server" href="#" onserverclick="accessgroupedit" >access groups</a></li2>
+            <li2><a href="#">security</a>
+                <ol>
+                <li3><a id="btAccessPlants" runat="server" href="#" onserverclick="accessplants">plant</a></li3>
+                <li3><a id="btAccessSystems" runat="server" href="#" onserverclick="accesssystems">system</a></li3>
+                </ol>
+            </li2>
+            </ol>
+        </li>
+        <li>
+          <a href="#">
+            Configuration
+          </a>
+            <ol>
+            <li2><a id="btPlantsEdit" runat="server" href="#" onserverclick="plantsedit" >plants</a></li2>
+            <li2><a id="btDepartmentsEdit" runat="server" href="#" onserverclick="departmentsedit" >departments</a></li2>
+            </ol>
+        </li>
+
+        <li>
+          <a id="btlogout" runat="server" href="#" onserverclick="logout" >Logout</a>     
+        </li>
+      </ul>
+  </aside>
+  </nav>
+
+
+
+
+
+
+        <div style="background-color: transparent;  background-image: url(image/background.jpg); background-repeat: no-repeat; background-attachment: fixed; height:100vh">
+
+            
+
+            <div style="overflow: auto;height: 85vh; width: 100vw;">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
-                </div>
-            <hr />
-            <footer>
+            </div>
+
+            
+            <footer style="width:95vw">
                 <div class="row">
                     <div class="col-md-9">
                 <p style="color: #C0C0C0">&copy; <%: DateTime.Now.Year %> BWI Group - all right is reserved.</p>
                     </div>
                     <div class="col-md-3" style="text-align:end">
-                        <p style="color: #C0C0C0"> ver. 1.0.0</p>
+                        <p style="color: #C0C0C0"> ver. 2.0.0</p>
                     </div>
                 </div>
             </footer>
-        </div>
+
+                    </div>
 
     </form>
 
+
         <script type="text/javascript" language="javascript">
 
-        /*    window.onbeforeunload = function (event) {
-                var message = 'Important: Please click on \'Save\' button to leave this page.';
-                if (typeof event == 'undefined') {
-                    event = window.event;
-                }
-                if (event) {
-                    event.returnValue = message;
-                }
-                return message;
-            };
 
-            $(function () {
-                $("a").not('#lnkLogOut').click(function () {
-                    window.onbeforeunload = null;
-                });
-                $(".btn").click(function () {
-                    window.onbeforeunload = null;
-                });
-            });  */
-
-            function sesjaclear() {
-
-
-                return false;
-            }
 
 
             window.onload = function menu1() {
-                const elem = document.getElementById('Menu1');
-                const btEmplEdit = document.getElementById('btEmplEdit2');
-                const btSystemUsersEdit = document.getElementById('btSystemUsersEdit2');
-                const btSystemUsersAdd = document.getElementById('btSystemUsersAdd2');
-                const btDepartmentsEdit = document.getElementById('btDepartmentsEdit2');
-                const btPlantsEdit = document.getElementById('btPlantsEdit2');
-                const btAuthGroupsEdit = document.getElementById('btAuthGroupsEdit2');
-                const btAccessGroupsEdit = document.getElementById('btAccessGroupsEdit2');
-                const btSysLocationEdit = document.getElementById('btSysLocationEdit2');
-                const btSysTypeEdit = document.getElementById('btSysTypeEdit2');
-                const btSystemEdit = document.getElementById('btSystemEdit2');
-                const btGroupMembersDelete = document.getElementById('btGroupMembersDelete2');
-                const btGroupMembersAdd = document.getElementById('btGroupMembersAdd2');
+                const elem = document.getElementById('MENU');
 
 
 
-                var uprawnienia = document.getElementById('<%= HiddenField1.ClientID %>');
-                if (document.title != "Logowanie - WEB Aplikacja" && document.title != "Logowanie") {
+
+
+                if (document.title != "Login - IAM" && document.title != "Login") {
                     elem.style.display = 'block';
-                    if (uprawnienia.value == "RO")
-                    {
-                        btEmplEdit.style.display = 'none';
-                        btSystemUsersEdit.style.display = 'none';
-                        btSystemUsersAdd.style.display = 'none';
-                        btDepartmentsEdit.style.display = 'none';
-                        btPlantsEdit.style.display = 'none';
-                        btAuthGroupsEdit.style.display = 'none';
-                        btAccessGroupsEdit.style.display = 'none';
-                        btSysLocationEdit.style.display = 'none';
-                        btSysTypeEdit.style.display = 'none';
-                        btSystemEdit.style.display = 'none';
-                        btGroupMembersDelete.style.display = 'none';
-                        btGroupMembersAdd.style.display = 'none';
-                    }
 
                 }
                 else {
@@ -297,7 +191,6 @@
 
         </script>
 
-        </div>
 
 </body>
 

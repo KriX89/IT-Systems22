@@ -1,10 +1,10 @@
-﻿<%@ Page Title="Logowanie" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Logowanie.aspx.cs" Inherits="Aplikacja_1._0._2.Lokalizacja" %>
+﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Logowanie.aspx.cs" Inherits="Aplikacja_1._0._2.Lokalizacja" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
 
     <div aria-atomic="False" style="text-align:center; font-size: xx-large;">
         <br>
-        <asp:Label ID="Label1" runat="server"   Text="  IT Systems" Font-Bold="True" ForeColor="White"></asp:Label>
+        <asp:Label ID="Label1" runat="server"   Text="Identity & Access Management " Font-Bold="True" ForeColor="White"></asp:Label>
     </div> 
 
     <asp:Panel ID="Panel1" runat="server" Visible ="true">
@@ -13,7 +13,7 @@
              </div>
             <div class="centerDiv2"   style="text-align:center">
             <h1 style="font-size: 14px">
-            <asp:Label ID="Label2" runat="server" Font-Size="Large" Text="Please log in"></asp:Label>
+            <asp:Label ID="Label2" runat="server" Font-Size="Large" Text="Please login"></asp:Label>
             </h1>
             <input id="uname1" type="text" runat="server" placeholder="login" autocomplete="off" > 
             <br>

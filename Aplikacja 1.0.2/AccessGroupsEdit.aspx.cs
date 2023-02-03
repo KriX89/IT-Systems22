@@ -1,24 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using DocumentFormat.OpenXml.Office.Word;
-using DocumentFormat.OpenXml.Bibliography;
-using DocumentFormat.OpenXml.Wordprocessing;
 using ListItem = System.Web.UI.WebControls.ListItem;
+using DocumentFormat.OpenXml.Spreadsheet;
 using CheckBox = System.Web.UI.WebControls.CheckBox;
-using System.Reflection.Emit;
+using System.DirectoryServices;
+using System.Collections;
+using DocumentFormat.OpenXml.Vml;
+using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace Aplikacja_1._0._2
 {
     public partial class AccessGroupsEdit : System.Web.UI.Page
     {
-        string constr = "Data Source=PLKRO-SQL02;Initial Catalog=IT;User ID=webkrosno;Password=!kR0sno2022#";
+        string constr = "Data Source=PLKRA-SQL01;Initial Catalog=IAM;User ID=IAM_RW;Password=#iTiAM2022!";
 
 
         public void hiddencolumns()
@@ -38,13 +35,18 @@ namespace Aplikacja_1._0._2
             dt.Clear();
             SqlConnection conn = new SqlConnection(constr);
             conn.Open();
-            SqlCommand command = new SqlCommand("SELECT A.* FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE WHERE " + buduj_warunek(DropDownList1.SelectedItem.Text, DropDownList2.SelectedItem.Text, TextBox1.Text, TextBox2.Text, TextBox3.Text, DropDownList3.SelectedItem.Text, Session["Login"].ToString()) + " order by GroupID desc", conn);
+            SqlCommand command = new SqlCommand("SELECT A.* FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE " + buduj_warunek(DropDownList1.SelectedItem.Text, DropDownList2.SelectedItem.Text, TextBox1.Text, TextBox2.Text, TextBox3.Text, DropDownList3.SelectedItem.Text, Session["Login"].ToString()) + " order by GroupID desc", conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
-            GridView2.DataSource = dt;
-            GridView2.DataBind();
+
+                GridView2.DataSource = dt;
+                GridView2.DataBind();
+                
+            if (dt.Rows.Count != 0)
+            {
+                hiddencolumns();
+            }
             dt.Clear();
-            hiddencolumns();
         }
 
 
@@ -54,7 +56,8 @@ namespace Aplikacja_1._0._2
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridView2, "Select$" + e.Row.RowIndex);
-                //   e.Row.ToolTip = "Click to select this row.";
+                e.Row.ToolTip = "Click to select this row.";
+                e.Row.Attributes["style"] = "cursor:pointer";
             }
         }
 
@@ -152,10 +155,13 @@ namespace Aplikacja_1._0._2
                 SqlCommand command = new SqlCommand("SELECT A.* FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE B.NetID = '" + Session["Login"] + "' AND AccessLevelID = 2 order by GroupID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
-                GridView2.DataSource = dt;
-                GridView2.DataBind();
+                    GridView2.DataSource = dt;
+                    GridView2.DataBind();
+                if (dt.Rows.Count != 0)
+                {
+                    hiddencolumns();
+                }
                 dt.Clear();
-                hiddencolumns();
 
                 DataTable dt2 = new DataTable();
                 if (DropDownList1.Items.Count < 1)
@@ -234,9 +240,17 @@ namespace Aplikacja_1._0._2
             SqlCommand command = new SqlCommand("SELECT A.* FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE " + buduj_warunek(DropDownList1.SelectedItem.Text, DropDownList2.SelectedItem.Text, TextBox1.Text, TextBox2.Text, TextBox3.Text, DropDownList3.SelectedItem.Text, Session["Login"].ToString()) + " order by GroupID desc", conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
-            GridView2.DataSource = dt;
-            GridView2.DataBind();
-            hiddencolumns();
+                GridView2.DataSource = dt;
+                GridView2.DataBind();
+            if (dt.Rows.Count != 0)
+            {
+                hiddencolumns();
+            }
+            else
+            {
+                Label29.Text = "Nothing found.";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openKomunikatModal();", true);
+            }
         }
 
         protected void Button3_Click(object sender, EventArgs e)
@@ -257,11 +271,15 @@ namespace Aplikacja_1._0._2
                 conn.Open();
                 command = new SqlCommand("SELECT A.* FROM SystemAccessGroups_v1 as A join SystemAccessLevels as B on A.System_ID = B.SystemID WHERE B.NetID = '" + Session["Login"] + "' AND AccessLevelID = 2 order by GroupID desc", conn);
                 dt.Load(command.ExecuteReader());
-                conn.Close();
-                GridView2.DataSource = dt;
-                GridView2.DataBind();
+                conn.Close();   
+                    GridView2.DataSource = dt;
+                    GridView2.DataBind();
+                if (dt.Rows.Count != 0)
+                {
+                    hiddencolumns();
+                }
                 dt.Clear();
-                hiddencolumns();
+
 
 
 
@@ -295,8 +313,11 @@ namespace Aplikacja_1._0._2
                 conn.Close();
                 GridView2.DataSource = dt;
                 GridView2.DataBind();
+                if (dt.Rows.Count != 0)
+                {
+                    hiddencolumns();
+                }
                 dt.Clear();
-                hiddencolumns();
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Row Updated.');", true);
                 clearAll();
@@ -324,12 +345,277 @@ namespace Aplikacja_1._0._2
 
         protected void Button8_Click(object sender, EventArgs e)
         {
-            Button3.Visible = false;
-            Button4.Visible = true;
-            Label17.Text = "Change selected system access group";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
+            if (HiddenGroupID.Value == "")
+            {
+                Label29.Text = "First you need to select row.";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openKomunikatModal();", true);
+            }
+            else
+            {
+                Button3.Visible = false;
+                Button4.Visible = true;
+                Label17.Text = "Change selected system access group";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
+            }
         }
 
+        public DataTable datausers(string grupa)
+        {
+            DataTable dt = new DataTable();
+
+            dt.Clear();
+            dt.Columns.Add("NetID");
+            dt.Columns.Add("Name");
+
+
+            SearchResult result;
+            DirectorySearcher search = new DirectorySearcher();
+            search.Filter = String.Format("(cn={0})", grupa);
+            search.PropertiesToLoad.Add("member");
+            result = search.FindOne();
+            ArrayList userNames = new ArrayList();
+            if (result != null)
+            {
+                for (int counter = 0; counter < result.Properties["member"].Count; counter++)
+                {
+                    string st = (string)result.Properties["member"][counter];
+                    if (st.Contains("OU=User Accounts"))
+                    {
+                        DirectoryEntry gpMemberEntry = new DirectoryEntry(("LDAP://" + st));
+                        if (!(gpMemberEntry == null))
+                        {
+                            System.DirectoryServices.PropertyCollection userProps = gpMemberEntry.Properties;
+                            object objUser = userProps["sAMAccountname"].Value;
+                            object objUser2 = userProps["cn"].Value;
+
+                            DataRow ravi = dt.NewRow();
+                            ravi["NetID"] = objUser.ToString();
+                            ravi["Name"] = objUser2.ToString();
+                            dt.Rows.Add(ravi);
+
+                        }
+                    }
+
+                    if (st.Contains("OU=Groups"))
+                    {
+                        DirectoryEntry gpMemberEntry = new DirectoryEntry(("LDAP://" + st));
+                        if (!(gpMemberEntry == null))
+                        {
+                            System.DirectoryServices.PropertyCollection userProps = gpMemberEntry.Properties;
+
+                            dt.Merge(datausers(userProps["cn"].Value.ToString()));
+                            //   this.dataGridView1.Rows.Add(userProps["cn"].Value, userProps["sAMAccountname"].Value);
+
+                        }
+                    }
+
+
+
+
+
+                }
+            }
+            
+
+
+            return dt;
+        }
+
+
+        public void Button11_Click(object sender, EventArgs e)
+        {
+            string groupName = TextBox6.Text.Replace(@"BWIGROUP\", "");
+
+
+        /*    DataTable dt = new DataTable();
+            dt.Clear();
+            dt.Columns.Add("NetID");
+            dt.Columns.Add("Name");
+
+
+            SearchResult result;
+            DirectorySearcher search = new DirectorySearcher();
+            search.Filter = String.Format("(cn={0})", groupName);
+            search.PropertiesToLoad.Add("member");
+            result = search.FindOne();
+            ArrayList userNames = new ArrayList();
+            if (result != null)
+            {
+                for (int counter = 0; counter < result.Properties["member"].Count; counter++)
+                {
+                    string st = (string)result.Properties["member"][counter];
+                    if (st.Contains("OU=User Accounts"))
+                    {
+                        DirectoryEntry gpMemberEntry = new DirectoryEntry(("LDAP://" + st));
+                        if (!(gpMemberEntry == null))
+                        {
+                            System.DirectoryServices.PropertyCollection userProps = gpMemberEntry.Properties;
+                            object objUser = userProps["sAMAccountname"].Value;
+                            object objUser2 = userProps["cn"].Value;
+
+                            DataRow ravi = dt.NewRow();
+                            ravi["NetID"] = objUser.ToString();
+                            ravi["Name"] = objUser2.ToString();
+                            dt.Rows.Add(ravi);
+
+                        }
+                    }
+
+
+
+
+
+                }
+            } */
+
+            GridView1.DataSource = datausers(groupName);
+            GridView1.DataBind();
+
+               DataTable dt2 = new DataTable();
+               dt2.Clear();
+               SqlConnection conn = new SqlConnection(constr);
+               conn.Open();
+               SqlCommand command = new SqlCommand("SELECT Login as NetID, FirstName+' '+LastName as Name FROM GroupMembers_v1 where GroupID = '"+HiddenGroupID.Value+"'", conn);
+               dt2.Load(command.ExecuteReader());
+               conn.Close();
+               GridView3.DataSource = dt2;
+               GridView3.DataBind();
+               dt2.Clear();
+
+            for (int i = 0; i < GridView1.Rows.Count; i++)
+            {
+                bool find = false;
+                for (int j = 0; j < GridView3.Rows.Count; j++)
+                {
+                    if (GridView1.Rows[i].Cells[0].Text == GridView3.Rows[j].Cells[0].Text)
+                        find = true;
+                }
+                if (find)
+                {
+                    GridView1.Rows[i].Cells[2].Attributes.Add("style", "display:none");
+                    GridView1.Rows[i].BackColor = System.Drawing.Color.LightGreen; 
+                }
+                else
+                {
+                    GridView1.Rows[i].BackColor = System.Drawing.Color.Yellow; }
+                }
+
+            for (int i = 0; i < GridView3.Rows.Count; i++)
+            {
+                bool find = false;
+                for (int j = 0; j < GridView1.Rows.Count; j++)
+                {
+                    if (GridView3.Rows[i].Cells[0].Text == GridView1.Rows[j].Cells[0].Text)
+                        find = true;
+                }
+                if (find)
+                {
+                    GridView3.Rows[i].Cells[2].Attributes.Add("style", "display:none");
+                    GridView3.Rows[i].BackColor = System.Drawing.Color.LightGreen; 
+                }
+                else
+                { GridView3.Rows[i].BackColor = System.Drawing.Color.Yellow; }
+            } 
+
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openCheckModal();", true);
+        }
+
+        public string change_signs(string name)
+        {
+            name = name.ToLower();
+            name = name.Replace("a", "[a|ą]");
+            name = name.Replace("c", "[c|ć]");
+            name = name.Replace("e", "[e|ę]");
+            name = name.Replace("l", "[l|ł]");
+            name = name.Replace("n", "[n|ń]");
+            name = name.Replace("o", "[o|ó]");
+            name = name.Replace("s", "[s|ś]");
+            name = name.Replace("z", "[z|ż|ź]");
+            return name;
+        }
+
+        protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            string netID = e.CommandArgument.ToString().Split('%')[0];
+            string first_name = change_signs(e.CommandArgument.ToString().Split('%')[1].Split(' ')[0]);
+            string last_name = change_signs(e.CommandArgument.ToString().Split('%')[1].Split(' ')[1]);
+
+
+            DataTable dt = new DataTable();
+            dt.Clear();
+            SqlConnection conn = new SqlConnection(constr);
+            conn.Open();
+            SqlCommand command = new SqlCommand("SELECT UserID FROM SystemUsers_v1 where Login = '" + netID + "'", conn);
+            dt.Load(command.ExecuteReader());
+            conn.Close();
+
+            if (dt.Rows.Count != 0)
+            {
+                string userID = dt.Rows[0][0].ToString();
+
+                conn.Open();
+
+                command = new SqlCommand("INSERT INTO GroupMembers (GroupID, UserID, ValidFrom, DT, Author, Status_ID) VALUES('" + HiddenGroupID.Value + "', '" + userID + "', getdate() , getdate(), '" + Session["Login"] + "', 1)", conn); 
+                command.ExecuteNonQuery();
+                conn.Close();
+
+                Button11_Click(null, null);
+
+            }
+            else 
+            {
+                DataTable dt2 = new DataTable();
+                dt2.Clear();
+                conn.Open();
+                command = new SqlCommand("SELECT EmpID FROM Employees_v1 where FirstName like '" + first_name + "' and LastName like '"+last_name+"'", conn);
+                dt2.Load(command.ExecuteReader());
+                conn.Close();
+                if (dt2.Rows.Count == 1)
+                {
+
+                    DataTable dt3 = new DataTable();
+                    dt3.Clear();
+                    conn.Open();
+                    command = new SqlCommand("INSERT INTO SystemUsers (EmpID, AutenticationGroup, login, Active) OUTPUT Inserted.UserID VALUES('" + dt2.Rows[0][0].ToString() + "','1', '" + netID + "', 'true')", conn);
+                    dt3.Load(command.ExecuteReader());
+
+                    command = new SqlCommand("INSERT INTO GroupMembers (GroupID, UserID, ValidFrom, DT, Author, Status_ID) VALUES('" + HiddenGroupID.Value + "', '" + dt3.Rows[0][0].ToString() + "', getdate() , getdate(), '" + Session["Login"] + "', 1)", conn);
+                    command.ExecuteNonQuery();
+                    conn.Close();
+
+                    Button11_Click(null, null);
+
+                }
+
+                else
+                {
+                    Label29.Text = "Employee not found in the database.";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openKomunikatModal();", true);
+                }
+
+            }
+        }
+
+        protected void GridView3_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            string netID = e.CommandArgument.ToString();
+
+            SqlConnection conn = new SqlConnection(constr);
+            DataTable dt = new DataTable();
+            dt.Clear();
+            conn.Open();
+            SqlCommand command = new SqlCommand("SELECT UserID FROM SystemUsers_v1 where login = '"+netID+"' and AutenticationGroup = 1", conn);
+            dt.Load(command.ExecuteReader());
+
+
+            command = new SqlCommand("DELETE FROM GroupMembers  where UserID="+ dt.Rows[0][0].ToString() + " and GroupID = "+ HiddenGroupID.Value, conn);
+            command.ExecuteNonQuery();
+            conn.Close();
+
+            Button11_Click(null, null);
+
+        }
 
     }
 }

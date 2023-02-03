@@ -15,6 +15,33 @@ namespace Aplikacja_1._0._2
     {
 
         /// <summary>
+        /// Kontrolka UpdatePanel6.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel6;
+
+        /// <summary>
+        /// Kontrolka Image1.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Image1;
+
+        /// <summary>
+        /// Kontrolka Label29.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label29;
+
+        /// <summary>
         /// Kontrolka UpdatePanel5.
         /// </summary>
         /// <remarks>
@@ -177,6 +204,15 @@ namespace Aplikacja_1._0._2
         protected global::System.Web.UI.WebControls.HiddenField HiddenEmpID;
 
         /// <summary>
+        /// Kontrolka HiddenTreining.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenTreining;
+
+        /// <summary>
         /// Kontrolka Label1.
         /// </summary>
         /// <remarks>
@@ -312,6 +348,15 @@ namespace Aplikacja_1._0._2
         protected global::System.Web.UI.WebControls.CheckBox CheckBox1;
 
         /// <summary>
+        /// Kontrolka Label14.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label14;
+
+        /// <summary>
         /// Kontrolka Button1.
         /// </summary>
         /// <remarks>
@@ -364,6 +409,15 @@ namespace Aplikacja_1._0._2
         /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button8;
+
+        /// <summary>
+        /// Kontrolka Button9.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button9;
 
         /// <summary>
         /// Kontrolka UpdatePanel1.

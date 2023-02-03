@@ -8,7 +8,7 @@ namespace Aplikacja_1._0._2
 {
     public partial class SystemsEdit : System.Web.UI.Page
     {
-        string constr = "Data Source=PLKRO-SQL02;Initial Catalog=IT;User ID=webkrosno;Password=!kR0sno2022#";
+        string constr = "Data Source=PLKRA-SQL01;Initial Catalog=IAM;User ID=IAM_RW;Password=#iTiAM2022!";
 
 
 
@@ -41,10 +41,15 @@ namespace Aplikacja_1._0._2
             SqlCommand command = new SqlCommand("SELECT A.*, B.SupportEmail, B.SupportGroup FROM Systems_v1 as A join Systems as B on A.System_ID = B.System_ID  WHERE " + buduj_warunek(TextBox1.Text, DropDownList8.SelectedItem.Text, DropDownList1.SelectedItem.Text, DropDownList2.SelectedItem.Text, DropDownList3.SelectedItem.Text) + " order by A.System_ID desc", conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
-            GridView2.DataSource = dt;
-            GridView2.DataBind();
+
+                GridView2.DataSource = dt;
+                GridView2.DataBind();
+                
+            if (dt.Rows.Count != 0)
+            {
+                hiddencolumns();
+            }
             dt.Clear();
-            hiddencolumns();
         }
 
 
@@ -54,6 +59,7 @@ namespace Aplikacja_1._0._2
             {
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridView2, "Select$" + e.Row.RowIndex);
                 e.Row.ToolTip = "Support Group: "+(e.Row.DataItem as DataRowView)[14].ToString().Replace("&#243;", "ó");
+                e.Row.Attributes["style"] = "cursor:pointer";
                 //     e.Row.ToolTip = GridView2.Rows[e.Row.RowIndex].Cells[14].Text.Replace("&#243;", "ó");
             }
         }
@@ -157,10 +163,14 @@ namespace Aplikacja_1._0._2
                 SqlCommand command = new SqlCommand("SELECT A.*, B.SupportEmail, B.SupportGroup FROM Systems_v1 as A join Systems as B on A.System_ID = B.System_ID order by A.System_ID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
-                GridView2.DataSource = dt;
-                GridView2.DataBind();
+
+                    GridView2.DataSource = dt;
+                    GridView2.DataBind();         
+                if (dt.Rows.Count != 0)
+                {
+                    hiddencolumns();
+                }
                 dt.Clear();
-                hiddencolumns();
 
                 DataTable dt2 = new DataTable();
 
@@ -283,9 +293,18 @@ namespace Aplikacja_1._0._2
             SqlCommand command = new SqlCommand("SELECT A.*, B.SupportEmail, B.SupportGroup FROM Systems_v1 as A join Systems as B on A.System_ID = B.System_ID  WHERE " + buduj_warunek(TextBox1.Text, DropDownList8.SelectedItem.Text, DropDownList1.SelectedItem.Text, DropDownList2.SelectedItem.Text, DropDownList3.SelectedItem.Text) + " order by A.System_ID desc", conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
-            GridView2.DataSource = dt;
-            GridView2.DataBind();
-            hiddencolumns();
+
+                GridView2.DataSource = dt;
+                GridView2.DataBind();
+            if (dt.Rows.Count != 0)
+            {
+                hiddencolumns();
+            }
+            else
+            {
+                Label29.Text = "Nothing found.";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openKomunikatModal();", true);
+            }
           //  TextBox7.Text = "SELECT A.*, B.SupportEmail, B.SupportGroup FROM Systems_v1 as A join Systems as B on A.System_ID = B.System_ID  WHERE " + buduj_warunek(TextBox1.Text, DropDownList8.SelectedItem.Text, DropDownList1.SelectedItem.Text, DropDownList2.SelectedItem.Text, DropDownList3.SelectedItem.Text) + " order by A.System_ID desc";
         }
 
@@ -321,10 +340,15 @@ namespace Aplikacja_1._0._2
                 command = new SqlCommand("SELECT A.*, B.SupportEmail, B.SupportGroup FROM Systems_v1 as A join Systems as B on A.System_ID = B.System_ID order by A.System_ID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
-                GridView2.DataSource = dt;
-                GridView2.DataBind();
+
+                    GridView2.DataSource = dt;
+                    GridView2.DataBind();
+                    
+                if (dt.Rows.Count != 0)
+                {
+                    hiddencolumns();
+                }
                 dt.Clear();
-                hiddencolumns();
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Row added.');", true);
                 clearAll();
@@ -352,10 +376,15 @@ namespace Aplikacja_1._0._2
                 command = new SqlCommand("SELECT A.*, B.SupportEmail, B.SupportGroup FROM Systems_v1 as A join Systems as B on A.System_ID = B.System_ID order by A.System_ID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
-                GridView2.DataSource = dt;
-                GridView2.DataBind();
+
+                    GridView2.DataSource = dt;
+                    GridView2.DataBind();
+                    
+                if (dt.Rows.Count != 0)
+                {
+                    hiddencolumns();
+                }
                 dt.Clear();
-                hiddencolumns();
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Row updated.');", true);
                 clearAll();
@@ -384,10 +413,18 @@ namespace Aplikacja_1._0._2
 
         protected void Button8_Click(object sender, EventArgs e)
         {
-            Button3.Visible = false;
-            Button4.Visible = true;
-            Label16.Text = "Change selected system";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
+            if (HiddenTextBox.Value == "")
+            {
+                Label29.Text = "First you need to select row.";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openKomunikatModal();", true);
+            }
+            else
+            {
+                Button3.Visible = false;
+                Button4.Visible = true;
+                Label16.Text = "Change selected system";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openAddModal();", true);
+            }
         }
     }
 }

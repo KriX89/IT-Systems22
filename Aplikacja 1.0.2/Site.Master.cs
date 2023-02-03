@@ -17,7 +17,7 @@ namespace Aplikacja_1._0._2
 
       /*  protected void Page_UnLoad(object sender, EventArgs e)
         {
-            string constr = "Data Source=PLKRO-SQL02;Initial Catalog=IT;User ID=webkrosno;Password=!kR0sno2022#";
+            string constr = "Data Source=PLKRA-SQL01;Initial Catalog=IAM;User ID=IAM_RW;Password=#iTiAM2022!";
 
             SqlConnection conn = new SqlConnection(constr);
             conn.Open();
@@ -185,6 +185,11 @@ namespace Aplikacja_1._0._2
             Response.Redirect("AccessPlants.aspx");
         }
 
+        protected void tasks(object sender, EventArgs e)
+        {
+            Response.Redirect("Menu.aspx");
+        }
+
 
 
 
@@ -198,7 +203,7 @@ namespace Aplikacja_1._0._2
         protected void empladd(object sender, EventArgs e)
         {
 
-            string constr = "Data Source=PLKRO-SQL02;Initial Catalog=IT;User ID=webkrosno;Password=!kR0sno2022#";
+            string constr = "Data Source=PLKRA-SQL01;Initial Catalog=IAM;User ID=IAM_RW;Password=#iTiAM2022!";
             SqlConnection conn = new SqlConnection(constr);
             conn.Open();
             SqlCommand command = new SqlCommand("INSERT INTO Employees VALUES('10101', 1, '1', 'bbb', 1, 1, 1)", conn);

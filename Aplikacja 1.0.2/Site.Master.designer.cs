@@ -24,175 +24,22 @@ namespace Aplikacja_1._0._2
         protected global::System.Web.UI.WebControls.HiddenField HiddenField1;
 
         /// <summary>
-        /// Kontrolka btGroupMembers.
+        /// Kontrolka bttasks.
         /// </summary>
         /// <remarks>
         /// Pole generowane automatycznie.
         /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btGroupMembers;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor bttasks;
 
         /// <summary>
-        /// Kontrolka btGroupMembersView.
+        /// Kontrolka btemployees.
         /// </summary>
         /// <remarks>
         /// Pole generowane automatycznie.
         /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btGroupMembersView;
-
-        /// <summary>
-        /// Kontrolka btGroupMembersAdd.
-        /// </summary>
-        /// <remarks>
-        /// Pole generowane automatycznie.
-        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btGroupMembersAdd;
-
-        /// <summary>
-        /// Kontrolka btGroupMembersDelete.
-        /// </summary>
-        /// <remarks>
-        /// Pole generowane automatycznie.
-        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btGroupMembersDelete;
-
-        /// <summary>
-        /// Kontrolka btSystems.
-        /// </summary>
-        /// <remarks>
-        /// Pole generowane automatycznie.
-        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btSystems;
-
-        /// <summary>
-        /// Kontrolka btSysView.
-        /// </summary>
-        /// <remarks>
-        /// Pole generowane automatycznie.
-        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btSysView;
-
-        /// <summary>
-        /// Kontrolka btSystemEdit.
-        /// </summary>
-        /// <remarks>
-        /// Pole generowane automatycznie.
-        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btSystemEdit;
-
-        /// <summary>
-        /// Kontrolka btSysTypeEdit.
-        /// </summary>
-        /// <remarks>
-        /// Pole generowane automatycznie.
-        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btSysTypeEdit;
-
-        /// <summary>
-        /// Kontrolka btSysLocationEdit.
-        /// </summary>
-        /// <remarks>
-        /// Pole generowane automatycznie.
-        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btSysLocationEdit;
-
-        /// <summary>
-        /// Kontrolka btAccessGroups.
-        /// </summary>
-        /// <remarks>
-        /// Pole generowane automatycznie.
-        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btAccessGroups;
-
-        /// <summary>
-        /// Kontrolka btAccessGroupsView.
-        /// </summary>
-        /// <remarks>
-        /// Pole generowane automatycznie.
-        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btAccessGroupsView;
-
-        /// <summary>
-        /// Kontrolka btAccessGroupsEdit.
-        /// </summary>
-        /// <remarks>
-        /// Pole generowane automatycznie.
-        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btAccessGroupsEdit;
-
-        /// <summary>
-        /// Kontrolka btAuthGroupsEdit.
-        /// </summary>
-        /// <remarks>
-        /// Pole generowane automatycznie.
-        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btAuthGroupsEdit;
-
-        /// <summary>
-        /// Kontrolka btPlantsDepart.
-        /// </summary>
-        /// <remarks>
-        /// Pole generowane automatycznie.
-        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btPlantsDepart;
-
-        /// <summary>
-        /// Kontrolka btPlantsDepartView.
-        /// </summary>
-        /// <remarks>
-        /// Pole generowane automatycznie.
-        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btPlantsDepartView;
-
-        /// <summary>
-        /// Kontrolka btPlantsEdit.
-        /// </summary>
-        /// <remarks>
-        /// Pole generowane automatycznie.
-        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btPlantsEdit;
-
-        /// <summary>
-        /// Kontrolka btDepartmentsEdit.
-        /// </summary>
-        /// <remarks>
-        /// Pole generowane automatycznie.
-        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btDepartmentsEdit;
-
-        /// <summary>
-        /// Kontrolka btSystemUsers.
-        /// </summary>
-        /// <remarks>
-        /// Pole generowane automatycznie.
-        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btSystemUsers;
-
-        /// <summary>
-        /// Kontrolka btSystemUsersView.
-        /// </summary>
-        /// <remarks>
-        /// Pole generowane automatycznie.
-        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btSystemUsersView;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btemployees;
 
         /// <summary>
         /// Kontrolka btSystemUsersAdd.
@@ -213,40 +60,22 @@ namespace Aplikacja_1._0._2
         protected global::System.Web.UI.HtmlControls.HtmlAnchor btSystemUsersEdit;
 
         /// <summary>
-        /// Kontrolka btEmpl.
+        /// Kontrolka btGroupMembersAdd.
         /// </summary>
         /// <remarks>
         /// Pole generowane automatycznie.
         /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btEmpl;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btGroupMembersAdd;
 
         /// <summary>
-        /// Kontrolka btEmplView.
+        /// Kontrolka btGroupMembersDelete.
         /// </summary>
         /// <remarks>
         /// Pole generowane automatycznie.
         /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btEmplView;
-
-        /// <summary>
-        /// Kontrolka btEmplEdit.
-        /// </summary>
-        /// <remarks>
-        /// Pole generowane automatycznie.
-        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btEmplEdit;
-
-        /// <summary>
-        /// Kontrolka btRaport.
-        /// </summary>
-        /// <remarks>
-        /// Pole generowane automatycznie.
-        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btRaport;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btGroupMembersDelete;
 
         /// <summary>
         /// Kontrolka btUserSystems.
@@ -267,13 +96,40 @@ namespace Aplikacja_1._0._2
         protected global::System.Web.UI.HtmlControls.HtmlAnchor btUsersInSystem;
 
         /// <summary>
-        /// Kontrolka btAccess.
+        /// Kontrolka btAuthGroupsEdit.
         /// </summary>
         /// <remarks>
         /// Pole generowane automatycznie.
         /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btAccess;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btAuthGroupsEdit;
+
+        /// <summary>
+        /// Kontrolka btSystemEdit.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btSystemEdit;
+
+        /// <summary>
+        /// Kontrolka btAccessGroupsEdit.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btAccessGroupsEdit;
+
+        /// <summary>
+        /// Kontrolka btAccessPlants.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btAccessPlants;
 
         /// <summary>
         /// Kontrolka btAccessSystems.
@@ -285,13 +141,22 @@ namespace Aplikacja_1._0._2
         protected global::System.Web.UI.HtmlControls.HtmlAnchor btAccessSystems;
 
         /// <summary>
-        /// Kontrolka btAccessPlants.
+        /// Kontrolka btPlantsEdit.
         /// </summary>
         /// <remarks>
         /// Pole generowane automatycznie.
         /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btAccessPlants;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btPlantsEdit;
+
+        /// <summary>
+        /// Kontrolka btDepartmentsEdit.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btDepartmentsEdit;
 
         /// <summary>
         /// Kontrolka btlogout.

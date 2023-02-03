@@ -3,10 +3,39 @@
 <br>
 <br>
 
+          <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+  <ContentTemplate>    
+  <div id="KomunikatModal" class="modal fade bd-example-modal-sm" role="dialog">
+  <<div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+
+          <div class="row" style="height: 80px">
+            <div class="col-md-4" style="text-align:center"><asp:Image ID="Image1" runat="server" Height="60px" Width="60px" BackColor="#ebebeb" ImageAlign="AbsMiddle" ImageUrl="../image/info_icon.png" /> </div>
+            <div class="col-md-8" style="text-align:left"><asp:Label ID="Label29" runat="server" Font-Size="Larger" Text="Komunikat" /></div>
+        </div>
+
+         <center> <input id="Button27" type="button" value="OK" style="width:80px" onclick="closeKomunikatModal()" /></center>
+    </div>
+
+
+    </div>
+
+  </div>
+  </div>
+  </ContentTemplate>
+  <Triggers>
+      <asp:AsyncPostBackTrigger ControlID="Button8" EventName="Click" />
+  </Triggers>
+  </asp:UpdatePanel>
+
+
     <asp:UpdatePanel ID="UpdatePanel3" runat="server">
   <ContentTemplate>    
-  <div id="AddModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+  <div id="AddModal" class="modal fade bd-example-modal-lg" role="dialog">
+  <div class="modal-dialog modal-lg">
 
     <!-- Modal content-->
     <div class="modal-content">
@@ -88,6 +117,13 @@
         }
         function closeAddModal() {
             $("#AddModal").modal('hide');
+        }
+
+        function openKomunikatModal() {
+            $('#KomunikatModal').modal('show');
+        }
+        function closeKomunikatModal() {
+            $("#KomunikatModal").modal('hide');
         }
 
 

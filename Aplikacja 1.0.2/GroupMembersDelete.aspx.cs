@@ -5,12 +5,15 @@ using ListItem = System.Web.UI.WebControls.ListItem;
 using System.Data.SqlClient;
 using System;
 using CheckBox = System.Web.UI.WebControls.CheckBox;
+using DocumentFormat.OpenXml.Drawing.Charts;
+using System.ComponentModel.DataAnnotations;
+using DataTable = System.Data.DataTable;
 
 namespace Aplikacja_1._0._2
 {
     public partial class GroupMembersEdit : System.Web.UI.Page
     {
-        string constr = "Data Source=PLKRO-SQL02;Initial Catalog=IT;User ID=webkrosno;Password=!kR0sno2022#";
+        string constr = "Data Source=PLKRA-SQL01;Initial Catalog=IAM;User ID=IAM_RW;Password=#iTiAM2022!";
 
 
         private void LoadGridData()
@@ -22,10 +25,15 @@ namespace Aplikacja_1._0._2
             SqlCommand command = new SqlCommand("SELECT A.RecID, A.System, A.GroupName, A.FirstName, A.LastName, A.Login, A.Department, A.Plant, A.BWIEmplNo, A.PlantIDNo, A.TicketNo, C.SupportEmail, C.SupportGroup, CONVERT(char(10), A.ValidTo,126) as ValidTo, A.Status FROM GroupMembers_v1 as A  join SystemAccessLevels as B on A.System_ID = B.SystemID join Systems as C on A.System_ID = C.System_ID WHERE " + buduj_warunek(DropDownList1.SelectedItem.Text, TextBox1.Text, TextBox2.Text, TextBox3.Text, DropDownList4.SelectedItem.Text, TextBox4.Text, TextBox5.Text, TextBox6.Text, Session["Login"].ToString(), DropDownList2.SelectedItem.Text) + " order by A.RecID desc", conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
-            GridView2.DataSource = dt;
-            GridView2.DataBind();
+
+                GridView2.DataSource = dt;
+                GridView2.DataBind();
+                
+            if (dt.Rows.Count != 0)
+            {
+                hiddencolumns();
+            }
             dt.Clear();
-            hiddencolumns();
         }
 
 
@@ -112,6 +120,7 @@ namespace Aplikacja_1._0._2
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridView2, "Select$" + e.Row.RowIndex);
                 e.Row.ToolTip = "Support Email: " + (e.Row.DataItem as DataRowView)[11].ToString().Replace("&#243;", "ó");
                 e.Row.ToolTip += "\nSupport Group: " + (e.Row.DataItem as DataRowView)[12].ToString().Replace("&#243;", "ó");
+                e.Row.Attributes["style"] = "cursor:pointer";
             }
         }
 
@@ -176,10 +185,15 @@ namespace Aplikacja_1._0._2
                 SqlCommand command = new SqlCommand("SELECT A.RecID, A.System, A.GroupName, A.FirstName, A.LastName, A.Login, A.Department, A.Plant, A.BWIEmplNo, A.PlantIDNo, A.TicketNo, C.SupportEmail, C.SupportGroup, CONVERT(char(10), A.ValidTo,126) as ValidTo, A.Status FROM GroupMembers_v1 as A  join SystemAccessLevels as B on A.System_ID = B.SystemID join Systems as C on A.System_ID = C.System_ID WHERE B.NetID = '" + Session["Login"] + "' AND B.AccessLevelID = 2 order by A.RecID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
-                GridView2.DataSource = dt;
-                GridView2.DataBind();
+
+                    GridView2.DataSource = dt;
+                    GridView2.DataBind();
+                    
+                if (dt.Rows.Count != 0)
+                {
+                    hiddencolumns();
+                }
                 dt.Clear();
-                hiddencolumns();
 
                 DataTable dt2 = new DataTable();
 
@@ -229,7 +243,7 @@ namespace Aplikacja_1._0._2
             }
         }
         protected void Button1_Click(object sender, EventArgs e)
-        {
+        {  
             DataTable dt = new DataTable();
             dt.Clear();
             SqlConnection conn = new SqlConnection(constr);
@@ -237,9 +251,18 @@ namespace Aplikacja_1._0._2
             SqlCommand command = new SqlCommand("SELECT A.RecID, A.System, A.GroupName, A.FirstName, A.LastName, A.Login, A.Department, A.Plant, A.BWIEmplNo, A.PlantIDNo, A.TicketNo, C.SupportEmail, C.SupportGroup, CONVERT(char(10), A.ValidTo,126) as ValidTo, A.Status FROM GroupMembers_v1 as A  join SystemAccessLevels as B on A.System_ID = B.SystemID join Systems as C on A.System_ID = C.System_ID WHERE " + buduj_warunek(DropDownList1.SelectedItem.Text, TextBox1.Text, TextBox2.Text, TextBox3.Text, DropDownList4.SelectedItem.Text, TextBox4.Text, TextBox5.Text, TextBox6.Text, Session["Login"].ToString(), DropDownList2.SelectedItem.Text) + " order by A.RecID desc", conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
-            GridView2.DataSource = dt;
-            GridView2.DataBind();
-            hiddencolumns();
+
+                GridView2.DataSource = dt;
+                GridView2.DataBind();
+            if (dt.Rows.Count != 0)
+            {
+                hiddencolumns();
+            }
+            else
+            {
+                Label29.Text = "Nothing found.";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openKomunikatModal();", true);
+            }
         }
 
         protected void Button3_Click(object sender, EventArgs e)
@@ -272,9 +295,13 @@ namespace Aplikacja_1._0._2
                 command = new SqlCommand("SELECT A.RecID, A.System, A.GroupName, A.FirstName, A.LastName, A.Login, A.Department, A.Plant, A.BWIEmplNo, A.PlantIDNo, A.TicketNo, C.SupportEmail, C.SupportGroup,  CONVERT(char(10), A.ValidTo,126) as ValidTo, A.Status FROM GroupMembers_v1 as A  join SystemAccessLevels as B on A.System_ID = B.SystemID join Systems as C on A.System_ID = C.System_ID WHERE B.NetID = '" + Session["Login"] + "' AND B.AccessLevelID = 2 order by A.RecID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
-                GridView2.DataSource = dt;
-                GridView2.DataBind();
-                hiddencolumns();
+
+                    GridView2.DataSource = dt;
+                    GridView2.DataBind();
+                if (dt.Rows.Count != 0)
+                {
+                    hiddencolumns();
+                }
                 ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Status changed to - deleted');", true);
             }
             catch
@@ -328,7 +355,15 @@ namespace Aplikacja_1._0._2
                 TextBox18.Visible = false;
             }
 
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openDeleteModal();", true);
+            if (HiddenTextBox.Value == "")
+            {
+                Label29.Text = "First you need to select row.";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openKomunikatModal();", true);
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openDeleteModal();", true);
+            }
         }
         
         protected void Button9_Click(object sender, EventArgs e)
@@ -343,7 +378,9 @@ namespace Aplikacja_1._0._2
 
                 conn.Open();
 
-                command = new SqlCommand("INSERT INTO Mail_To (Mail_From, Mail_To, Subject, body, Date1, Status) VALUES('ITSystemsBWI@bwigroup.com', '" + HiddenEmail.Value + "', 'Delete user on system: " + TextBox7.Text + "' , ' body ' , getdate(), ' 0 ')", conn);
+
+                command = new SqlCommand("INSERT INTO Mail_To (Mail_From, Mail_To, Subject, body, Date1, Status) VALUES('ITSystemsBWI@bwigroup.com', 'jacek.maj@bwigroup.com ; krzysztof.czekanski@bwigroup.com', 'Delete user on system: " + TextBox7.Text + "' , ' This is a test email generated by IAM' , getdate(), ' 0 ')", conn);
+          //      command = new SqlCommand("INSERT INTO Mail_To (Mail_From, Mail_To, Subject, body, Date1, Status) VALUES('ITSystemsBWI@bwigroup.com', '" + HiddenEmail.Value + "', 'Delete user on system: " + TextBox7.Text + "' , ' This is a test email generated by IAM' , getdate(), ' 0 ')", conn);
 
 
                 command.ExecuteNonQuery();
@@ -369,9 +406,13 @@ namespace Aplikacja_1._0._2
                 command = new SqlCommand("SELECT A.RecID, A.System, A.GroupName, A.FirstName, A.LastName, A.Login, A.Department, A.Plant, A.BWIEmplNo, A.PlantIDNo, A.TicketNo, C.SupportEmail, C.SupportGroup,  CONVERT(char(10), A.ValidTo,126) as ValidTo, A.Status FROM GroupMembers_v1 as A  join SystemAccessLevels as B on A.System_ID = B.SystemID join Systems as C on A.System_ID = C.System_ID WHERE B.NetID = '" + Session["Login"] + "' AND B.AccessLevelID = 2 order by A.RecID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
-                GridView2.DataSource = dt;
-                GridView2.DataBind();
-                hiddencolumns();
+
+                    GridView2.DataSource = dt;
+                    GridView2.DataBind();
+                if (dt.Rows.Count != 0)
+                {
+                    hiddencolumns();
+                }
                 ScriptManager.RegisterStartupScript(this, GetType(), "AnyValue", "showAlert('Status changed to - to be deleted and an e-mail was sent to the owner of the system');", true);
             }
             catch

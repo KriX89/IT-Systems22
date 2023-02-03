@@ -9,7 +9,7 @@ namespace Aplikacja_1._0._2
 {
     public partial class SystemsView : System.Web.UI.Page
     {
-        string constr = "Data Source=PLKRO-SQL02;Initial Catalog=IT;User ID=webkrosno;Password=!kR0sno2022#";
+        string constr = "Data Source=PLKRA-SQL01;Initial Catalog=IAM;User ID=IAM_RW;Password=#iTiAM2022!";
 
 
         private void LoadGridData()
@@ -21,10 +21,13 @@ namespace Aplikacja_1._0._2
             SqlCommand command = new SqlCommand("SELECT A.System, A.AuthecticationGrName , A.LocationType, A.SystemType, A.Vendor, A.PhysicalLocation, A.Plant, B.SupportEmail, B.SupportGroup FROM Systems_v1 as A join Systems as B on A.System_ID = B.System_ID WHERE " + buduj_warunek(TextBox1.Text, DropDownList1.SelectedItem.Text, DropDownList2.SelectedItem.Text, DropDownList3.SelectedItem.Text) + " order by A.System_ID desc", conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
-            GridView2.DataSource = dt;
-            GridView2.DataBind();
-            dt.Clear();
-            hiddencolumns();
+            if (dt.Rows.Count != 0)
+            {
+                GridView2.DataSource = dt;
+                GridView2.DataBind();
+                dt.Clear();
+                hiddencolumns();
+            }
         }
 
 
@@ -101,10 +104,13 @@ namespace Aplikacja_1._0._2
                 //  SqlCommand command = new SqlCommand("SELECT System, AuthecticationGrName , LocationType, SystemType, Vendor, PhysicalLocation, Plant FROM Systems_v1 order by System_ID desc", conn);
                 dt.Load(command.ExecuteReader());
                 conn.Close();
-                GridView2.DataSource = dt;
-                GridView2.DataBind();
-                dt.Clear();
-                hiddencolumns();
+                if (dt.Rows.Count != 0)
+                {
+                    GridView2.DataSource = dt;
+                    GridView2.DataBind();
+                    dt.Clear();
+                    hiddencolumns();
+                }
 
                 DataTable dt2 = new DataTable();
                 if (DropDownList1.Items.Count < 1)
@@ -166,9 +172,12 @@ namespace Aplikacja_1._0._2
             SqlCommand command = new SqlCommand("SELECT A.System, A.AuthecticationGrName , A.LocationType, A.SystemType, A.Vendor, A.PhysicalLocation, A.Plant, B.SupportEmail, B.SupportGroup FROM Systems_v1 as A join Systems as B on A.System_ID = B.System_ID WHERE " + buduj_warunek(TextBox1.Text, DropDownList1.SelectedItem.Text, DropDownList2.SelectedItem.Text, DropDownList3.SelectedItem.Text) + " order by A.System_ID desc", conn);
             dt.Load(command.ExecuteReader());
             conn.Close();
-            GridView2.DataSource = dt;
-            GridView2.DataBind();
-            hiddencolumns();
+            if (dt.Rows.Count != 0)
+            {
+                GridView2.DataSource = dt;
+                GridView2.DataBind();
+                hiddencolumns();
+            }
         }
 
         protected void Button5_Click(object sender, EventArgs e)

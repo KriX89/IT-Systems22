@@ -6,8 +6,8 @@
 
      <asp:UpdatePanel ID="UpdatePanel2" runat="server">
   <ContentTemplate>
-  <div id="filtrModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+  <div id="filtrModal" class="modal fade bd-example-modal-lg" role="dialog">
+  <div class="modal-dialog modal-lg">
 
     <!-- Modal content-->
     <div class="modal-content">

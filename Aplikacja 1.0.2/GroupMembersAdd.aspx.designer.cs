@@ -303,13 +303,13 @@ namespace Aplikacja_1._0._2
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// Kontrolka TextBox1.
+        /// Kontrolka DropDownList3.
         /// </summary>
         /// <remarks>
         /// Pole generowane automatycznie.
         /// Aby wprowadzić zmiany, przenieś deklarację pola z pliku projektanta do pliku codebehind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList3;
 
         /// <summary>
         /// Kontrolka Label2.

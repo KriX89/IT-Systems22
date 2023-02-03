@@ -8,7 +8,7 @@ namespace Aplikacja_1._0._2
 {
     public partial class SysTypeEdit : System.Web.UI.Page
     {
-        string constr = "Data Source=PLKRO-SQL02;Initial Catalog=IT;User ID=webkrosno;Password=!kR0sno2022#";
+        string constr = "Data Source=PLKRA-SQL01;Initial Catalog=IAM;User ID=IAM_RW;Password=#iTiAM2022!";
 
         protected void Page_Load(object sender, EventArgs e)
         {
